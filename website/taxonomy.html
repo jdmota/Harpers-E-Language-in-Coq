@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Harper's E Language in Coq | Taxonomy</title>
+    <style>
+      body {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        margin: 0;
+        height: 100%;
+        background-color: #f6f6f6;
+      }
+      a {
+        text-decoration: none;
+      }
+      .toolbar {
+        padding: 15px;
+        border-bottom: solid black 1px;
+        min-height: 50px;
+      }
+      .toolbar #search {
+        display: block;
+        margin-top: 5px;
+        margin-right: 10px;
+        height: 30px;
+        float: left;
+      }
+      .toolbar #order {
+        display: block;
+        margin-top: 5px;
+        margin-right: 10px;
+        height: 36px;
+        float: left;
+      }
+      .toolbar > div > span {
+        display: block;
+        margin-top: 5px;
+        margin-right: 10px;
+        line-height: 36px;
+        height: 36px;
+        float: left;
+      }
+      .toolbar #results {
+        line-height: 40px;
+        clear: both;
+      }
+      .proof {
+        padding: 15px;
+        border-bottom: solid black 1px;
+      }
+      .proof-header {
+        display: grid;
+        grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        margin-bottom: 10px;
+      }
+      .proof-statement {
+        margin-bottom: 10px;
+      }
+      .proof-uses {
+        margin-bottom: 10px;
+      }
+      .proof-used-by {
+        margin-bottom: 10px;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6"></script>
+  </head>
+  <body>
+    <script src="taxonomy_data.js"></script>
+    <div class="toolbar">
+      <div>
+        <span>Sort By:</span>
+        <select id="order" name="order" title="Order">
+          <option value="file">Filename</option>
+          <option value="inTheBook">In Harper's Book</option>
+          <option value="proofLines">Proof Lines</option>
+          <option value="uses">Uses</option>
+          <option value="usedBy">Used By</option>
+          <option value="transitiveUses">Transitive Uses</option>
+          <option value="transitiveUsedBy">Transitive Used By</option>
+        </select>
+        <input id="search" type="text" label="Search" title="Search" placeholder="Search..." />
+        <span id="global-count"></span>
+      </div>
+      <div id="results"></div>
+    </div>
+    <div id="proofs-container"></div>
+    <script>
+      const ids = new Map(taxonomyData.map((p, i) => [p.name, `proof${i}`]));
+      const proofElems = new Map(taxonomyData.map(p => [p.name, document.createElement("div")]));
+      const makeLink = r => `<a href="#${ids.get(r)}"">${r}</a>`;
+      const inHarpersBook = new Set(taxonomyMetadata.harpersBook);
+
+      const fuse = new Fuse(taxonomyData, {
+        keys: [
+          "name",
+          "statement",
+          "file",
+        ]
+      });
+
+      const sortedBy = {
+        file: [...taxonomyData].sort((a, b) => a.file.localeCompare(b.file)),
+        inTheBook: [...taxonomyData].sort((a, b) => inHarpersBook.has(b.name) - inHarpersBook.has(a.name)),
+        proofLines: [...taxonomyData].sort((a, b) => b.proofLines - a.proofLines),
+        uses: [...taxonomyData].sort((a, b) => b.uses.length - a.uses.length),
+        usedBy: [...taxonomyData].sort((a, b) => b.usedBy.length - a.usedBy.length),
+        transitiveUses: [...taxonomyData].sort((a, b) => b.transitiveUses - a.transitiveUses),
+        transitiveUsedBy: [...taxonomyData].sort((a, b) => b.transitiveUsedBy - a.transitiveUsedBy),
+      };
+      
+      const searchElem = document.getElementById("search");
+      const resultsElem = document.getElementById("results");
+      const orderElem = document.getElementById("order");
+      const globalCountElem = document.getElementById("global-count");
+      const container = document.getElementById("proofs-container");
+
+      globalCountElem.innerText = `Showing ${taxonomyData.length} proofs`;
+
+      searchElem.addEventListener("keyup", ({target: {value}, key}) => {
+        if (key === "Enter") {
+          const results = fuse.search(value);
+          const someResults = [];
+          const amount = Math.min(10, results.length);
+          for (let i = 0; i < amount; i++) {
+            someResults.push(results[i].item.name);
+          }
+          resultsElem.innerHTML = someResults.map(makeLink).join(" | ");
+          console.log(results);
+        }
+      });
+
+      orderElem.addEventListener("change", ({target: {value}}) => {
+        for (const {name} of sortedBy[value]) {
+          container.appendChild(proofElems.get(name));
+        }
+      });
+
+      for (const proof of sortedBy.file) {
+        const {
+          file, name, type, proofLines,
+          statement, uses, usedBy,
+          transitiveUses, transitiveUsedBy
+        } = proof;
+
+        const elems = {
+          main: proofElems.get(name),
+          header: document.createElement("div"),
+          statement: document.createElement("div"),
+          uses: document.createElement("div"),
+          usedBy: document.createElement("div")
+        };     
+        elems.main.appendChild(elems.header);
+        elems.main.appendChild(elems.statement);
+        elems.main.appendChild(elems.uses);
+        elems.main.appendChild(elems.usedBy);
+
+        elems.main.id = ids.get(name);
+        elems.main.className = "proof";
+        elems.header.className = "proof-header";
+        elems.statement.className = "proof-statement";
+        elems.uses.className = "proof-uses";
+        elems.usedBy.className = "proof-used-by";
+
+        elems.header.innerHTML = [
+          `<a href="PFPL.${file.replace(/\.v$/, "")}.html#${name}" target="_blank">${name}</a>`,
+          `<a href="PFPL.${file.replace(/\.v$/, "")}.html" target="_blank">${file}</a>`,
+          inHarpersBook.has(name) ? `In the book` : ``,
+          `Proof Lines: ${proofLines}`,
+          `Uses: ${uses.length}`,
+          `Used By: ${usedBy.length}`,
+          `Transitive Uses: ${transitiveUses}`,
+          `Transitive Used By: ${transitiveUsedBy}`,
+        ].map(s => `<span>${s}</span>`).join("");
+        elems.statement.innerText = statement;
+        elems.uses.innerHTML = "Uses: " + uses.map(makeLink).join(" | ");
+        elems.usedBy.innerHTML = "Used By: " + usedBy.map(makeLink).join(" | ");
+
+        if (uses.length === 0) {
+          elems.uses.remove();
+        }
+        if (usedBy.length === 0) {
+          elems.usedBy.remove();
+        }
+
+        container.appendChild(elems.main);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+.*.aux
+*.glob
+*.vo
+*.vok
+*.vos
+*.cache
+*.d
+coq2html-1.2

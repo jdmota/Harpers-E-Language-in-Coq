@@ -1,0 +1,86 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module PFPL.Lemmas_Rename_Subst</title>
+<meta name="description" content="Documentation of Coq module PFPL.Lemmas_Rename_Subst" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module PFPL.Lemmas_Rename_Subst</h1>
+<div class="coq">
+<span class="kwd">Set</span> <span class="id">Warnings</span> "-<span class="id">notation</span>-<span class="id">overridden</span>,-<span class="id">parsing</span>,-<span class="id">deprecated</span>-<span class="id">hint</span>-<span class="id">without</span>-<span class="id">locality</span>".<br/>
+<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool.Bool</a></span>.<br/>
+<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
+<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith.Arith</a></span>.<br/>
+<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.EqNat.html">Arith.EqNat</a></span>. <span class="kwd">Import</span> <span class="id">Nat</span>.<br/>
+<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html">Arith.PeanoNat</a></span>.<br/>
+<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
+<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html">Logic.Eqdep_dec</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.PartialMap_Set.html">PartialMap_Set</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Definitions.html">Definitions</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Vars.html">Lemmas_Vars</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Rename.html">Lemmas_Rename</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html">Lemmas_Same_Structure</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_AlphaEquiv.html">Lemmas_AlphaEquiv</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Rename.html">Lemmas_Rename</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_FreshRename.html">Lemmas_FreshRename</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Rename_FreshRename.html">Lemmas_Rename_FreshRename</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_FreshRename_AlphaEquiv.html">Lemmas_FreshRename_AlphaEquiv</a></span>.<br/>
+<br/>
+<span class="kwd">Lemma</span> <span class="id"><a name="rename_vs_subst">rename_vs_subst</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">y</span> <span class="id">z</span>,<br/>
+&nbsp;&nbsp;(<span class="id">x</span> =? <span class="id">y</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;(<span class="id">x</span> =? <span class="id">z</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span>' <span class="id">y</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;<span class="tactic">rename</span> (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) <span class="id">y</span> <span class="id">z</span> = <span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">y</span> <span class="id">z</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof44')">Proof.</div>
+<div class="proofscript" id="proof44">
+&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="id">case_eq</span> (<span class="id">x0</span> =? <span class="id">x</span>); <span class="tactic">intro</span> <span class="id">X0X</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_eq">Nat.eqb_eq</a></span> <span class="kwd">in</span> <span class="id">X0X</span>. <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_sym">Nat.eqb_sym</a></span>. <span class="tactic">rewrite</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_refl">Nat.eqb_refl</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">symmetry</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Rename.html#rename_non_existant_free">rename_non_existant_free</a></span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">simpl</span>. <span class="id">case_eq</span> (<span class="id">y</span> =? <span class="id">x</span>); <span class="tactic">intro</span> <span class="id">YX</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_eq">Nat.eqb_eq</a></span> <span class="kwd">in</span> <span class="id">YX</span>. <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id">H0</span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id">X0X</span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">f_equal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe2</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">f_equal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe2</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">f_equal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe2</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">f_equal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">case_eq</span> (<span class="id">x0</span> =? <span class="id">x</span>); <span class="tactic">intro</span> <span class="id">X0X</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_eq">Nat.eqb_eq</a></span> <span class="kwd">in</span> <span class="id">X0X</span>. <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_sym">Nat.eqb_sym</a></span>. <span class="tactic">rewrite</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_refl">Nat.eqb_refl</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_sym">Nat.eqb_sym</a></span>. <span class="tactic">rewrite</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">simpl</span>. <span class="id">case_eq</span> (<span class="id">y</span> =? <span class="id">x</span>); <span class="tactic">intro</span> <span class="id">YX</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_eq">Nat.eqb_eq</a></span> <span class="kwd">in</span> <span class="id">YX</span>. <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id">X0X</span>. <span class="tactic">f_equal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe2</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+Qed.</div>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

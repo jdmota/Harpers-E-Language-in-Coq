@@ -1,0 +1,37 @@
+{
+  "harpersBook": [
+    "unicity",
+    "inversion",
+    "weakening",
+    "substitution",
+    "decomposition",
+    "EvalStarToEvalN",
+    "EvalNToEvalStar",
+    "finality_of_values",
+    "determinacy",
+    "canonical_forms",
+    "preservation",
+    "progress",
+    "type_safety"
+  ],
+  "original": [
+    "well_typed_programs_terminate",
+    "eval_correct",
+    "eval_big_correct",
+    "eval_big_equiv_eval_star",
+    "eval_func_reduces",
+    "eval_big_returns_value_or_none",
+    "eval_big_gives_value",
+    "eval_big_deterministic",
+    "alpha_equiv_func_equiv_rel",
+    "alpha_equiv_Equiv",
+    "alpha_variants_have_same_type",
+    "substitutivity",
+    "alpha_equiv_preserved_by_plus",
+    "alpha_equiv_preserved_by_times",
+    "alpha_equiv_preserved_by_cat",
+    "alpha_equiv_preserved_by_len",
+    "alpha_equiv_preserved_by_let",
+    "fresh_rename_keeps_alpha_equiv"
+  ]
+}
