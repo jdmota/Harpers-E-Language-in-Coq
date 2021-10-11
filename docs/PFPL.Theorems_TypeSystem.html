@@ -37,24 +37,19 @@
 <span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html">Theorems_AlphaEquiv</a></span>.<br/>
 <span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Theorems_Eval.html">Theorems_Eval</a></span>.<br/>
 <br/>
-<div class="doc">In the book </div>
+<div class="doc">At most one type for each expression (In Harper's book) </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="unicity">unicity</a></span>: <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">t</span>',<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>' -&gt; <span class="id">t</span> = <span class="id">t</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof153')">Proof.</div>
-<div class="proofscript" id="proof153">
+<div class="toggleproof" onclick="toggleDisplay('proof139')">Proof.</div>
+<div class="proofscript" id="proof139">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">t</span>' <span class="id">H1</span>. <span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">t</span>'.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H1</span>; <span class="tactic">intros</span> <span class="id">t</span>' <span class="id">H2</span>; <span class="tactic">inversion</span> <span class="id">H2</span>; <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">H</span> <span class="kwd">in</span> <span class="id">H3</span>. <span class="tactic">inversion</span> <span class="id">H3</span>. <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">IHhastype1</span> <span class="kwd">in</span> <span class="id">H5</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">IHhastype2</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H</span> <span class="kwd">in</span> <span class="id">H3</span>. <span class="tactic">inversion</span> <span class="id">H3</span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHhastype1</span> <span class="kwd">in</span> <span class="id">H5</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">IHhastype2</span>. <span class="tactic">assumption</span>.<br/>
 Qed.</div>
 <br/>
-<div class="doc">In the book </div>
+<div class="doc">Typing rules are syntax-directed (In Harper's book) </div>
 <span class="kwd">Lemma</span> <span class="tactic">inversion</span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; (<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> (<span class="id">x</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>), <span class="id">e</span> = <span class="id"><a href="PFPL.Definitions.html#EId">EId</a></span> <span class="id">x</span> -&gt; <span class="id">Gamma</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span>(<span class="id">t</span>)) /\<br/>
@@ -66,27 +61,31 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e1</span>, <span class="id">e</span> = <span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">e1</span> -&gt; <span class="id">t</span> = <span class="id"><a href="PFPL.Definitions.html#TNum">TNum</a></span> /\ <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e1</span> <span class="id"><a href="PFPL.Definitions.html#TStr">TStr</a></span>) /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e1</span> <span class="id">x</span> <span class="id">e2</span>, <span class="id">e</span> = <span class="id"><a href="PFPL.Definitions.html#ELet">ELet</a></span> <span class="id">e1</span> <span class="id">x</span> <span class="id">e2</span> -&gt; (<span class="id">exists</span> <span class="id">t1</span> <span class="id">t2</span>, <span class="id">t</span> = <span class="id">t2</span> /\ <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e1</span> <span class="id">t1</span> /\ <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#update">update</a></span> <span class="id">Gamma</span> <span class="id">x</span> <span class="id">t1</span>) <span class="id">e2</span> <span class="id">t2</span>))<br/>
 &nbsp;&nbsp;).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof154')">Proof.</div>
-<div class="proofscript" id="proof154">
+<div class="toggleproof" onclick="toggleDisplay('proof140')">Proof.</div>
+<div class="proofscript" id="proof140">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">H</span>. <span class="tactic">induction</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>. <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">H</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">H</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">H</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">t1</span>. <span class="id">exists</span> <span class="id">t2</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>. <span class="tactic">assumption</span>. <span class="tactic">subst</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>. <span class="tactic">assumption</span>. <span class="tactic">subst</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>. <span class="tactic">assumption</span>. <span class="tactic">subst</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">inversion</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>. <span class="id">exists</span> <span class="id">t1</span>. <span class="id">exists</span> <span class="id">t2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">split</span>; <span class="tactic">assumption</span>.<br/>
 Qed.</div>
 <br/>
-<div class="doc">In the book </div>
+<div class="doc">Weakening (In Harper's book) </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="weakening">weakening</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">t</span>', <span class="id">Gamma</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="id">e</span> <span class="id">t</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof155')">Proof.</div>
-<div class="proofscript" id="proof155">
+<div class="toggleproof" onclick="toggleDisplay('proof141')">Proof.</div>
+<div class="proofscript" id="proof141">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">H1</span> <span class="id">y</span> <span class="id">t</span>' <span class="id">H2</span>. <span class="tactic">induction</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#T_Var">T_Var</a></span>. <span class="tactic">rewrite</span> &lt;- <span class="id">H</span>. <span class="tactic">apply</span> (<span class="id"><a href="PFPL.PartialMap_Set.html#update_neq">update_neq</a></span> <span class="id">_</span> <span class="id">Gamma</span> <span class="id">x</span> <span class="id">y</span> <span class="id">t</span>').<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#not">not</a></span>. <span class="tactic">intros</span> <span class="id">H4</span>. <span class="tactic">subst</span>. <span class="tactic">rewrite</span> <span class="id">H2</span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">inversion</span> <span class="id">H</span>.<br/>
@@ -109,8 +108,8 @@ Qed.</div>
 <div class="doc">Different enunciation of the weakening property </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="weakening_2">weakening_2</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">t</span>', <span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="id">e</span> <span class="id">t</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof156')">Proof.</div>
-<div class="proofscript" id="proof156">
+<div class="toggleproof" onclick="toggleDisplay('proof142')">Proof.</div>
+<div class="proofscript" id="proof142">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">H1</span> <span class="id">y</span> <span class="id">t</span>' <span class="id">H2</span>. <span class="tactic">induction</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#T_Var">T_Var</a></span>. <span class="tactic">rewrite</span> &lt;- <span class="id">H</span>. <span class="tactic">apply</span> (<span class="id"><a href="PFPL.PartialMap_Set.html#update_neq">update_neq</a></span> <span class="id">_</span> <span class="id">Gamma</span> <span class="id">x</span> <span class="id">y</span> <span class="id">t</span>').<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#not">not</a></span>. <span class="tactic">intros</span>. <span class="tactic">subst</span>. <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H2</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span> <span class="kwd">in</span> <span class="id">H2</span>.<br/>
@@ -139,8 +138,8 @@ Qed.</div>
 <div class="doc">Different enunciation of the weakening property </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="weakening_3">weakening_3</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">x</span> <span class="id">t</span>',<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#update">update</a></span> <span class="id">Gamma</span> <span class="id">x</span> <span class="id">t</span>') <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof157')">Proof.</div>
-<div class="proofscript" id="proof157">
+<div class="toggleproof" onclick="toggleDisplay('proof143')">Proof.</div>
+<div class="proofscript" id="proof143">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">y</span> <span class="id">t</span>' <span class="id">H</span> <span class="id">H0</span>. <span class="id">remember</span> (<span class="id">y</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="kwd">as</span> <span class="id">Gamma</span>'.<br/>
 &nbsp;&nbsp;<span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">Gamma</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H</span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
@@ -180,8 +179,8 @@ Qed.</div>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span> <span class="id">x</span>' = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="id">e</span> <span class="id">t</span> &lt;-&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id">x</span>' |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id">t</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof158')">Proof.</div>
-<div class="proofscript" id="proof158">
+<div class="toggleproof" onclick="toggleDisplay('proof144')">Proof.</div>
+<div class="proofscript" id="proof144">
 &nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">split</span>; <span class="tactic">intro</span>.<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">remember</span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="kwd">as</span> <span class="id">Gamma</span>'.<br/>
@@ -294,8 +293,8 @@ Qed.</div>
 <div class="doc">Typing is preserved by alpha equivalence </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="alpha_variants_have_same_type">alpha_variants_have_same_type</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">Gamma</span> <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span>' <span class="id">t</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof159')">Proof.</div>
-<div class="proofscript" id="proof159">
+<div class="toggleproof" onclick="toggleDisplay('proof145')">Proof.</div>
+<div class="proofscript" id="proof145">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">Gamma</span> <span class="id">t</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">t</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">Gamma</span>.<br/>
@@ -332,8 +331,8 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="substitution_aux">substitution_aux</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">x</span> <span class="id">t</span> <span class="id">e</span> <span class="id">t</span>' <span class="id">e</span>',<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">v</span>, <span class="id"><a href="PFPL.Definitions.html#bound_vars">bound_vars</a></span> <span class="id">e</span> <span class="id">v</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span>' <span class="id">v</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>) -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span>' <span class="id">t</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) <span class="id">t</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof160')">Proof.</div>
-<div class="proofscript" id="proof160">
+<div class="toggleproof" onclick="toggleDisplay('proof146')">Proof.</div>
+<div class="proofscript" id="proof146">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">x</span> <span class="id">t</span> <span class="id">e</span> <span class="id">t</span>' <span class="id">e</span>' <span class="id">H1</span> <span class="id">H2</span> <span class="id">H3</span>.<br/>
 &nbsp;&nbsp;<span class="id">remember</span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="kwd">as</span> <span class="id">Gamma</span>'.<br/>
 &nbsp;&nbsp;<span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">Gamma</span>.<br/>
@@ -398,11 +397,11 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#orb_true_r">orb_true_r</a></span>.<br/>
 Qed.</div>
 <br/>
-<div class="doc">In the book </div>
+<div class="doc">Substitution (In Harper's book) </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="substitution">substitution</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">x</span> <span class="id">t</span> <span class="id">e</span> <span class="id">t</span>' <span class="id">e</span>',<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span>' <span class="id">t</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> (<span class="tactic">subst</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) <span class="id">t</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof161')">Proof.</div>
-<div class="proofscript" id="proof161">
+<div class="toggleproof" onclick="toggleDisplay('proof147')">Proof.</div>
+<div class="proofscript" id="proof147">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>')) <span class="kwd">as</span> <span class="id">o</span>.<br/>
@@ -420,8 +419,8 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="decomposition_aux">decomposition_aux</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">x</span> <span class="id">e</span>' <span class="id">t</span>,<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">v</span>, <span class="id"><a href="PFPL.Definitions.html#bound_vars">bound_vars</a></span> <span class="id">e</span> <span class="id">v</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span>' <span class="id">v</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>) -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) <span class="id">t</span> -&gt; (<span class="kwd">forall</span> <span class="id">t</span>', <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span>' <span class="id">t</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="id">e</span> <span class="id">t</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof162')">Proof.</div>
-<div class="proofscript" id="proof162">
+<div class="toggleproof" onclick="toggleDisplay('proof148')">Proof.</div>
+<div class="proofscript" id="proof148">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">x</span>. <span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">Gamma</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#T_Num">T_Num</a></span>.<br/>
@@ -481,11 +480,11 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_neq">Nat.eqb_neq</a></span>. <span class="tactic">assumption</span>.<br/>
 Qed.</div>
 <br/>
-<div class="doc">In the book </div>
+<div class="doc">Decomposition (In Harper's book) </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="decomposition">decomposition</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">x</span> <span class="id">e</span>' <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> (<span class="tactic">subst</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) <span class="id">t</span> -&gt; (<span class="kwd">forall</span> <span class="id">t</span>', <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span>' <span class="id">t</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> (<span class="id">x</span> |-&gt; <span class="id">t</span>'; <span class="id">Gamma</span>) <span class="id">e</span> <span class="id">t</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof163')">Proof.</div>
-<div class="proofscript" id="proof163">
+<div class="toggleproof" onclick="toggleDisplay('proof149')">Proof.</div>
+<div class="proofscript" id="proof149">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="tactic">subst</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>')) <span class="kwd">as</span> <span class="id">o</span>.<br/>
@@ -498,11 +497,11 @@ Qed.</div>
 &nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">assumption</span>.<br/>
 Qed.</div>
 <br/>
-<div class="doc">In the book </div>
+<div class="doc">Steps of evaluation preserve typing (In Harper's book) </div>
 <span class="kwd">Theorem</span> <span class="id"><a name="preservation">preservation</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">e</span>',<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; <span class="kwd">Eval</span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span>' <span class="id">t</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof164')">Proof.</div>
-<div class="proofscript" id="proof164">
+<div class="toggleproof" onclick="toggleDisplay('proof150')">Proof.</div>
+<div class="proofscript" id="proof150">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">e</span>' <span class="id">H1</span> <span class="id">H2</span>. <span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">t</span>. <span class="tactic">induction</span> <span class="id">H2</span>; <span class="tactic">intros</span> <span class="id">t</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#T_Num">T_Num</a></span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#T_Plus">T_Plus</a></span>. <span class="tactic">apply</span> <span class="id">IHEval</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
@@ -522,28 +521,27 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">assumption</span>.<br/>
 Qed.</div>
 <br/>
-<div class="doc">In the book </div>
+<div class="doc">Canonical Forms (In Harper's book) </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="canonical_forms">canonical_forms</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#Val">Val</a></span> <span class="id">e</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; (<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">t</span> = <span class="id"><a href="PFPL.Definitions.html#TNum">TNum</a></span> -&gt; <span class="id">exists</span> <span class="id">n</span>, <span class="id">e</span> = <span class="id"><a href="PFPL.Definitions.html#ENum">ENum</a></span> <span class="id">n</span>) /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">t</span> = <span class="id"><a href="PFPL.Definitions.html#TStr">TStr</a></span> -&gt; <span class="id">exists</span> <span class="id">s</span>, <span class="id">e</span> = <span class="id"><a href="PFPL.Definitions.html#EStr">EStr</a></span> <span class="id">s</span>)<br/>
 &nbsp;&nbsp;).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof165')">Proof.</div>
-<div class="proofscript" id="proof165">
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">H1</span> <span class="id">H2</span>. <span class="tactic">split</span>; <span class="tactic">intros</span> <span class="id">H3</span>; <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">exists</span> <span class="id">n</span>. <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">subst</span>. <span class="tactic">inversion</span> <span class="id">H2</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">subst</span>. <span class="tactic">inversion</span> <span class="id">H2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">exists</span> <span class="id">s</span>. <span class="tactic">reflexivity</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof151')">Proof.</div>
+<div class="proofscript" id="proof151">
+&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H1</span>; <span class="tactic">intros</span>; <span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;<span class="id">exists</span> <span class="id">n</span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;<span class="id">exists</span> <span class="id">s</span>. <span class="tactic">reflexivity</span>.<br/>
 Qed.</div>
 <br/>
-<div class="doc">In the book </div>
+<div class="doc">Well-typed programs cannot get stuck (In Harper's book) </div>
 <span class="kwd">Theorem</span> <span class="tactic">progress</span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id"><a href="PFPL.Definitions.html#empty_ctx">empty_ctx</a></span> <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#Val">Val</a></span> <span class="id">e</span> \/ <span class="id">exists</span> <span class="id">e</span>', <span class="kwd">Eval</span> <span class="id">e</span> <span class="id">e</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof166')">Proof.</div>
-<div class="proofscript" id="proof166">
+<div class="toggleproof" onclick="toggleDisplay('proof152')">Proof.</div>
+<div class="proofscript" id="proof152">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">t</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;<span class="id">remember</span> <span class="id"><a href="PFPL.Definitions.html#empty_ctx">empty_ctx</a></span> <span class="kwd">as</span> <span class="id">Gamma</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H</span>; <span class="tactic">subst</span>.<br/>
@@ -615,8 +613,8 @@ Qed.</div>
 <div class="doc">Based on https://softwarefoundations.cis.upenn.edu/plf-current/StlcProp.html#lab244 </div>
 <span class="kwd">Theorem</span> <span class="id"><a name="type_safety">type_safety</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id"><a href="PFPL.Definitions.html#empty_ctx">empty_ctx</a></span> <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#EvalStar">EvalStar</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#Val">Val</a></span> <span class="id">e</span>' \/ <span class="id">exists</span> <span class="id">e</span>'', <span class="kwd">Eval</span> <span class="id">e</span>' <span class="id">e</span>''.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof167')">Proof.</div>
-<div class="proofscript" id="proof167">
+<div class="toggleproof" onclick="toggleDisplay('proof153')">Proof.</div>
+<div class="proofscript" id="proof153">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">t</span> <span class="id">H1</span> <span class="id">H2</span>. <span class="tactic">induction</span> <span class="id">H2</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="tactic">progress</span> <span class="kwd">in</span> <span class="id">H1</span>. <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">IHEvalStar</span>. <span class="tactic">apply</span> (<span class="id"><a href="PFPL.Theorems_TypeSystem.html#preservation">preservation</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H1</span> <span class="id">H</span>).<br/>
@@ -625,9 +623,9 @@ Qed.</div>
 <div class="doc">Proof of termination of well-typed programs </div>
 <span class="kwd">Theorem</span> <span class="id"><a name="well_typed_programs_terminate">well_typed_programs_terminate</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id"><a href="PFPL.Definitions.html#empty_ctx">empty_ctx</a></span> <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id">exists</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#EvalBig">EvalBig</a></span> <span class="id">e</span> <span class="id">e</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof168')">Proof.</div>
-<div class="proofscript" id="proof168">
-&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">e</span>. <span class="id">remember</span> (<span class="id"><a href="PFPL.Theorems_Eval.html#subexprs_count">subexprs_count</a></span> <span class="id">e</span>) <span class="kwd">as</span> <span class="id">c</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof154')">Proof.</div>
+<div class="proofscript" id="proof154">
+&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">e</span>. <span class="id">remember</span> (<span class="id"><a href="PFPL.Definitions.html#subexprs_count">subexprs_count</a></span> <span class="id">e</span>) <span class="kwd">as</span> <span class="id">c</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">e</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">c</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span> <span class="kwd">using</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Wf_nat.html#lt_wf_ind">lt_wf_ind</a></span>; <span class="tactic">intros</span>.<br/>
@@ -639,7 +637,7 @@ Qed.</div>
 &nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T1</span> := <span class="id"><a href="PFPL.Theorems_TypeSystem.html#preservation">preservation</a></span> <span class="id"><a href="PFPL.Definitions.html#empty_ctx">empty_ctx</a></span> <span class="id">e</span> <span class="id">t0</span> <span class="id">x</span> <span class="id">H0</span> <span class="id">H1</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T2</span> := <span class="tactic">progress</span> <span class="id">x</span> <span class="id">t0</span> <span class="id">T1</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="PFPL.Theorems_Eval.html#subexprs_count">subexprs_count</a></span> <span class="id">x</span>) <span class="kwd">as</span> <span class="id">c2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="PFPL.Definitions.html#subexprs_count">subexprs_count</a></span> <span class="id">x</span>) <span class="kwd">as</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> (<span class="id">c2</span> &lt; <span class="id">c</span>). <span class="tactic">intro</span> <span class="id">C</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T3</span> := <span class="id">H</span> <span class="id">c2</span> <span class="id">C</span> <span class="id">x</span> <span class="id">Heqc2</span> <span class="id">t0</span> <span class="id">T1</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">T3</span> <span class="kwd">as</span> [<span class="id">e</span>' <span class="id">T3</span>]. <span class="id">exists</span> <span class="id">e</span>'.<br/>

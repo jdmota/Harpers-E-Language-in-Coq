@@ -8,7 +8,6 @@ From Coq Require Import Lia.
 From Coq Require Import Strings.String.
 From Coq Require Import Logic.Eqdep_dec.
 From Coq Require Recdef.
-From Coq Require Import FunInd.
 From PFPL Require Import PartialMap_Set.
 
 (** E Language *)
@@ -120,6 +119,7 @@ Inductive alpha_equiv_rel : EExp -> EExp -> Prop :=
   | alpha_equiv_rel_cat : forall e1 e2 e1' e2', alpha_equiv_rel e1 e1' -> alpha_equiv_rel e2 e2' -> alpha_equiv_rel (ECat e1 e2) (ECat e1' e2')
   | alpha_equiv_rel_len : forall e1 e1', alpha_equiv_rel e1 e1' -> alpha_equiv_rel (ELen e1) (ELen e1').
 
+(** Auxiliary lemma to prove the termination of the following function *)
 Lemma rename_keeps_depth : forall e x x', depth e = depth (rename e x x').
 Proof.
   intros. induction e; simpl.
@@ -260,6 +260,7 @@ Inductive EType : Type :=
 (** Typing context *)
 Definition context := partial_map EType.
 
+(** Empty typing context *)
 Definition empty_ctx := @empty EType.
 
 (** Rules of the type system *)
@@ -285,10 +286,11 @@ Definition is_val (e : EExp) : bool :=
 Lemma val_rel_equiv_is_val : forall e,
   Val e <-> is_val e = true.
 Proof.
-  intro; destruct e; split; intro;
-  simpl; simpl in H; try inversion H; subst.
-  all: try reflexivity.
-  all: constructor.
+  intro; split; intro.
+  - inversion H; subst; simpl; auto.
+  - destruct e.
+    constructor. constructor.
+    all: simpl in H; discriminate.
 Qed.
 
 (** Small-step relation *)
@@ -317,7 +319,7 @@ Inductive EvalN : EExp -> EExp -> nat -> Prop :=
   | eval0 : forall e, EvalN e e 0
   | evalN : forall e e' e'' n, Eval e e' -> EvalN e' e'' n -> EvalN e e'' (S n).
 
-(* Based on https://softwarefoundations.cis.upenn.edu/plf-current/StlcProp.html#lab244 *)
+(** Based on https://softwarefoundations.cis.upenn.edu/plf-current/StlcProp.html#lab244 *)
 Definition stuck e : Prop := (~ exists e', Eval e e') /\ ~ Val e.
 
 (** Big-step relation *)
@@ -334,3 +336,86 @@ Inductive EvalBig : EExp -> EExp -> Prop :=
       EvalBig e1 (EStr s1) -> EvalBig (ELen e1) (ENum (length s1))
   | evalBigLet : forall e1 e2 x e1' e2',
       EvalBig e1 e1' -> EvalBig (subst e1' x e2) e2' ->  EvalBig (ELet e1 x e2) e2'.
+
+(** Small-step implementation *)
+Fixpoint eval (e : EExp) : option EExp :=
+  match e with
+  | EId _ | ENum _ | EStr _ => None
+  | EPlus e1 e2 =>
+    match e1, e2 with
+    | ENum n1, ENum n2 => Some (ENum (n1 + n2))
+    | _, _ =>
+      if is_val e1 then
+        match eval e2 with
+        | Some e2' => Some (EPlus e1 e2')
+        | None => None
+        end
+      else
+        match eval e1 with
+        | Some e1' => Some (EPlus e1' e2)
+        | None => None
+        end
+      end
+  | ETimes e1 e2 =>
+    match e1, e2 with
+    | ENum n1, ENum n2 => Some (ENum (n1 * n2))
+    | _, _ =>
+      if is_val e1 then
+        match eval e2 with
+        | Some e2' => Some (ETimes e1 e2')
+        | None => None
+        end
+      else
+        match eval e1 with
+        | Some e1' => Some (ETimes e1' e2)
+        | None => None
+        end
+      end
+  | ECat e1 e2 =>
+    match e1, e2 with
+    | EStr s1, EStr s2 => Some (EStr (append s1 s2))
+    | _, _ =>
+      if is_val e1 then
+        match eval e2 with
+        | Some e2' => Some (ECat e1 e2')
+        | None => None
+        end
+      else
+        match eval e1 with
+        | Some e1' => Some (ECat e1' e2)
+        | None => None
+        end
+      end
+  | ELen e1 =>
+    match e1 with
+    | EStr s1 => Some (ENum (length s1))
+    | _ =>
+      match eval e1 with
+      | Some e1' => Some (ELen e1')
+      | None => None
+      end
+    end
+  | ELet e1 x e2 =>
+    if is_val e1 then
+      Some (subst e1 x e2)
+    else
+      match eval e1 with
+      | Some e1' => Some (ELet e1' x e2)
+      | None => None
+      end
+  end.
+
+(** Function to count the number of subexpressions *)
+Fixpoint subexprs_count (e : EExp) : nat :=
+  match e with
+  | EId _ => 1
+  | ELet e1 x e2 => 1 + subexprs_count e1 + subexprs_count e2
+  | ENum _ => 1
+  | EStr _ => 1
+  | EPlus e1 e2 => 1 + subexprs_count e1 + subexprs_count e2
+  | ETimes e1 e2 => 1 + subexprs_count e1 + subexprs_count e2
+  | ECat e1 e2 => 1 + subexprs_count e1 + subexprs_count e2
+  | ELen e1 => 1 + subexprs_count e1
+  end.
+
+(** Big-step implementation can be found in the file [Theorems_Eval.v] *)

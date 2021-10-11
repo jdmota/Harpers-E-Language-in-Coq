@@ -38,16 +38,16 @@
 <span class="kwd">Lemma</span> <span class="id"><a name="update_neq">update_neq</a></span> : <span class="kwd">forall</span> <span class="id">A</span> (<span class="id">m</span> : <span class="id"><a href="PFPL.PartialMap_Set.html#partial_map">partial_map</a></span> <span class="id">A</span>) <span class="id">x1</span> <span class="id">x2</span> <span class="id">v</span>,<br/>
 &nbsp;&nbsp;<span class="id">x2</span> &lt;&gt; <span class="id">x1</span> -&gt;<br/>
 &nbsp;&nbsp;(<span class="id">x2</span> |-&gt; <span class="id">v</span> ; <span class="id">m</span>) <span class="id">x1</span> = <span class="id">m</span> <span class="id">x1</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof84')">Proof.</div>
-<div class="proofscript" id="proof84">
+<div class="toggleproof" onclick="toggleDisplay('proof76')">Proof.</div>
+<div class="proofscript" id="proof76">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">A</span> <span class="id">m</span> <span class="id">x1</span> <span class="id">x2</span> <span class="id">v</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#update">update</a></span>. <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_neq">Nat.eqb_neq</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">rewrite</span> <span class="id">H</span>. <span class="tactic">reflexivity</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="update_permute">update_permute</a></span> : <span class="kwd">forall</span> <span class="id">A</span> (<span class="id">m</span> : <span class="id"><a href="PFPL.PartialMap_Set.html#partial_map">partial_map</a></span> <span class="id">A</span>) <span class="id">v1</span> <span class="id">v2</span> <span class="id">x1</span> <span class="id">x2</span>,<br/>
 &nbsp;&nbsp;<span class="id">x2</span> &lt;&gt; <span class="id">x1</span> -&gt; (<span class="id">x1</span> |-&gt; <span class="id">v1</span> ; <span class="id">x2</span> |-&gt; <span class="id">v2</span> ; <span class="id">m</span>) = (<span class="id">x2</span> |-&gt; <span class="id">v2</span> ; <span class="id">x1</span> |-&gt; <span class="id">v1</span> ; <span class="id">m</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof85')">Proof.</div>
-<div class="proofscript" id="proof85">
+<div class="toggleproof" onclick="toggleDisplay('proof77')">Proof.</div>
+<div class="proofscript" id="proof77">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">A</span> <span class="id">m</span> <span class="id">v1</span> <span class="id">v2</span> <span class="id">x1</span> <span class="id">x2</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#update">update</a></span>.<br/>
 &nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">x1</span> =? <span class="id">x</span>); <span class="id">case_eq</span> (<span class="id">x2</span> =? <span class="id">x</span>); <span class="tactic">intros</span>.<br/>
@@ -61,8 +61,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="update_shadow">update_shadow</a></span> : <span class="kwd">forall</span> (<span class="id">A</span> : <span class="kwd">Type</span>) (<span class="id">m</span> : <span class="id"><a href="PFPL.PartialMap_Set.html#partial_map">partial_map</a></span> <span class="id">A</span>) <span class="id">x</span> <span class="id">v1</span> <span class="id">v2</span>,<br/>
 &nbsp;&nbsp;(<span class="id">x</span> |-&gt; <span class="id">v2</span> ; <span class="id">x</span> |-&gt; <span class="id">v1</span> ; <span class="id">m</span>) = (<span class="id">x</span> |-&gt; <span class="id">v2</span> ; <span class="id">m</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof86')">Proof.</div>
-<div class="proofscript" id="proof86">
+<div class="toggleproof" onclick="toggleDisplay('proof78')">Proof.</div>
+<div class="proofscript" id="proof78">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">A</span> <span class="id">m</span> <span class="id">x</span> <span class="id">v1</span> <span class="id">v2</span>. <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#update">update</a></span>.<br/>
 &nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">x</span> =? <span class="id">x0</span>); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
@@ -80,8 +80,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="update_set_permute">update_set_permute</a></span> : <span class="kwd">forall</span> <span class="id">s</span> <span class="id">a</span> <span class="id">b</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id">s</span> <span class="id">a</span>) <span class="id">b</span> = <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id">s</span> <span class="id">b</span>) <span class="id">a</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof87')">Proof.</div>
-<div class="proofscript" id="proof87">
+<div class="toggleproof" onclick="toggleDisplay('proof79')">Proof.</div>
+<div class="proofscript" id="proof79">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
@@ -91,8 +91,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="remove_from_set_permute">remove_from_set_permute</a></span> : <span class="kwd">forall</span> <span class="id">s</span> <span class="id">a</span> <span class="id">b</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> <span class="id">s</span> <span class="id">a</span>) <span class="id">b</span> = <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> <span class="id">s</span> <span class="id">b</span>) <span class="id">a</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof88')">Proof.</div>
-<div class="proofscript" id="proof88">
+<div class="toggleproof" onclick="toggleDisplay('proof80')">Proof.</div>
+<div class="proofscript" id="proof80">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
@@ -102,8 +102,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="singleton_set_equals_update_empty">singleton_set_equals_update_empty</a></span> : <span class="kwd">forall</span> <span class="id">x</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span> <span class="id">x</span> = <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">x</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof89')">Proof.</div>
-<div class="proofscript" id="proof89">
+<div class="toggleproof" onclick="toggleDisplay('proof81')">Proof.</div>
+<div class="proofscript" id="proof81">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
@@ -112,8 +112,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="update_set_permute_singleton">update_set_permute_singleton</a></span> : <span class="kwd">forall</span> <span class="id">a</span> <span class="id">b</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span> <span class="id">a</span>) <span class="id">b</span> = <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span> <span class="id">b</span>) <span class="id">a</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof90')">Proof.</div>
-<div class="proofscript" id="proof90">
+<div class="toggleproof" onclick="toggleDisplay('proof82')">Proof.</div>
+<div class="proofscript" id="proof82">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
@@ -127,8 +127,8 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="update_set_permute_remove">update_set_permute_remove</a></span> : <span class="kwd">forall</span> <span class="id">s</span> <span class="id">a</span> <span class="id">b</span>,<br/>
 &nbsp;&nbsp;(<span class="id">a</span> =? <span class="id">b</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> <span class="id">s</span> <span class="id">a</span>) <span class="id">b</span> = <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id">s</span> <span class="id">b</span>) <span class="id">a</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof91')">Proof.</div>
-<div class="proofscript" id="proof91">
+<div class="toggleproof" onclick="toggleDisplay('proof83')">Proof.</div>
+<div class="proofscript" id="proof83">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span>.<br/>
@@ -140,8 +140,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="update_set_shadow">update_set_shadow</a></span> : <span class="kwd">forall</span> <span class="id">s</span> <span class="id">a</span>,<br/>
 &nbsp;&nbsp;<span class="id">s</span> <span class="id">a</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id">s</span> = <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id">s</span> <span class="id">a</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof92')">Proof.</div>
-<div class="proofscript" id="proof92">
+<div class="toggleproof" onclick="toggleDisplay('proof84')">Proof.</div>
+<div class="proofscript" id="proof84">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
@@ -152,8 +152,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="update_set_twice">update_set_twice</a></span> : <span class="kwd">forall</span> <span class="id">s</span> <span class="id">x</span>,<br/>
 &nbsp;&nbsp;(<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id">s</span> <span class="id">x</span>) <span class="id">x</span>) = (<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id">s</span> <span class="id">x</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof93')">Proof.</div>
-<div class="proofscript" id="proof93">
+<div class="toggleproof" onclick="toggleDisplay('proof85')">Proof.</div>
+<div class="proofscript" id="proof85">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span>.<br/>
@@ -164,8 +164,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="remove_from_set_twice">remove_from_set_twice</a></span> : <span class="kwd">forall</span> <span class="id">s</span> <span class="id">x</span>,<br/>
 &nbsp;&nbsp;(<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> <span class="id">s</span> <span class="id">x</span>) <span class="id">x</span>) = (<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> <span class="id">s</span> <span class="id">x</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof94')">Proof.</div>
-<div class="proofscript" id="proof94">
+<div class="toggleproof" onclick="toggleDisplay('proof86')">Proof.</div>
+<div class="proofscript" id="proof86">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span>.<br/>
@@ -177,8 +177,8 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="remove_after_update_set_1">remove_after_update_set_1</a></span> : <span class="kwd">forall</span> <span class="id">s</span> <span class="id">x</span>,<br/>
 &nbsp;&nbsp;<span class="id">s</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;(<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id">s</span> <span class="id">x</span>) <span class="id">x</span>) = <span class="id">s</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof95')">Proof.</div>
-<div class="proofscript" id="proof95">
+<div class="toggleproof" onclick="toggleDisplay('proof87')">Proof.</div>
+<div class="proofscript" id="proof87">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span>.<br/>
@@ -189,8 +189,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="remove_after_update_set_2">remove_after_update_set_2</a></span> : <span class="kwd">forall</span> <span class="id">s</span> <span class="id">x</span>,<br/>
 &nbsp;&nbsp;(<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="id">s</span> <span class="id">x</span>) <span class="id">x</span>) = <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> <span class="id">s</span> <span class="id">x</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof96')">Proof.</div>
-<div class="proofscript" id="proof96">
+<div class="toggleproof" onclick="toggleDisplay('proof88')">Proof.</div>
+<div class="proofscript" id="proof88">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span>.<br/>
@@ -201,8 +201,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="remove_from_empty">remove_from_empty</a></span> : <span class="kwd">forall</span> <span class="id">x</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">x</span> = <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof97')">Proof.</div>
-<div class="proofscript" id="proof97">
+<div class="toggleproof" onclick="toggleDisplay('proof89')">Proof.</div>
+<div class="proofscript" id="proof89">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span>.<br/>
@@ -211,8 +211,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="remove_from_singleton">remove_from_singleton</a></span> : <span class="kwd">forall</span> <span class="id">x</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span> <span class="id">x</span>) <span class="id">x</span> = <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof98')">Proof.</div>
-<div class="proofscript" id="proof98">
+<div class="toggleproof" onclick="toggleDisplay('proof90')">Proof.</div>
+<div class="proofscript" id="proof90">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span>.<br/>
@@ -222,8 +222,8 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="remove_not_existant_from_singleton">remove_not_existant_from_singleton</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">x</span>',<br/>
 &nbsp;&nbsp;(<span class="id">x</span> =? <span class="id">x</span>') = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> (<span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span> <span class="id">x</span>) <span class="id">x</span>' = <span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span> <span class="id">x</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof99')">Proof.</div>
-<div class="proofscript" id="proof99">
+<div class="toggleproof" onclick="toggleDisplay('proof91')">Proof.</div>
+<div class="proofscript" id="proof91">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.FunctionalExtensionality.html#functional_extensionality">functional_extensionality</a></span>. <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span>.<br/>

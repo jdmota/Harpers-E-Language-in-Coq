@@ -22,15 +22,15 @@ From PFPL Require Import Lemmas_Subst.
 From PFPL Require Import Lemmas_Rename_Subst.
 From PFPL Require Import Theorems_AlphaEquiv.
 
-(** In the book *)
+(** Finality of values (In Harper's book) *)
 Lemma finality_of_values : forall e,
   Val e /\ (exists e', Eval e e') -> False.
 Proof.
-  intros. destruct H. destruct H0.
-  inversion H; subst; inversion H0.
+  intros. destruct H.
+  induction H; destruct H0; inversion H.
 Qed.
 
-(** In the book *)
+(** Determinacy (In Harper's book) *)
 Lemma determinacy : forall e e' e'',
   Eval e e' -> Eval e e'' -> e' = e''.
 Proof.
@@ -81,74 +81,6 @@ Proof.
     inversion H; subst; inversion H5.
     reflexivity.
 Qed.
-
-(** Small-step implementation *)
-Fixpoint eval (e : EExp) : option EExp :=
-  match e with
-  | EId _ | ENum _ | EStr _ => None
-  | EPlus e1 e2 =>
-    match e1, e2 with
-    | ENum n1, ENum n2 => Some (ENum (n1 + n2))
-    | _, _ =>
-      if is_val e1 then
-        match eval e2 with
-        | Some e2' => Some (EPlus e1 e2')
-        | None => None
-        end
-      else
-        match eval e1 with
-        | Some e1' => Some (EPlus e1' e2)
-        | None => None
-        end
-      end
-  | ETimes e1 e2 =>
-    match e1, e2 with
-    | ENum n1, ENum n2 => Some (ENum (n1 * n2))
-    | _, _ =>
-      if is_val e1 then
-        match eval e2 with
-        | Some e2' => Some (ETimes e1 e2')
-        | None => None
-        end
-      else
-        match eval e1 with
-        | Some e1' => Some (ETimes e1' e2)
-        | None => None
-        end
-      end
-  | ECat e1 e2 =>
-    match e1, e2 with
-    | EStr s1, EStr s2 => Some (EStr (append s1 s2))
-    | _, _ =>
-      if is_val e1 then
-        match eval e2 with
-        | Some e2' => Some (ECat e1 e2')
-        | None => None
-        end
-      else
-        match eval e1 with
-        | Some e1' => Some (ECat e1' e2)
-        | None => None
-        end
-      end
-  | ELen e1 =>
-    match e1 with
-    | EStr s1 => Some (ENum (length s1))
-    | _ =>
-      match eval e1 with
-      | Some e1' => Some (ELen e1')
-      | None => None
-      end
-    end
-  | ELet e1 x e2 =>
-    if is_val e1 then
-      Some (subst e1 x e2)
-    else
-      match eval e1 with
-      | Some e1' => Some (ELet e1' x e2)
-      | None => None
-      end
-  end.
 
 (** A value does not evaluate *)
 Lemma values_do_not_evaluate_1 : forall e,
@@ -322,19 +254,6 @@ Proof.
   apply eval_correct_1.
 Qed.
 
-(** Function to count the number of subexpressions *)
-Fixpoint subexprs_count (e : EExp) : nat :=
-  match e with
-  | EId _ => 1
-  | ELet e1 x e2 => 1 + subexprs_count e1 + subexprs_count e2
-  | ENum _ => 1
-  | EStr _ => 1
-  | EPlus e1 e2 => 1 + subexprs_count e1 + subexprs_count e2
-  | ETimes e1 e2 => 1 + subexprs_count e1 + subexprs_count e2
-  | ECat e1 e2 => 1 + subexprs_count e1 + subexprs_count e2
-  | ELen e1 => 1 + subexprs_count e1
-  end.
-
 (** Substitution is able to reduce the number of subexpressions (auxiliary) *)
 Lemma subst'_reduces_aux : forall e1 x e2 e2',
   subexprs_count e1 = 1 ->
@@ -463,7 +382,7 @@ Proof.
   assumption.
 Qed.
 
-(** Star evaluation to n-times evaluation *)
+(** Star evaluation to n-times evaluation (In Harper's book) *)
 Lemma EvalStarToEvalN : forall e e',
   EvalStar e e' -> exists n, EvalN e e' n.
 Proof.
@@ -473,7 +392,7 @@ Proof.
     apply (evalN _ e'' e'); assumption.
 Qed.
 
-(** N-times evaluation to star evaluation *)
+(** N-times evaluation to star evaluation (In Harper's book) *)
 Lemma EvalNToEvalStar : forall e e',
   (exists n, EvalN e e' n) -> EvalStar e e'.
 Proof.

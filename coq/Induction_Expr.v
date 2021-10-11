@@ -383,25 +383,13 @@ Proof.
     assumption. assumption.
     apply (same_structure_trans e1' e1'1 e''').
     assumption. assumption.
-  - intros. unfold strengthen. intros.
-    destruct e.
-    all: try (apply same_structure_num in H0; destruct H0; subst).
-    all: try (apply same_structure_str in H0; destruct H0; subst).
-    all: try (apply same_structure_id in H0; destruct H0; subst).
-    all: try (apply same_structure_plus in H0; destruct H0; destruct H0; subst).
-    all: try (apply same_structure_times in H0; destruct H0; destruct H0; subst).
-    all: try (apply same_structure_cat in H0; destruct H0; destruct H0; subst).
-    all: try (apply same_structure_len in H0; destruct H0; subst).
-    all: try (apply same_structure_let in H0; destruct H0; destruct H0; destruct H0; subst).
-    all: destruct e'.
-    all: simpl in H; try contradiction; clear H.
-    all: try (apply same_structure_num in H1; destruct H1; subst; simpl; trivial).
-    all: try (apply same_structure_str in H1; destruct H1; subst; simpl; trivial).
-    all: try (apply same_structure_id in H1; destruct H1; subst; simpl; trivial).
-    all: try (apply same_structure_plus in H1; destruct H1; destruct H; subst; simpl; trivial).
-    all: try (apply same_structure_times in H1; destruct H1; destruct H; subst; simpl; trivial).
-    all: try (apply same_structure_cat in H1; destruct H1; destruct H; subst; simpl; trivial).
-    all: try (apply same_structure_len in H1; destruct H1; subst; simpl; trivial).
-    all: try (apply same_structure_let in H1; destruct H1; destruct H; destruct H; subst; simpl; trivial).
-    all: apply HF; simpl; auto.
+  - intros.
+    destruct e; destruct e';
+    unfold diff_constructor in H; try contradiction;
+    clear H; unfold strengthen; intros e'' e''' S1 S2;
+    inversion S1; subst;
+    inversion S2; subst.
+    all: apply HF.
+    all: simpl.
+    all: auto.
 Qed.

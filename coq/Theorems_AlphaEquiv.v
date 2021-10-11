@@ -150,29 +150,28 @@ Proof.
   all: assumption.
 Qed.
 
-Lemma substitutivity_aux_1 : forall e e' e'' x,
+(** Alpha equivalence is preserved by substitution (auxiliary) *)
+Lemma substitutivity_aux : forall e e' e'' e''' x,
   (forall v, bound_vars e v = true -> free_vars e'' v = false) ->
-  (forall v, bound_vars e' v = true -> free_vars e'' v = false) ->
+  (forall v, bound_vars e' v = true -> free_vars e''' v = false) ->
   alpha_equiv_rel e e' ->
-  alpha_equiv_rel (subst' e'' x e) (subst' e'' x e').
+  alpha_equiv_rel e'' e''' ->
+  alpha_equiv_rel (subst' e'' x e) (subst' e''' x e').
 Proof.
   intros.
   generalize dependent H0.
   generalize dependent H.
-  generalize dependent x.
-  generalize dependent e''.
   induction H1; intros; simpl.
-  - apply alpha_equiv_refl.
-  - case_eq (x0 =? x); case_eq (x0 =? x'); intros X1 X2.
-    all:
-      apply alpha_equiv_rel_let; [
-        apply IHalpha_equiv_rel; [
-          intros; apply H2; simpl; unfold unionSet;
-          apply orb_true_iff; left; assumption |
-          intros; apply H3; simpl; unfold unionSet;
-          apply orb_true_iff; left; assumption
-        ] |
-      ].
+  - destruct (x =? x0). assumption. apply alpha_equiv_refl.
+  - case_eq (x =? x0); case_eq (x =? x'); intros X1 X2.
+    all: apply alpha_equiv_rel_let; [
+      apply IHalpha_equiv_rel; [
+        intros; apply H3; simpl; unfold unionSet;
+        apply orb_true_iff; left; assumption |
+        intros; apply H4; simpl; unfold unionSet;
+        apply orb_true_iff; left; assumption
+      ] |
+    ].
     + assumption.
     + intros.
       remember (
@@ -182,9 +181,9 @@ Proof.
       ) as newX.
       assert (M := complex_max e2 e2' x x' x0 z newX HeqnewX).
       destruct M as [M1 [M2 [M3 [M4 [M5 M6]]]]].
-      cut (free_vars e2' x0 = false). intro FV.
+      cut (free_vars e2' x = false). intro FV.
       rewrite <- subst_non_free_var; [ | assumption].
-      rewrite <- subst_non_free_var in H5; [ | assumption].
+      rewrite <- subst_non_free_var in H6; [ | assumption].
       apply H; assumption.
       apply Nat.eqb_eq in X2. subst x0.
       assert (T1 := alpha_equiv_same_free_vars (rename e2 x newX) (rename e2' x' newX) (H newX M5 M6)).
@@ -200,277 +199,109 @@ Proof.
       ) as newX.
       assert (M := complex_max e2 e2' x x' x0 z newX HeqnewX).
       destruct M as [M1 [M2 [M3 [M4 [M5 M6]]]]].
-      cut (free_vars e2 x0 = false). intro FV.
+      cut (free_vars e2 x = false). intro FV.
       rewrite <- subst_non_free_var; [ | assumption].
-      rewrite <- subst_non_free_var in H4; [ | assumption].
+      rewrite <- subst_non_free_var in H5; [ | assumption].
       apply H; assumption.
-      apply Nat.eqb_eq in X1. subst x0.
-      assert (T1 := alpha_equiv_same_free_vars (rename e2 x newX) (rename e2' x' newX) (H newX M5 M6)).
-      assert (T2 := rename_removes_free_vars e2' x' newX M2).
+      apply Nat.eqb_eq in X1. subst x'.
+      assert (T1 := alpha_equiv_same_free_vars (rename e2 x0 newX) (rename e2' x newX) (H newX M5 M6)).
+      assert (T2 := rename_removes_free_vars e2' x newX M2).
       rewrite <- T1 in T2.
-      assert (T3 := rename_keeps_other_free_vars e2 x newX x' X2 M2).
+      assert (T3 := rename_keeps_other_free_vars e2 x0 newX x X2 M2).
       rewrite T3. assumption.
     + intros.
       remember (
         max
           (max
             (max (get_fresh_var e2) (get_fresh_var e2'))
-            (max (get_fresh_var (subst' e'' x0 e2)) (get_fresh_var (subst' e'' x0 e2')))
+            (max (get_fresh_var (subst' e'' x e2)) (get_fresh_var (subst' e''' x e2')))
           )
           (max (max (S x) (S x')) (max (S x0) (S z)))
       ) as newX.
-      assert (M := complex_max_2 e2 e2' (subst' e'' x0 e2) (subst' e'' x0 e2') x x' x0 z newX HeqnewX).
+      assert (M := complex_max_2 e2 e2' (subst' e'' x e2) (subst' e''' x e2') x x' x0 z newX HeqnewX).
       destruct M as [M1 [M2 [M3 [M4 [M5 [M6 [M7 M8]]]]]]].
-      apply (alpha_equiv_renamed _ _ _ _ newX _ M7 M8 H4 H5).
+      apply (alpha_equiv_renamed _ _ _ _ newX _ M7 M8 H5 H6).
       rewrite rename_vs_subst.
       rewrite rename_vs_subst.
       all: try assumption.
       apply H0. assumption. assumption.
       intros.
-      rewrite <- rename_keeps_bound_vars in H6.
-      apply H2. simpl. unfold unionSet.
+      rewrite <- rename_keeps_bound_vars in H7.
+      apply H3. simpl. unfold unionSet.
       apply orb_true_iff. right.
-      unfold updateSet. rewrite H6.
-      destruct (x =? v); reflexivity.
+      unfold updateSet. rewrite H7.
+      destruct (x0 =? v); reflexivity.
       intros.
-      rewrite <- rename_keeps_bound_vars in H6.
-      apply H3. simpl. unfold unionSet.
+      rewrite <- rename_keeps_bound_vars in H7.
+      apply H4. simpl. unfold unionSet.
       apply orb_true_iff. right.
-      unfold updateSet. rewrite H6.
+      unfold updateSet. rewrite H7.
       destruct (x' =? v); reflexivity.
-      apply H3. simpl. unfold unionSet.
+      apply H4. simpl. unfold unionSet.
       apply orb_true_iff. right.
       unfold updateSet. rewrite Nat.eqb_refl. reflexivity.
-      apply H2. simpl. unfold unionSet.
+      apply H3. simpl. unfold unionSet.
       apply orb_true_iff. right.
       unfold updateSet. rewrite Nat.eqb_refl. reflexivity.
   - apply alpha_equiv_rel_num.
   - apply alpha_equiv_rel_str. assumption.
   - apply alpha_equiv_rel_plus; [
-      apply IHalpha_equiv_rel1 | apply IHalpha_equiv_rel2
+      apply IHalpha_equiv_rel1; intros;
+      [apply H | apply H0] |
+      apply IHalpha_equiv_rel2; intros;
+      [apply H | apply H0]
     ].
-    all: intros.
-    apply H; simpl; unfold unionSet;
-    apply orb_true_iff; left; assumption.
-    apply H0; simpl; unfold unionSet;
-    apply orb_true_iff; left; assumption.
-    apply H; simpl; unfold unionSet;
-    apply orb_true_iff; right; assumption.
-    apply H0; simpl; unfold unionSet;
-    apply orb_true_iff; right; assumption.
+    all: simpl; unfold unionSet; apply orb_true_iff.
+    all: try (left; assumption).
+    all: try (right; assumption).
   - apply alpha_equiv_rel_times; [
-      apply IHalpha_equiv_rel1 | apply IHalpha_equiv_rel2
+      apply IHalpha_equiv_rel1; intros;
+      [apply H | apply H0] |
+      apply IHalpha_equiv_rel2; intros;
+      [apply H | apply H0]
     ].
-    all: intros.
-    apply H; simpl; unfold unionSet;
-    apply orb_true_iff; left; assumption.
-    apply H0; simpl; unfold unionSet;
-    apply orb_true_iff; left; assumption.
-    apply H; simpl; unfold unionSet;
-    apply orb_true_iff; right; assumption.
-    apply H0; simpl; unfold unionSet;
-    apply orb_true_iff; right; assumption.
+    all: simpl; unfold unionSet; apply orb_true_iff.
+    all: try (left; assumption).
+    all: try (right; assumption).
   - apply alpha_equiv_rel_cat; [
-      apply IHalpha_equiv_rel1 | apply IHalpha_equiv_rel2
+      apply IHalpha_equiv_rel1; intros;
+      [apply H | apply H0] |
+      apply IHalpha_equiv_rel2; intros;
+      [apply H | apply H0]
     ].
-    all: intros.
-    apply H; simpl; unfold unionSet;
-    apply orb_true_iff; left; assumption.
-    apply H0; simpl; unfold unionSet;
-    apply orb_true_iff; left; assumption.
-    apply H; simpl; unfold unionSet;
-    apply orb_true_iff; right; assumption.
-    apply H0; simpl; unfold unionSet;
-    apply orb_true_iff; right; assumption.
+    all: simpl; unfold unionSet; apply orb_true_iff.
+    all: try (left; assumption).
+    all: try (right; assumption).
   - simpl in H. simpl in H0.
     apply alpha_equiv_rel_len.
     apply IHalpha_equiv_rel.
     all: assumption.
 Qed.
 
-Lemma substitutivity_aux_2 : forall e e' e'' x o o',
-  (forall v, conj_vars e v = true -> conj_vars e (o + v) = false) ->
-  (forall v, conj_vars e' v = true -> conj_vars e' (o' + v) = false) ->
-  get_fresh_var e'' <= o ->
-  get_fresh_var e'' <= o' ->
-  alpha_equiv_rel e e' ->
-  alpha_equiv_rel (subst' e'' x (fresh_rename e emptySet o)) (subst' e'' x (fresh_rename e' emptySet o')).
-Proof.
-  intros. apply substitutivity_aux_1.
-  intros.
-  assert (T := fresh_rename_new_bounds e emptySet o v H4).
-  apply not_in_conj_not_in_free.
-  apply fresh_var_not_in_conj_vars.
-  apply (le_trans _ o _); assumption.
-  intros.
-  assert (T := fresh_rename_new_bounds e' emptySet o' v H4).
-  apply not_in_conj_not_in_free.
-  apply fresh_var_not_in_conj_vars.
-  apply (le_trans _ o' _); assumption.
-  apply fresh_rename_keeps_alpha_equiv_2; assumption.
-Qed.
-
-Lemma substitutivity_aux_3 : forall e e' e'' x,
-  (forall v, bound_vars e v = true -> free_vars e'' v = false) ->
-  alpha_equiv_rel e' e'' ->
-  alpha_equiv_rel (subst' e' x e) (subst' e'' x e).
-Proof.
-  induction e using expr_ind; intros; simpl.
-  - destruct (x0 =? x).
-    assumption. reflexivity.
-  - destruct (x0 =? x).
-    + apply alpha_equiv_rel_let.
-      apply H. apply same_structure_refl.
-      intros. apply H1. simpl.
-      unfold unionSet. rewrite H3. apply orb_true_l.
-      assumption.
-      intros. reflexivity.
-    + apply alpha_equiv_rel_let.
-      apply H. apply same_structure_refl.
-      intros. apply H1. simpl.
-      unfold unionSet. rewrite H3. apply orb_true_l.
-      assumption.
-      intros. apply rename_keeps_alpha_equiv.
-      assumption. assumption.
-      apply H0. apply same_structure_refl.
-      intros. apply H1. simpl.
-      unfold unionSet. unfold updateSet.
-      rewrite H5. destruct (x =? v); apply orb_true_r.
-      assumption.
-  - reflexivity.
-  - reflexivity.
-  - apply alpha_equiv_rel_plus.
-    apply H. apply same_structure_refl.
-    intros. apply H1. simpl.
-    unfold unionSet. rewrite H3. apply orb_true_l.
-    assumption.
-    apply H0. apply same_structure_refl.
-    intros. apply H1. simpl.
-    unfold unionSet.
-    rewrite H3. apply orb_true_r.
-    assumption.
-  - apply alpha_equiv_rel_times.
-    apply H. apply same_structure_refl.
-    intros. apply H1. simpl.
-    unfold unionSet. rewrite H3. apply orb_true_l.
-    assumption.
-    apply H0. apply same_structure_refl.
-    intros. apply H1. simpl.
-    unfold unionSet.
-    rewrite H3. apply orb_true_r.
-    assumption.
-  - apply alpha_equiv_rel_cat.
-    apply H. apply same_structure_refl.
-    intros. apply H1. simpl.
-    unfold unionSet. rewrite H3. apply orb_true_l.
-    assumption.
-    apply H0. apply same_structure_refl.
-    intros. apply H1. simpl.
-    unfold unionSet.
-    rewrite H3. apply orb_true_r.
-    assumption.
-  - apply alpha_equiv_rel_len.
-    apply H. apply same_structure_refl.
-    intros. apply H0. simpl. assumption. assumption.
-Qed.
-
-Lemma substitutivity_aux_4 : forall e e' e'' x o,
-  (forall v, conj_vars e v = true -> conj_vars e (o + v) = false) ->
-  get_fresh_var e' <= o ->
-  get_fresh_var e'' <= o ->
-  alpha_equiv_rel e' e'' ->
-  alpha_equiv_rel (subst' e' x (fresh_rename e emptySet o)) (subst' e'' x (fresh_rename e emptySet o)).
-Proof.
-  intros.
-  apply substitutivity_aux_3.
-  intros.
-  assert (T := fresh_rename_new_bounds e emptySet o v H3).
-  apply not_in_conj_not_in_free.
-  apply fresh_var_not_in_conj_vars.
-  apply (le_trans _ o _); assumption.
-  assumption.
-Qed.
-
-Lemma substitutivity_aux_5 : forall e e' e'' x o o',
-  get_fresh_var e <= o ->
-  get_fresh_var e <= o' ->
-  get_fresh_var e' <= o ->
-  get_fresh_var e'' <= o' ->
-  alpha_equiv_rel e' e'' ->
-  alpha_equiv_rel (subst' e' x (fresh_rename e emptySet o)) (subst' e'' x (fresh_rename e emptySet o')).
-Proof.
-  intros.
-  apply (alpha_equiv_trans _ (subst' e' x (fresh_rename e emptySet (o + o'))) _).
-  apply (substitutivity_aux_2 e e e' x o (o + o')).
-  intros. apply fresh_var_not_in_conj_vars. apply le_plus_trans. assumption.
-  intros. apply fresh_var_not_in_conj_vars. apply le_plus_trans. apply le_plus_trans. assumption.
-  assumption. apply le_plus_trans. assumption.
-  reflexivity.
-  apply (alpha_equiv_trans _ (subst' e'' x (fresh_rename e emptySet (o + o'))) _).
-  apply substitutivity_aux_4.
-  intros.
-  apply fresh_var_not_in_conj_vars.
-  apply le_plus_trans. apply le_plus_trans. assumption.
-  apply le_plus_trans. assumption.
-  rewrite add_comm. apply le_plus_trans. assumption.
-  assumption.
-  apply substitutivity_aux_2.
-  intros.
-  apply fresh_var_not_in_conj_vars.
-  apply le_plus_trans. apply le_plus_trans. assumption.
-  intros.
-  apply fresh_var_not_in_conj_vars.
-  apply le_plus_trans. assumption.
-  rewrite add_comm. apply le_plus_trans. assumption.
-  assumption.
-  reflexivity.
-Qed.
-
-Lemma substitutivity_1 : forall e e' e'' x,
-  alpha_equiv_rel e e' ->
-  alpha_equiv_rel (subst e'' x e) (subst e'' x e').
-Proof.
-  intros.
-  unfold subst.
-  apply substitutivity_aux_2.
-  intros. apply fresh_var_not_in_conj_vars.
-  apply le_plus_trans.
-  apply le_max_l.
-  intros. apply fresh_var_not_in_conj_vars.
-  apply le_plus_trans.
-  apply le_max_l.
-  apply le_max_r.
-  apply le_max_r.
-  assumption.
-Qed.
-
-Lemma substitutivity_2 : forall e e' e'' x,
-  alpha_equiv_rel e' e'' ->
-  alpha_equiv_rel (subst e' x e) (subst e'' x e).
-Proof.
-  intros.
-  unfold subst.
-  apply substitutivity_aux_5.
-  intros.
-  apply le_max_l.
-  apply le_max_l.
-  apply le_max_r.
-  apply le_max_r.
-  assumption.
-Qed.
-
 (** Alpha equivalence is preserved by substitution *)
 Theorem substitutivity : forall e e' e'' e''' x,
   alpha_equiv_rel e e' ->
   alpha_equiv_rel e'' e''' ->
-  alpha_equiv_rel (subst e x e'') (subst e' x e''').
+  alpha_equiv_rel (subst e'' x e) (subst e''' x e').
 Proof.
+  intros. unfold subst.
+  remember (max (get_fresh_var e) (get_fresh_var e'')) as o.
+  remember (max (get_fresh_var e') (get_fresh_var e''')) as o'.
+  apply substitutivity_aux.
   intros.
-  assert (T1 := substitutivity_1 e'' e''' e x H0).
-  apply (alpha_equiv_trans _ (subst e x e''') _).
-  apply substitutivity_1.
+  assert (T := fresh_rename_new_bounds e emptySet o v H1).
+  apply not_in_conj_not_in_free.
+  apply fresh_var_not_in_conj_vars. lia.
+  intros.
+  assert (T := fresh_rename_new_bounds e' emptySet o' v H1).
+  apply not_in_conj_not_in_free.
+  apply fresh_var_not_in_conj_vars. lia.
+  apply fresh_rename_keeps_alpha_equiv_2.
+  intros.
+  apply fresh_var_not_in_conj_vars. lia.
+  intros.
+  apply fresh_var_not_in_conj_vars. lia.
   assumption.
-  apply substitutivity_2.
   assumption.
 Qed.
 

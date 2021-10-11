@@ -22,23 +22,18 @@ From PFPL Require Import Lemmas_Rename_Subst.
 From PFPL Require Import Theorems_AlphaEquiv.
 From PFPL Require Import Theorems_Eval.
 
-(** In the book *)
+(** At most one type for each expression (In Harper's book) *)
 Lemma unicity: forall Gamma e t t',
   hastype Gamma e t -> hastype Gamma e t' -> t = t'.
 Proof.
   intros Gamma e t t' H1. generalize dependent t'.
   induction H1; intros t' H2; inversion H2; subst.
-  - rewrite H in H3. inversion H3. reflexivity.
-  - reflexivity.
-  - reflexivity.
-  - reflexivity.
-  - reflexivity.
-  - reflexivity.
-  - reflexivity.
-  - apply IHhastype1 in H5. subst. apply IHhastype2. assumption.
+  all: try reflexivity.
+  rewrite H in H3. inversion H3. reflexivity.
+  apply IHhastype1 in H5. subst. apply IHhastype2. assumption.
 Qed.
 
-(** In the book *)
+(** Typing rules are syntax-directed (In Harper's book) *)
 Lemma inversion : forall Gamma e t,
   hastype Gamma e t -> (
     (forall (x: nat), e = EId x -> Gamma x = Some(t)) /\
@@ -53,19 +48,23 @@ Lemma inversion : forall Gamma e t,
 Proof.
   intros Gamma e t H. induction H.
   - repeat split; intros; inversion H0.
-    + subst. apply H.
+    subst. assumption.
   - repeat split; intros; inversion H.
   - repeat split; intros; inversion H.
-  - repeat split; intros; inversion H1. subst. apply H. subst. apply H0.
-  - repeat split; intros; inversion H1. subst. apply H. subst. apply H0.
-  - repeat split; intros; inversion H1. subst. apply H. subst. apply H0.
-  - repeat split; intros; inversion H0. subst. apply H.
-  - repeat split; intros; inversion H1. subst.
-    exists t1. exists t2.
+  - repeat split; intros; inversion H1.
+    subst. assumption. subst. assumption.
+  - repeat split; intros; inversion H1.
+    subst. assumption. subst. assumption.
+  - repeat split; intros; inversion H1.
+    subst. assumption. subst. assumption.
+  - repeat split; intros; inversion H0.
+    subst. assumption.
+  - repeat split; intros; inversion H1.
+    subst. exists t1. exists t2.
     repeat split; assumption.
 Qed.
 
-(** In the book *)
+(** Weakening (In Harper's book) *)
 Lemma weakening : forall Gamma e t,
   hastype Gamma e t -> (forall x t', Gamma x = None -> hastype (x |-> t'; Gamma) e t).
 Proof.
@@ -375,7 +374,7 @@ Proof.
         apply orb_true_r.
 Qed.
 
-(** In the book *)
+(** Substitution (In Harper's book) *)
 Lemma substitution : forall Gamma x t e t' e',
   hastype (x |-> t'; Gamma) e t -> hastype Gamma e' t' -> hastype Gamma (subst e' x e) t.
 Proof.
@@ -456,7 +455,7 @@ Proof.
         apply Nat.eqb_neq. assumption.
 Qed.
 
-(** In the book *)
+(** Decomposition (In Harper's book) *)
 Lemma decomposition : forall Gamma e x e' t,
   hastype Gamma (subst e' x e) t -> (forall t', hastype Gamma e' t' -> hastype (x |-> t'; Gamma) e t).
 Proof.
@@ -472,7 +471,7 @@ Proof.
   all: assumption.
 Qed.
 
-(** In the book *)
+(** Steps of evaluation preserve typing (In Harper's book) *)
 Theorem preservation : forall Gamma e t e',
   hastype Gamma e t -> Eval e e' -> hastype Gamma e' t.
 Proof.
@@ -495,23 +494,22 @@ Proof.
     all: assumption.
 Qed.
 
-(** In the book *)
+(** Canonical Forms (In Harper's book) *)
 Lemma canonical_forms : forall Gamma e t,
   Val e -> hastype Gamma e t -> (
     (t = TNum -> exists n, e = ENum n) /\
     (t = TStr -> exists s, e = EStr s)
   ).
 Proof.
-  intros Gamma e t H1 H2. split; intros H3; subst.
-  - inversion H1. subst.
-    + exists n. reflexivity.
-    + subst. inversion H2.
-  - inversion H1. subst.
-    + subst. inversion H2.
-    + exists s. reflexivity.
+  intros Gamma e t H1.
+  induction H1; intros; split; intros; subst.
+  exists n. reflexivity.
+  inversion H.
+  inversion H.
+  exists s. reflexivity.
 Qed.
 
-(** In the book *)
+(** Well-typed programs cannot get stuck (In Harper's book) *)
 Theorem progress : forall e t,
   hastype empty_ctx e t -> Val e \/ exists e', Eval e e'.
 Proof.

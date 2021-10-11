@@ -38,8 +38,8 @@ where the bound variables do not conflict with any free variables of the replace
 <span class="kwd">Lemma</span> <span class="id"><a name="fresh_rename_removes_conflicts">fresh_rename_removes_conflicts</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">o</span>,<br/>
 &nbsp;&nbsp;<span class="id">o</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>') -&gt;<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">v</span>, <span class="id"><a href="PFPL.Definitions.html#bound_vars">bound_vars</a></span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span>) <span class="id">v</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span>' <span class="id">v</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof57')">Proof.</div>
-<div class="proofscript" id="proof57">
+<div class="toggleproof" onclick="toggleDisplay('proof49')">Proof.</div>
+<div class="proofscript" id="proof49">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T</span> := <span class="id"><a href="PFPL.Lemmas_FreshRename.html#fresh_rename_new_bounds">fresh_rename_new_bounds</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span> <span class="id">v</span> <span class="id">H0</span>).<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_conj_not_in_free">not_in_conj_not_in_free</a></span>.<br/>
@@ -52,8 +52,8 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="not_in_free_vars_after_subst">not_in_free_vars_after_subst</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">x</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span>' <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof58')">Proof.</div>
-<div class="proofscript" id="proof58">
+<div class="toggleproof" onclick="toggleDisplay('proof50')">Proof.</div>
+<div class="proofscript" id="proof50">
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
@@ -84,8 +84,8 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="subst_non_free_var">subst_non_free_var</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">x</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id">e</span> = <span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof59')">Proof.</div>
-<div class="proofscript" id="proof59">
+<div class="toggleproof" onclick="toggleDisplay('proof51')">Proof.</div>
+<div class="proofscript" id="proof51">
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
@@ -119,8 +119,8 @@ Qed.</div>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e</span>' = 0 -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e</span>'' = <span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e</span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e</span>'' = <span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof60')">Proof.</div>
-<div class="proofscript" id="proof60">
+<div class="toggleproof" onclick="toggleDisplay('proof52')">Proof.</div>
+<div class="proofscript" id="proof52">
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">assumption</span>.<br/>
@@ -162,8 +162,8 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="subst_same_depth">subst_same_depth</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">x</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e</span>' = 0 -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e</span> = <span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> (<span class="tactic">subst</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof61')">Proof.</div>
-<div class="proofscript" id="proof61">
+<div class="toggleproof" onclick="toggleDisplay('proof53')">Proof.</div>
+<div class="proofscript" id="proof53">
 &nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="tactic">subst</span>'<span class="id">_same_depth</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
