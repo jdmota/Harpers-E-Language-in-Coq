@@ -18,9 +18,9 @@ From PFPL Require Import Lemmas_AlphaEquiv.
 From PFPL Require Import Lemmas_FreshRename.
 
 Lemma fresh_rename_vs_rename : forall e bv o x x',
-  (forall v, conj_vars e v = true -> conj_vars e (o + v) = false) ->
-  conj_vars e (x + o) = false ->
-  conj_vars e x' = false ->
+  (forall v, all_vars e v = true -> all_vars e (o + v) = false) ->
+  all_vars e (x + o) = false ->
+  all_vars e x' = false ->
   bv x' = false ->
   rename (fresh_rename e (updateSet bv x) o) (x + o) x' = fresh_rename (rename e x x') (updateSet bv x) o.
 Proof.

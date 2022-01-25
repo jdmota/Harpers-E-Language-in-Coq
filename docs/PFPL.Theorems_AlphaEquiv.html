@@ -49,8 +49,8 @@
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#andb_true_iff">andb_true_iff</a></span>. <span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H1</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars_left">fresh_var_not_in_conj_vars_left</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars_right">fresh_var_not_in_conj_vars_right</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars_left">fresh_var_not_in_all_vars_left</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars_right">fresh_var_not_in_all_vars_right</a></span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_refl">Nat.eqb_refl</a></span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#andb_true_iff">andb_true_iff</a></span>. <span class="tactic">split</span>; <span class="tactic">assumption</span>.<br/>
@@ -73,14 +73,14 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_refl">same_structure_refl</a></span>. <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>'2) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>'4)) <span class="kwd">as</span> <span class="id">newX</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> (<span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span>'2 <span class="id">newX</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>). <span class="tactic">intro</span> <span class="id">C1</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> (<span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span>'4 <span class="id">newX</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>). <span class="tactic">intro</span> <span class="id">C2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> (<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span>'2 <span class="id">newX</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>). <span class="tactic">intro</span> <span class="id">C1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> (<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span>'4 <span class="id">newX</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>). <span class="tactic">intro</span> <span class="id">C2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">R</span> := <span class="id"><a href="PFPL.Lemmas_Rename_AlphaEquiv.html#alpha_equiv_renamed">alpha_equiv_renamed</a></span> <span class="id">e</span>'2 <span class="id">e</span>'4 <span class="id">x</span> <span class="id">x</span>' <span class="id">newX</span> <span class="id">z</span> <span class="id">C1</span> <span class="id">C2</span> <span class="id">H1</span> <span class="id">H2</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">R</span>. <span class="tactic">apply</span> <span class="id">H0</span>; <span class="tactic">try</span> <span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Rename.html#rename_keeps_structure">rename_keeps_structure</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">subst</span> <span class="id">newX</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars_right">fresh_var_not_in_conj_vars_right</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars_left">fresh_var_not_in_conj_vars_left</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars_right">fresh_var_not_in_all_vars_right</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars_left">fresh_var_not_in_all_vars_left</a></span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_eq">Nat.eqb_eq</a></span> <span class="kwd">in</span> <span class="id">AE</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel_num">alpha_equiv_rel_num</a></span>. <br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel_str">alpha_equiv_rel_str</a></span>. <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#andb_true_iff">andb_true_iff</a></span> <span class="kwd">in</span> <span class="id">AE</span>. <span class="tactic">destruct</span> <span class="id">AE</span> <span class="kwd">as</span> [<span class="id">AE</span> <span class="id">AE</span>'].<br/>
@@ -316,17 +316,17 @@ Qed.</div>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#substitutivity_aux">substitutivity_aux</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T</span> := <span class="id"><a href="PFPL.Lemmas_FreshRename.html#fresh_rename_new_bounds">fresh_rename_new_bounds</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span> <span class="id">v</span> <span class="id">H1</span>).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_conj_not_in_free">not_in_conj_not_in_free</a></span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars">fresh_var_not_in_conj_vars</a></span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_expr_not_free">not_in_expr_not_free</a></span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars">fresh_var_not_in_all_vars</a></span>. <span class="id">lia</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T</span> := <span class="id"><a href="PFPL.Lemmas_FreshRename.html#fresh_rename_new_bounds">fresh_rename_new_bounds</a></span> <span class="id">e</span>' <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span>' <span class="id">v</span> <span class="id">H1</span>).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_conj_not_in_free">not_in_conj_not_in_free</a></span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars">fresh_var_not_in_conj_vars</a></span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_expr_not_free">not_in_expr_not_free</a></span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars">fresh_var_not_in_all_vars</a></span>. <span class="id">lia</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_FreshRename_AlphaEquiv.html#fresh_rename_keeps_alpha_equiv_2">fresh_rename_keeps_alpha_equiv_2</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars">fresh_var_not_in_conj_vars</a></span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars">fresh_var_not_in_all_vars</a></span>. <span class="id">lia</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars">fresh_var_not_in_conj_vars</a></span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars">fresh_var_not_in_all_vars</a></span>. <span class="id">lia</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
 Qed.</div>

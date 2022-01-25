@@ -34,18 +34,18 @@ Proof.
     remember (
       max (get_fresh_var e2) (max (get_fresh_var e2') (get_fresh_var e2'0))
     ) as newX.
-    assert (H11 : conj_vars e2 newX = false).
-    apply fresh_var_not_in_conj_vars.
+    assert (H11 : all_vars e2 newX = false).
+    apply fresh_var_not_in_all_vars.
     rewrite HeqnewX. apply le_max_l.
-    assert (H12 : conj_vars e2' newX = false).
-    apply fresh_var_not_in_conj_vars.
+    assert (H12 : all_vars e2' newX = false).
+    apply fresh_var_not_in_all_vars.
     symmetry in HeqnewX.
     apply eq_le_incl in HeqnewX.
     apply Max.max_lub_r in HeqnewX.
     apply Max.max_lub_l in HeqnewX.
     assumption.
-    assert (H13 : conj_vars e2'0 newX = false).
-    apply fresh_var_not_in_conj_vars.
+    assert (H13 : all_vars e2'0 newX = false).
+    apply fresh_var_not_in_all_vars.
     symmetry in HeqnewX.
     apply eq_le_incl in HeqnewX.
     apply Max.max_lub_r in HeqnewX.

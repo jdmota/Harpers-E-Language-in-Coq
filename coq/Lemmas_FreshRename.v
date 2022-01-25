@@ -38,7 +38,7 @@ Proof.
 Qed.
 
 Lemma fresh_rename_non_existant : forall e bv x o,
-  conj_vars e x = false ->
+  all_vars e x = false ->
   (fresh_rename e bv o) = (fresh_rename e (removeFromSet bv x) o).
 Proof.
   induction e using expr_ind; intros; simpl.

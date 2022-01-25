@@ -33,8 +33,8 @@ Proof.
   - apply andb_true_iff. split.
     assumption.
     apply H1.
-    apply fresh_var_not_in_conj_vars_left.
-    apply fresh_var_not_in_conj_vars_right.
+    apply fresh_var_not_in_all_vars_left.
+    apply fresh_var_not_in_all_vars_right.
   - apply Nat.eqb_refl.
   - assumption.
   - apply andb_true_iff. split; assumption.
@@ -56,14 +56,14 @@ Proof.
     apply same_structure_refl. assumption.
     intros.
     remember (max (get_fresh_var e'2) (get_fresh_var e'4)) as newX.
-    cut (conj_vars e'2 newX = false). intro C1.
-    cut (conj_vars e'4 newX = false). intro C2.
+    cut (all_vars e'2 newX = false). intro C1.
+    cut (all_vars e'4 newX = false). intro C2.
     assert (R := alpha_equiv_renamed e'2 e'4 x x' newX z C1 C2 H1 H2).
     apply R. apply H0; try apply rename_keeps_structure.
     assumption.
     all: subst newX.
-    apply fresh_var_not_in_conj_vars_right.
-    apply fresh_var_not_in_conj_vars_left.
+    apply fresh_var_not_in_all_vars_right.
+    apply fresh_var_not_in_all_vars_left.
   - apply Nat.eqb_eq in AE. subst. apply alpha_equiv_rel_num. 
   - apply alpha_equiv_rel_str. assumption.
   - apply andb_true_iff in AE. destruct AE as [AE AE'].
@@ -290,17 +290,17 @@ Proof.
   apply substitutivity_aux.
   intros.
   assert (T := fresh_rename_new_bounds e emptySet o v H1).
-  apply not_in_conj_not_in_free.
-  apply fresh_var_not_in_conj_vars. lia.
+  apply not_in_expr_not_free.
+  apply fresh_var_not_in_all_vars. lia.
   intros.
   assert (T := fresh_rename_new_bounds e' emptySet o' v H1).
-  apply not_in_conj_not_in_free.
-  apply fresh_var_not_in_conj_vars. lia.
+  apply not_in_expr_not_free.
+  apply fresh_var_not_in_all_vars. lia.
   apply fresh_rename_keeps_alpha_equiv_2.
   intros.
-  apply fresh_var_not_in_conj_vars. lia.
+  apply fresh_var_not_in_all_vars. lia.
   intros.
-  apply fresh_var_not_in_conj_vars. lia.
+  apply fresh_var_not_in_all_vars. lia.
   assumption.
   assumption.
 Qed.

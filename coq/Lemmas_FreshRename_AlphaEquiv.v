@@ -20,7 +20,7 @@ From PFPL Require Import Lemmas_Rename_FreshRename.
 From PFPL Require Import Lemmas_AlphaEquiv_2.
 
 Lemma fresh_rename_keeps_alpha_equiv_aux : forall e bv o,
-  (forall v, conj_vars e v = true -> conj_vars e (o + v) = false) ->
+  (forall v, all_vars e v = true -> all_vars e (o + v) = false) ->
   (forall v, free_vars e v = true -> bv v = false) ->
   alpha_equiv_rel e (fresh_rename e bv o).
 Proof.
@@ -30,7 +30,7 @@ Proof.
     apply H0. simpl. unfold singletonSet. rewrite Nat.eqb_refl. reflexivity.
   - assert (O : 0 < o). {
     destruct o. assert (H1 := H1 x).
-    assert (conj_vars (ELet e1 x e2) x = true).
+    assert (all_vars (ELet e1 x e2) x = true).
     simpl. unfold unionSet. apply orb_true_iff.
     right. unfold updateSet. rewrite Nat.eqb_refl.
     reflexivity. assert (H1 := H1 H3).
@@ -52,15 +52,15 @@ Proof.
     apply orb_true_iff. left. assumption.
     intros.
     remember (x + o + S z + get_fresh_var e2) as newX.
-    cut (conj_vars e2 newX = false). intro CV_newX.
-    cut (conj_vars (fresh_rename e2 (updateSet bv x) o) newX = false). intro CV_F_newX.
+    cut (all_vars e2 newX = false). intro CV_newX.
+    cut (all_vars (fresh_rename e2 (updateSet bv x) o) newX = false). intro CV_F_newX.
     apply (alpha_equiv_renamed e2 (fresh_rename e2 (updateSet bv x) o)
       x (x + o) newX z CV_newX CV_F_newX H3 H4
     ).
     cut (removeFromSet bv newX newX = false). intro BVR.
     cut ((newX =? x) = false). intro newX_X.
-    cut (forall v : nat, conj_vars e2 v = true -> conj_vars e2 (o + v) = false). intro FORALL.
-    cut (conj_vars e2 (x + o) = false). intro CV_XO.
+    cut (forall v : nat, all_vars e2 v = true -> all_vars e2 (o + v) = false). intro FORALL.
+    cut (all_vars e2 (x + o) = false). intro CV_XO.
     assert (T1 := fresh_rename_vs_rename e2 (removeFromSet bv newX) o x newX FORALL CV_XO CV_newX BVR).
     assert (T2 : fresh_rename e2 (updateSet bv x) o = fresh_rename e2 (removeFromSet (updateSet bv x) newX) o).
     { apply fresh_rename_non_existant. assumption. }
@@ -74,8 +74,8 @@ Proof.
     rewrite T3 in T1. clear T3.
     rewrite T1.
     cut ((forall v : nat,
-      conj_vars (rename e2 x newX) v = true ->
-      conj_vars (rename e2 x newX) (o + v) = false)). intro FORALL1.
+      all_vars (rename e2 x newX) v = true ->
+      all_vars (rename e2 x newX) (o + v) = false)). intro FORALL1.
     cut ((forall v : nat,
       free_vars (rename e2 x newX) v = true ->
      (removeFromSet bv newX v = false))). intro FORALL2.
@@ -108,7 +108,7 @@ Proof.
     unfold updateSet in H7.
     case_eq (v =? x); intro XV.
     rewrite Nat.eqb_sym in XV. rewrite XV in H7.
-    assert (H8 : conj_vars e1 v || true = true).
+    assert (H8 : all_vars e1 v || true = true).
     apply orb_true_iff. right. reflexivity.
     assert (H7 := H7 H8). clear H8.
     apply orb_false_iff in H7. destruct H7 as [_ H7].
@@ -126,7 +126,7 @@ Proof.
     subst v.
     apply rename_does_not_add_new_var.
     rewrite Nat.eqb_neq. lia.
-    apply fresh_var_not_in_conj_vars. lia.
+    apply fresh_var_not_in_all_vars. lia.
     assert (H6 := H6 V_newX).
     rewrite H6 in H7.
     rewrite orb_true_iff in H7.
@@ -143,8 +143,8 @@ Proof.
     rewrite (add_comm (x + o)) in newX_OV.
     rewrite add_assoc in newX_OV.
     rewrite add_cancel_r in newX_OV.
-    assert (conj_vars e2 v = false).
-    apply fresh_var_not_in_conj_vars. lia.
+    assert (all_vars e2 v = false).
+    apply fresh_var_not_in_all_vars. lia.
     rewrite H5 in H6. rewrite H6 in H8.
     assumption. reflexivity.
     assumption.
@@ -163,7 +163,7 @@ Proof.
     assert (H1 := H1 v).
     simpl in H1. unfold unionSet in H1.
     unfold updateSet in H1.
-    assert ((if x =? v then true else conj_vars e2 v) = true).
+    assert ((if x =? v then true else all_vars e2 v) = true).
     rewrite H5. destruct (x =? v). reflexivity. reflexivity.
     rewrite orb_true_iff in H1.
     assert (H1 := H1 (or_intror H6)). clear H6.
@@ -178,7 +178,7 @@ Proof.
     unfold removeFromSet.
     rewrite Nat.eqb_refl. reflexivity.
     (* - *)
-    apply fresh_var_not_in_conj_vars.
+    apply fresh_var_not_in_all_vars.
     rewrite <- add_assoc in HeqnewX.
     rewrite <- add_assoc in HeqnewX.
     rewrite add_comm in HeqnewX.
@@ -188,7 +188,7 @@ Proof.
     apply (fresh_rename_fresh_var e2 (updateSet bv x) o).
     lia.
     (* - *)
-    apply fresh_var_not_in_conj_vars. lia.
+    apply fresh_var_not_in_all_vars. lia.
   - apply alpha_equiv_rel_num.
   - apply alpha_equiv_rel_str. apply eqb_eq. reflexivity.
   - simpl in H1. unfold unionSet in H1.
@@ -262,15 +262,15 @@ Proof.
   intros.
   apply fresh_rename_keeps_alpha_equiv_aux.
   intros.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   apply (le_trans _ x _).
   assumption. apply le_add_r.
   intros. reflexivity.
 Qed.
 
 Lemma fresh_rename_keeps_alpha_equiv_2 : forall e e' o o',
-  (forall v, conj_vars e v = true -> conj_vars e (o + v) = false) ->
-  (forall v, conj_vars e' v = true -> conj_vars e' (o' + v) = false) ->
+  (forall v, all_vars e v = true -> all_vars e (o + v) = false) ->
+  (forall v, all_vars e' v = true -> all_vars e' (o' + v) = false) ->
   alpha_equiv_rel e e' ->
   alpha_equiv_rel (fresh_rename e emptySet o) (fresh_rename e' emptySet o').
 Proof.

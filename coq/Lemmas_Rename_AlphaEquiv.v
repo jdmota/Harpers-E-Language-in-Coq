@@ -17,7 +17,7 @@ From PFPL Require Import Induction_Expr.
 From PFPL Require Import Lemmas_AlphaEquiv.
 
 Lemma alpha_equiv_renamed_1 : forall e e' x z,
-  free_vars e z = false -> conj_vars e' z = false ->
+  free_vars e z = false -> all_vars e' z = false ->
   alpha_equiv_rel e (rename e' x z) ->
   e' = (rename e' x z).
 Proof.
@@ -77,8 +77,8 @@ Proof.
       {
         assert (T3 := max_id (S z)).
         apply H14.
-        apply fresh_var_not_in_conj_vars. lia.
-        apply fresh_var_not_in_conj_vars. lia.
+        apply fresh_var_not_in_all_vars. lia.
+        apply fresh_var_not_in_all_vars. lia.
       }
       assert (T4 := alpha_equiv_same_free_vars (rename e'2 x newX2) (rename (rename e'4 x0 z) x' newX2) T3).
       assert (T5 : free_vars e'4 x0 = false).
@@ -179,13 +179,13 @@ Proof.
 Qed.
 
 Lemma complex : forall e e' x x' x'' z,
-  conj_vars e z = false ->
-  conj_vars e' z = false ->
+  all_vars e z = false ->
+  all_vars e' z = false ->
   (x' =? z) = false ->
   (x'' =? x') = false ->
   (forall newX : nat,
-    conj_vars e newX = false ->
-    conj_vars (rename e' x'' z) newX = false ->
+    all_vars e newX = false ->
+    all_vars (rename e' x'' z) newX = false ->
     alpha_equiv_rel (rename e x newX) (rename (rename e' x'' z) x' newX)
   ) ->
   free_vars e' x'' = false.
@@ -194,7 +194,7 @@ Proof.
   case_eq (x'' =? z); intros X''Z.
 
   apply Nat.eqb_eq in X''Z. subst x''.
-  apply not_in_conj_not_in_free; assumption.
+  apply not_in_expr_not_free; assumption.
 
   case_eq (x' =? z); intro X'Z.
   rewrite X'Z in H1. symmetry in H1.
@@ -214,14 +214,14 @@ Proof.
     assumption.
     rewrite Nat.eqb_sym in H4.
     assert (T3 := rename_keeps_other_free_vars e x newX z H4 T'').
-    rewrite <- T3. apply not_in_conj_not_in_free. assumption.
+    rewrite <- T3. apply not_in_expr_not_free. assumption.
   }
-  assert (T4 : conj_vars (rename e' x' newX) z = false). {
+  assert (T4 : all_vars (rename e' x' newX) z = false). {
     rewrite Nat.eqb_sym in X'Z.
     assert (T4 := rename_keeps_other_vars e' x' newX z X'Z T'').
     rewrite H0 in T4. symmetry. assumption.
   }
-  assert (T6 : conj_vars (rename e' x'' newX) z = false). {
+  assert (T6 : all_vars (rename e' x'' newX) z = false). {
     case_eq (x'' =? z); intros.
     apply Nat.eqb_eq in H4. rewrite H4.
     assert (T6 := rename_non_existant e' z newX H0).
@@ -230,7 +230,7 @@ Proof.
     assert (T6 := rename_keeps_other_vars e' x'' newX z H4 T'').
     rewrite H0 in T6. symmetry. assumption.
   }
-  assert (T8 : conj_vars (rename e' x'' z) newX = false). {
+  assert (T8 : all_vars (rename e' x'' z) newX = false). {
     rewrite Nat.eqb_sym in T'.
     rewrite Nat.eqb_sym in T''.
     assert (T8 := rename_keeps_other_vars e' x'' z newX T' T'').
@@ -262,8 +262,8 @@ Proof.
 Qed.
 
 Lemma alpha_equiv_renamed : forall e e' x x' z z',
-  conj_vars e z = false -> conj_vars e' z = false ->
-  conj_vars e z' = false -> conj_vars e' z' = false ->
+  all_vars e z = false -> all_vars e' z = false ->
+  all_vars e z' = false -> all_vars e' z' = false ->
   alpha_equiv_rel (rename e x z) (rename e' x' z) ->
   alpha_equiv_rel (rename e x z') (rename e' x' z').
 Proof.
@@ -317,8 +317,8 @@ Proof.
       apply (H _ _ (same_structure_refl e'1) (same_structure_refl e'3) y x' z).
       all: try assumption.
       assert (H8' : (forall z0 : nat,
-        conj_vars e'4 z0 = false ->
-        conj_vars (rename e'2 y z) z0 = false ->
+        all_vars e'4 z0 = false ->
+        all_vars (rename e'2 y z) z0 = false ->
         alpha_equiv_rel (rename e'4 x' z0) (rename (rename e'2 y z) x z0))
       ). {
         intros. apply alpha_equiv_sym. apply H8; assumption.
@@ -350,20 +350,20 @@ Proof.
       rewrite (rename_commu e'2 y z x newX YX YnewX XZ ZnewX) in T5.
       rewrite Nat.eqb_sym in X'Z.
       rewrite (rename_commu e'4 y' z x' newX Y'X' Y'newX X'Z ZnewX) in T5.
-      assert (T6 : conj_vars (rename e'2 x newX) z = false). {
+      assert (T6 : all_vars (rename e'2 x newX) z = false). {
         assert (T6 := rename_keeps_other_vars e'2 x newX z XZ ZnewX).
         rewrite <- T6. assumption.
       }
-      assert (T7 : conj_vars (rename e'4 x' newX) z = false). {
+      assert (T7 : all_vars (rename e'4 x' newX) z = false). {
         assert (T7 := rename_keeps_other_vars e'4 x' newX z X'Z ZnewX).
         rewrite <- T7. assumption.
       }
-      assert (T8 : conj_vars (rename e'2 x newX) z' = false). {
+      assert (T8 : all_vars (rename e'2 x newX) z' = false). {
         rewrite Nat.eqb_sym in XZ'.
         assert (T8 := rename_keeps_other_vars e'2 x newX z' XZ' Z'newX).
         rewrite <- T8. assumption.
       }
-      assert (T9 : conj_vars (rename e'4 x' newX) z' = false). {
+      assert (T9 : all_vars (rename e'4 x' newX) z' = false). {
         rewrite Nat.eqb_sym in X'Z'.
         assert (T9 := rename_keeps_other_vars e'4 x' newX z' X'Z' Z'newX).
         rewrite <- T9. assumption.
@@ -449,7 +449,7 @@ Proof.
 Qed.
 
 Lemma rename_keeps_alpha_equiv : forall e e' x z,
-  conj_vars e z = false -> conj_vars e' z = false ->
+  all_vars e z = false -> all_vars e' z = false ->
   alpha_equiv_rel e e' ->
   alpha_equiv_rel (rename e x z) (rename e' x z).
 Proof.

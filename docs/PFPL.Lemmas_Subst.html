@@ -42,8 +42,8 @@ where the bound variables do not conflict with any free variables of the replace
 <div class="proofscript" id="proof49">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T</span> := <span class="id"><a href="PFPL.Lemmas_FreshRename.html#fresh_rename_new_bounds">fresh_rename_new_bounds</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span> <span class="id">v</span> <span class="id">H0</span>).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_conj_not_in_free">not_in_conj_not_in_free</a></span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_conj_vars">fresh_var_not_in_conj_vars</a></span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_expr_not_free">not_in_expr_not_free</a></span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars">fresh_var_not_in_all_vars</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_trans">le_trans</a></span> <span class="id">_</span> <span class="id">o</span> <span class="id">_</span>).<br/>
 &nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H</span>. <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_r">le_max_r</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>

@@ -67,7 +67,7 @@ Qed.</div>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="rename_non_existant">rename_non_existant</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>',<br/>
-&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt; <span class="id">e</span> = <span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>'.<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt; <span class="id">e</span> = <span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>'.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof28')">Proof.</div>
 <div class="proofscript" id="proof28">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -322,7 +322,7 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="rename_keeps_other_vars">rename_keeps_other_vars</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>' <span class="id">v</span>,<br/>
 &nbsp;&nbsp;(<span class="id">v</span> =? <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>) -&gt;<br/>
 &nbsp;&nbsp;(<span class="id">v</span> =? <span class="id">x</span>' = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>) -&gt;<br/>
-&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span> <span class="id">v</span> = <span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id">v</span>.<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span> <span class="id">v</span> = <span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id">v</span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof33')">Proof.</div>
 <div class="proofscript" id="proof33">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -366,7 +366,7 @@ Qed.</div>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="rename_the_free_var">rename_the_free_var</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>',<br/>
-&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span> <span class="id">x</span>' = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span> <span class="id">x</span>' = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id">x</span>' = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof34')">Proof.</div>
 <div class="proofscript" id="proof34">
@@ -543,7 +543,7 @@ Qed.</div>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="rename_does_not_add_new_var">rename_does_not_add_new_var</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>' <span class="id">z</span>,<br/>
-&nbsp;&nbsp;<span class="id">x</span>' =? <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span> <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>.<br/>
+&nbsp;&nbsp;<span class="id">x</span>' =? <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span> <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof36')">Proof.</div>
 <div class="proofscript" id="proof36">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -589,7 +589,7 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="rename_twice">rename_twice</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">a</span> <span class="id">b</span> <span class="id">c</span>,<br/>
 &nbsp;&nbsp;(<span class="id">a</span> =? <span class="id">b</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
-&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span> <span class="id">b</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span> <span class="id">b</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;(<span class="tactic">rename</span> <span class="id">e</span> <span class="id">a</span> <span class="id">b</span>) = (<span class="tactic">rename</span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">a</span> <span class="id">b</span>) <span class="id">a</span> <span class="id">c</span>).<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof38')">Proof.</div>
 <div class="proofscript" id="proof38">

@@ -10,7 +10,7 @@ From Coq Require Import Logic.FunctionalExtensionality.
 From PFPL Require Import PartialMap_Set.
 From PFPL Require Import Definitions.
 
-Lemma all_vars_free_plus_bound : forall e, conj_vars e = unionSet (free_vars e) (bound_vars e).
+Lemma all_vars_free_plus_bound : forall e, all_vars e = unionSet (free_vars e) (bound_vars e).
 Proof.
   intros e. apply functional_extensionality. intros v.
   unfold unionSet. induction e.
@@ -53,8 +53,8 @@ Proof.
     rewrite orb_comm. reflexivity.
 Qed.
 
-Lemma not_in_conj_not_in_free : forall e z,
-  conj_vars e z = false -> free_vars e z = false.
+Lemma not_in_expr_not_free : forall e z,
+  all_vars e z = false -> free_vars e z = false.
 Proof.
   intros. induction e; simpl; simpl in H.
   - assumption.
@@ -83,8 +83,8 @@ Proof.
     apply IHe2. assumption.
 Qed.
 
-Lemma fresh_var_not_in_conj_vars :
-  forall e v, get_fresh_var e <= v -> conj_vars e v = false.
+Lemma fresh_var_not_in_all_vars :
+  forall e v, get_fresh_var e <= v -> all_vars e v = false.
 Proof.
   intros e. induction e; intros v H.
   - simpl. unfold emptySet. reflexivity.
@@ -123,24 +123,24 @@ Proof.
     + apply IHe2. assumption.
 Qed.
 
-Lemma fresh_var_not_in_conj_vars_left :
-  forall e e', conj_vars e (max (get_fresh_var e) (get_fresh_var e')) = false.
+Lemma fresh_var_not_in_all_vars_left :
+  forall e e', all_vars e (max (get_fresh_var e) (get_fresh_var e')) = false.
 Proof.
   intros.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   apply le_max_l.
 Qed.
 
-Lemma fresh_var_not_in_conj_vars_right :
-  forall e e', conj_vars e' (max (get_fresh_var e) (get_fresh_var e')) = false.
+Lemma fresh_var_not_in_all_vars_right :
+  forall e e', all_vars e' (max (get_fresh_var e) (get_fresh_var e')) = false.
 Proof.
   intros.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   apply le_max_r.
 Qed.
 
 Lemma variables_below_fresh : forall e v,
-  conj_vars e v = true -> v < get_fresh_var e.
+  all_vars e v = true -> v < get_fresh_var e.
 Proof.
   intros e. induction e; intros; simpl; simpl in H.
   - unfold emptySet in H. discriminate.
@@ -194,8 +194,8 @@ Lemma complex_max : forall e e' a b c d newX,
   ) ->
   (a =? newX) = false /\ (b =? newX) = false /\
   (c =? newX) = false /\ (d =? newX) = false /\
-  conj_vars e newX = false /\
-  conj_vars e' newX = false.
+  all_vars e newX = false /\
+  all_vars e' newX = false.
 Proof.
   intros.
   split.
@@ -243,13 +243,13 @@ Proof.
   contradiction.
   reflexivity.
   split.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   symmetry in H.
   apply eq_le_incl in H.
   apply Max.max_lub_l in H.
   apply Max.max_lub_l in H.
   assumption.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   symmetry in H.
   apply eq_le_incl in H.
   apply Max.max_lub_l in H.
@@ -266,10 +266,10 @@ Lemma complex_max_2 : forall e e' e'' e''' a b c d newX,
     (max (max (S a) (S b)) (max (S c) (S d))) ->
   (a =? newX) = false /\ (b =? newX) = false /\
   (c =? newX) = false /\ (d =? newX) = false /\
-  conj_vars e newX = false /\
-  conj_vars e' newX = false /\
-  conj_vars e'' newX = false /\
-  conj_vars e''' newX = false.
+  all_vars e newX = false /\
+  all_vars e' newX = false /\
+  all_vars e'' newX = false /\
+  all_vars e''' newX = false.
 Proof.
   intros.
   split.
@@ -317,7 +317,7 @@ Proof.
   contradiction.
   reflexivity.
   split.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   symmetry in H.
   apply eq_le_incl in H.
   apply Max.max_lub_l in H.
@@ -325,7 +325,7 @@ Proof.
   apply Max.max_lub_l in H.
   assumption.
   split.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   symmetry in H.
   apply eq_le_incl in H.
   apply Max.max_lub_l in H.
@@ -333,14 +333,14 @@ Proof.
   apply Max.max_lub_r in H.
   assumption.
   split.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   symmetry in H.
   apply eq_le_incl in H.
   apply Max.max_lub_l in H.
   apply Max.max_lub_r in H.
   apply Max.max_lub_l in H.
   assumption.
-  apply fresh_var_not_in_conj_vars.
+  apply fresh_var_not_in_all_vars.
   symmetry in H.
   apply eq_le_incl in H.
   apply Max.max_lub_l in H.
@@ -386,13 +386,13 @@ Proof.
     destruct (get_fresh_var e2); discriminate.
 Qed.
 
-Lemma conj_vars_impl_let_1 : forall e1 x e2 o,
+Lemma all_vars_impl_let_1 : forall e1 x e2 o,
   (forall v : nat,
-     conj_vars (ELet e1 x e2) v = true ->
-     conj_vars (ELet e1 x e2) (o + v) = false) ->
+     all_vars (ELet e1 x e2) v = true ->
+     all_vars (ELet e1 x e2) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e1 v = true ->
-     conj_vars e1 (o + v) = false).
+     all_vars e1 v = true ->
+     all_vars e1 (o + v) = false).
 Proof.
   intros.
   assert (H := H v).
@@ -404,13 +404,13 @@ Proof.
   destruct H. assumption.
 Qed.
 
-Lemma conj_vars_impl_let_2 : forall e1 x e2 o,
+Lemma all_vars_impl_let_2 : forall e1 x e2 o,
   (forall v : nat,
-     conj_vars (ELet e1 x e2) v = true ->
-     conj_vars (ELet e1 x e2) (o + v) = false) ->
+     all_vars (ELet e1 x e2) v = true ->
+     all_vars (ELet e1 x e2) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e2 v = true ->
-     conj_vars e2 (o + v) = false).
+     all_vars e2 v = true ->
+     all_vars e2 (o + v) = false).
 Proof.
   intros.
   assert (H := H v).
@@ -428,11 +428,11 @@ Proof.
   discriminate. assumption.
 Qed.
 
-Lemma conj_vars_impl_let_x : forall e1 x e2 o,
+Lemma all_vars_impl_let_x : forall e1 x e2 o,
   (forall v : nat,
-     conj_vars (ELet e1 x e2) v = true ->
-     conj_vars (ELet e1 x e2) (o + v) = false) ->
-  conj_vars e2 (o + x) = false.
+     all_vars (ELet e1 x e2) v = true ->
+     all_vars (ELet e1 x e2) (o + v) = false) ->
+  all_vars e2 (o + x) = false.
 Proof.
   intros.
   assert (H := H x).
@@ -449,7 +449,7 @@ Proof.
 Qed.
 
 Lemma x_in_let : forall e1 x e2,
-  conj_vars (ELet e1 x e2) x = true.
+  all_vars (ELet e1 x e2) x = true.
 Proof.
   intros.
   simpl. unfold unionSet.
@@ -460,8 +460,8 @@ Proof.
 Qed.
 
 Lemma not_in_main_not_in_subexprs : forall e1 x e2 z,
-  conj_vars (ELet e1 x e2) z = false ->
-  conj_vars e2 z = false.
+  all_vars (ELet e1 x e2) z = false ->
+  all_vars e2 z = false.
 Proof.
   intros. simpl in H.
   unfold unionSet in H.
@@ -472,13 +472,13 @@ Proof.
   assumption.
 Qed.
 
-Lemma conj_vars_impl_plus_1 : forall e1 e2 o,
+Lemma all_vars_impl_plus_1 : forall e1 e2 o,
   (forall v : nat,
-     conj_vars (EPlus e1 e2) v = true ->
-     conj_vars (EPlus e1 e2) (o + v) = false) ->
+     all_vars (EPlus e1 e2) v = true ->
+     all_vars (EPlus e1 e2) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e1 v = true ->
-     conj_vars e1 (o + v) = false).
+     all_vars e1 v = true ->
+     all_vars e1 (o + v) = false).
 Proof.
   intros.
   assert (H := H v).
@@ -490,13 +490,13 @@ Proof.
   destruct H. assumption.
 Qed.
 
-Lemma conj_vars_impl_plus_2 : forall e1 e2 o,
+Lemma all_vars_impl_plus_2 : forall e1 e2 o,
   (forall v : nat,
-     conj_vars (EPlus e1 e2) v = true ->
-     conj_vars (EPlus e1 e2) (o + v) = false) ->
+     all_vars (EPlus e1 e2) v = true ->
+     all_vars (EPlus e1 e2) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e2 v = true ->
-     conj_vars e2 (o + v) = false).
+     all_vars e2 v = true ->
+     all_vars e2 (o + v) = false).
 Proof.
   intros.
   assert (H := H v).
@@ -509,13 +509,13 @@ Proof.
   destruct H. assumption.
 Qed.
 
-Lemma conj_vars_impl_times_1 : forall e1 e2 o,
+Lemma all_vars_impl_times_1 : forall e1 e2 o,
   (forall v : nat,
-     conj_vars (ETimes e1 e2) v = true ->
-     conj_vars (ETimes e1 e2) (o + v) = false) ->
+     all_vars (ETimes e1 e2) v = true ->
+     all_vars (ETimes e1 e2) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e1 v = true ->
-     conj_vars e1 (o + v) = false).
+     all_vars e1 v = true ->
+     all_vars e1 (o + v) = false).
 Proof.
   intros.
   assert (H := H v).
@@ -527,13 +527,13 @@ Proof.
   destruct H. assumption.
 Qed.
 
-Lemma conj_vars_impl_times_2 : forall e1 e2 o,
+Lemma all_vars_impl_times_2 : forall e1 e2 o,
   (forall v : nat,
-     conj_vars (ETimes e1 e2) v = true ->
-     conj_vars (ETimes e1 e2) (o + v) = false) ->
+     all_vars (ETimes e1 e2) v = true ->
+     all_vars (ETimes e1 e2) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e2 v = true ->
-     conj_vars e2 (o + v) = false).
+     all_vars e2 v = true ->
+     all_vars e2 (o + v) = false).
 Proof.
   intros.
   assert (H := H v).
@@ -546,13 +546,13 @@ Proof.
   destruct H. assumption.
 Qed.
 
-Lemma conj_vars_impl_cat_1 : forall e1 e2 o,
+Lemma all_vars_impl_cat_1 : forall e1 e2 o,
   (forall v : nat,
-     conj_vars (ECat e1 e2) v = true ->
-     conj_vars (ECat e1 e2) (o + v) = false) ->
+     all_vars (ECat e1 e2) v = true ->
+     all_vars (ECat e1 e2) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e1 v = true ->
-     conj_vars e1 (o + v) = false).
+     all_vars e1 v = true ->
+     all_vars e1 (o + v) = false).
 Proof.
   intros.
   assert (H := H v).
@@ -564,13 +564,13 @@ Proof.
   destruct H. assumption.
 Qed.
 
-Lemma conj_vars_impl_cat_2 : forall e1 e2 o,
+Lemma all_vars_impl_cat_2 : forall e1 e2 o,
   (forall v : nat,
-     conj_vars (ECat e1 e2) v = true ->
-     conj_vars (ECat e1 e2) (o + v) = false) ->
+     all_vars (ECat e1 e2) v = true ->
+     all_vars (ECat e1 e2) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e2 v = true ->
-     conj_vars e2 (o + v) = false).
+     all_vars e2 v = true ->
+     all_vars e2 (o + v) = false).
 Proof.
   intros.
   assert (H := H v).
@@ -583,13 +583,13 @@ Proof.
   destruct H. assumption.
 Qed.
 
-Lemma conj_vars_impl_len : forall e1 o,
+Lemma all_vars_impl_len : forall e1 o,
   (forall v : nat,
-     conj_vars (ELen e1) v = true ->
-     conj_vars (ELen e1) (o + v) = false) ->
+     all_vars (ELen e1) v = true ->
+     all_vars (ELen e1) (o + v) = false) ->
   (forall v : nat,
-     conj_vars e1 v = true ->
-     conj_vars e1 (o + v) = false).
+     all_vars e1 v = true ->
+     all_vars e1 (o + v) = false).
 Proof.
   intros.
   simpl in H.

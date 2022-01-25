@@ -156,7 +156,7 @@ Qed.
 
 (** Auxiliary lemma to prove that typing is preserved by alpha equivalence *)
 Lemma same_type_with_renamed : forall Gamma e t x x' t',
-  conj_vars e x' = false ->
+  all_vars e x' = false ->
   hastype (x |-> t'; Gamma) e t <->
   hastype (x' |-> t'; Gamma) (rename e x x') t.
 Proof.
@@ -200,7 +200,7 @@ Proof.
         rewrite update_shadow in H0_0.
         rewrite update_permute.
         apply weakening_2. assumption.
-        apply not_in_conj_not_in_free. assumption.
+        apply not_in_expr_not_free. assumption.
         apply Nat.eqb_neq. rewrite Nat.eqb_sym. assumption.
       + apply (T_Let _ _ t1). apply IHhastype1.
         assumption. reflexivity.
@@ -256,7 +256,7 @@ Proof.
       rewrite update_shadow.
       rewrite update_permute in H7.
       apply (weakening_3 (x0 |-> t1; Gamma) e2 t0 x' t').
-      assumption. apply not_in_conj_not_in_free. assumption.
+      assumption. apply not_in_expr_not_free. assumption.
       rewrite Nat.eqb_sym in X0X'. apply Nat.eqb_neq. assumption.
       inversion H0. subst.
       apply (T_Let _ _ t1).
@@ -282,10 +282,10 @@ Proof.
     apply (T_Let _ _ t1).
     apply IHalpha_equiv_rel. assumption.
     remember (max (get_fresh_var e2) (get_fresh_var e2')) as newX.
-    assert (C1 : conj_vars e2 newX = false).
-    rewrite HeqnewX. apply fresh_var_not_in_conj_vars_left.
-    assert (C2 : conj_vars e2' newX = false).
-    rewrite HeqnewX. apply fresh_var_not_in_conj_vars_right.
+    assert (C1 : all_vars e2 newX = false).
+    rewrite HeqnewX. apply fresh_var_not_in_all_vars_left.
+    assert (C2 : all_vars e2' newX = false).
+    rewrite HeqnewX. apply fresh_var_not_in_all_vars_right.
     apply (same_type_with_renamed Gamma e2' t0 x' newX t1 C2).
     apply (H1 newX C1 C2).
     apply (same_type_with_renamed Gamma e2 t0 x newX t1 C1).

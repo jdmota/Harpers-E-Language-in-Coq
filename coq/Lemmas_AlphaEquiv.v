@@ -67,9 +67,9 @@ Proof.
   apply (same_structure_trans _ (rename e2' x' z) _).
   apply H1.
   subst z.
-  apply (fresh_var_not_in_conj_vars_left e2 e2').
+  apply (fresh_var_not_in_all_vars_left e2 e2').
   subst z.
-  apply (fresh_var_not_in_conj_vars_right e2 e2').
+  apply (fresh_var_not_in_all_vars_right e2 e2').
   apply same_structure_sym.
   apply rename_keeps_structure.
 Qed.
@@ -103,7 +103,7 @@ Proof.
     ) as z.
     assert (XZ : (x =? z) = false).
     {
-      assert (T := fresh_var_not_in_conj_vars_left (ELet e1 x e2) (ELet e1' x' e2')).
+      assert (T := fresh_var_not_in_all_vars_left (ELet e1 x e2) (ELet e1' x' e2')).
       rewrite <- Heqz in T.
       simpl in T. unfold unionSet in T.
       apply orb_false_iff in T.
@@ -114,7 +114,7 @@ Proof.
     }
     assert (X'Z : (x' =? z) = false).
     {
-      assert (T := fresh_var_not_in_conj_vars_right (ELet e1 x e2) (ELet e1' x' e2')).
+      assert (T := fresh_var_not_in_all_vars_right (ELet e1 x e2) (ELet e1' x' e2')).
       rewrite <- Heqz in T.
       simpl in T. unfold unionSet in T.
       apply orb_false_iff in T.
@@ -123,18 +123,18 @@ Proof.
       destruct (x' =? z). discriminate.
       reflexivity.
     }
-    assert (Zconj : conj_vars e2 z = false).
+    assert (Zfresh : all_vars e2 z = false).
     {
-      assert (T := fresh_var_not_in_conj_vars_left (ELet e1 x e2) (ELet e1' x' e2')).
+      assert (T := fresh_var_not_in_all_vars_left (ELet e1 x e2) (ELet e1' x' e2')).
       rewrite <- Heqz in T.
       simpl in T. unfold unionSet in T.
       apply orb_false_iff in T. destruct T.
       unfold updateSet in H3.
       destruct (x =? z). discriminate. assumption.
     }
-    assert (Zconj' : conj_vars e2' z = false).
+    assert (Zfresh' : all_vars e2' z = false).
     {
-      assert (T := fresh_var_not_in_conj_vars_right (ELet e1 x e2) (ELet e1' x' e2')).
+      assert (T := fresh_var_not_in_all_vars_right (ELet e1 x e2) (ELet e1' x' e2')).
       rewrite <- Heqz in T.
       simpl in T. unfold unionSet in T.
       apply orb_false_iff in T. destruct T.
@@ -170,8 +170,8 @@ Proof.
       rewrite Nat.eqb_sym in H3.
       case_eq (x0 =? z); intros.
       + apply Nat.eqb_eq in H4. subst x0.
-        rewrite not_in_conj_not_in_free.
-        rewrite not_in_conj_not_in_free.
+        rewrite not_in_expr_not_free.
+        rewrite not_in_expr_not_free.
         all: auto.
       + assert (T8 := T7 x0 H2 H4).
         assert (T9 := T6 x0 H3 H4).

@@ -50,7 +50,7 @@ Proof.
 Qed.
 
 Lemma rename_non_existant : forall e x x',
-  conj_vars e x = false -> e = rename e x x'.
+  all_vars e x = false -> e = rename e x x'.
 Proof.
   intros.
   induction e; simpl.
@@ -300,7 +300,7 @@ Qed.
 Lemma rename_keeps_other_vars : forall e x x' v,
   (v =? x = false) ->
   (v =? x' = false) ->
-  conj_vars e v = conj_vars (rename e x x') v.
+  all_vars e v = all_vars (rename e x x') v.
 Proof.
   intros.
   case_eq (x =? x'); intros.
@@ -343,7 +343,7 @@ Proof.
 Qed.
 
 Lemma rename_the_free_var : forall e x x',
-  free_vars e x = true -> conj_vars e x' = false ->
+  free_vars e x = true -> all_vars e x' = false ->
   free_vars (rename e x x') x' = true.
 Proof.
   intros.
@@ -518,7 +518,7 @@ Proof.
 Qed.
 
 Lemma rename_does_not_add_new_var : forall e x x' z,
-  x' =? z = false -> conj_vars e z = false -> conj_vars (rename e x x') z = false.
+  x' =? z = false -> all_vars e z = false -> all_vars (rename e x x') z = false.
 Proof.
   intros.
   rewrite Nat.eqb_sym in H.
@@ -562,7 +562,7 @@ Qed.
 
 Lemma rename_twice : forall e a b c,
   (a =? b) = false ->
-  conj_vars e b = false ->
+  all_vars e b = false ->
   (rename e a b) = (rename (rename e a b) a c).
 Proof.
   intros.

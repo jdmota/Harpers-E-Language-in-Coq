@@ -64,16 +64,16 @@ Fixpoint bound_vars (e : EExp) : set :=
   end.
 
 (** Returns the set of all variables *)
-Fixpoint conj_vars (e : EExp) : set :=
+Fixpoint all_vars (e : EExp) : set :=
   match e with
   | EId x => singletonSet x
-  | ELet e1 x e2 => unionSet (conj_vars e1) (updateSet (conj_vars e2) x)
+  | ELet e1 x e2 => unionSet (all_vars e1) (updateSet (all_vars e2) x)
   | ENum n => emptySet
   | EStr s => emptySet
-  | EPlus e1 e2 => unionSet (conj_vars e1) (conj_vars e2)
-  | ETimes e1 e2 => unionSet (conj_vars e1) (conj_vars e2)
-  | ECat e1 e2 => unionSet (conj_vars e1) (conj_vars e2)
-  | ELen e1 => conj_vars e1
+  | EPlus e1 e2 => unionSet (all_vars e1) (all_vars e2)
+  | ETimes e1 e2 => unionSet (all_vars e1) (all_vars e2)
+  | ECat e1 e2 => unionSet (all_vars e1) (all_vars e2)
+  | ELen e1 => all_vars e1
   end.
 
 (** Returns a new variable not present in the expression *)
@@ -109,7 +109,7 @@ Inductive alpha_equiv_rel : EExp -> EExp -> Prop :=
   | alpha_equiv_rel_let :
     forall e1 x e2 e1' x' e2',
       alpha_equiv_rel e1 e1' ->
-      (forall z, (conj_vars e2) z = false -> (conj_vars e2') z = false ->
+      (forall z, (all_vars e2) z = false -> (all_vars e2') z = false ->
       alpha_equiv_rel (rename e2 x z) (rename e2' x' z)) ->
       alpha_equiv_rel (ELet e1 x e2) (ELet e1' x' e2')
   | alpha_equiv_rel_num : forall n, alpha_equiv_rel (ENum n) (ENum n)

@@ -26,8 +26,8 @@ Lemma fresh_rename_removes_conflicts : forall e e' o,
 Proof.
   intros.
   assert (T := fresh_rename_new_bounds e emptySet o v H0).
-  apply not_in_conj_not_in_free.
-  apply fresh_var_not_in_conj_vars.
+  apply not_in_expr_not_free.
+  apply fresh_var_not_in_all_vars.
   apply (le_trans _ o _).
   rewrite H. apply le_max_r.
   assumption.

@@ -55,7 +55,7 @@ Qed.</div>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="fresh_rename_non_existant">fresh_rename_non_existant</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">bv</span> <span class="id">x</span> <span class="id">o</span>,<br/>
-&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#conj_vars">conj_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;(<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id">bv</span> <span class="id">o</span>) = (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> (<span class="id"><a href="PFPL.PartialMap_Set.html#removeFromSet">removeFromSet</a></span> <span class="id">bv</span> <span class="id">x</span>) <span class="id">o</span>).<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof19')">Proof.</div>
 <div class="proofscript" id="proof19">
