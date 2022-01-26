@@ -7,6 +7,7 @@ From Coq Require Import Arith.PeanoNat.
 From Coq Require Import Strings.String.
 From Coq Require Import Logic.Eqdep_dec.
 From Coq Require Import Logic.FunctionalExtensionality.
+From Coq Require Import Lia.
 From PFPL Require Import PartialMap_Set.
 From PFPL Require Import Definitions.
 
@@ -89,54 +90,37 @@ Proof.
   intros e. induction e; intros v H.
   - simpl. unfold emptySet. reflexivity.
   - simpl. unfold emptySet. reflexivity.
-  - simpl. unfold singletonSet. case_eq (x =? S x); intros.
-    + apply Nat.eqb_eq in H0. apply neq_succ_diag_r in H0. contradiction.
-    + simpl in H. case_eq (x =? v); intros.
-      * apply Nat.eqb_eq in H1. subst. apply nle_succ_diag_l in H. contradiction.
-      * reflexivity.
+  - simpl. unfold singletonSet. simpl in H.
+    case_eq (x =? v); intros. apply Nat.eqb_eq in H0. lia.
+    reflexivity.
   - simpl. unfold unionSet. simpl in H.
-    assert (H1 := max_lub_l (get_fresh_var e1) (get_fresh_var e2) v H).
-    assert (H2 := max_lub_r (get_fresh_var e1) (get_fresh_var e2) v H).
-    apply orb_false_intro.
-    apply IHe1. assumption. apply IHe2. assumption.
+    apply orb_false_iff. split.
+    apply IHe1. lia. apply IHe2. lia.
   - simpl. unfold unionSet. simpl in H.
-    assert (H1 := max_lub_l (get_fresh_var e1) (get_fresh_var e2) v H).
-    assert (H2 := max_lub_r (get_fresh_var e1) (get_fresh_var e2) v H).
-    apply orb_false_intro.
-    apply IHe1. assumption. apply IHe2. assumption.
+    apply orb_false_iff. split.
+    apply IHe1. lia. apply IHe2. lia.
   - simpl. unfold unionSet. simpl in H.
-    assert (H1 := max_lub_l (get_fresh_var e1) (get_fresh_var e2) v H).
-    assert (H2 := max_lub_r (get_fresh_var e1) (get_fresh_var e2) v H).
-    apply orb_false_intro.
-    apply IHe1. assumption. apply IHe2. assumption.
-  - simpl. apply IHe. simpl in H. assumption.
-  - simpl. unfold unionSet. unfold updateSet.
-    unfold get_fresh_var in H. fold get_fresh_var in H.
-    assert (H1 := max_lub_l (get_fresh_var e1) (max (S x) (get_fresh_var e2)) v H).
-    assert (H2 := max_lub_r (get_fresh_var e1) (max (S x) (get_fresh_var e2)) v H).
-    apply orb_false_intro.
-    apply IHe1. assumption.
-    assert (H3 := max_lub_l (S x) (get_fresh_var e2) v H2).
-    assert (H4 := max_lub_r (S x) (get_fresh_var e2) v H2).
+    apply orb_false_iff. split.
+    apply IHe1. lia. apply IHe2. lia.
+  - simpl. apply IHe. simpl in H. auto.
+  - simpl. unfold unionSet. unfold updateSet. simpl in H.
+    apply orb_false_iff. split.
+    apply IHe1. lia.
     case_eq (x =? v); intros.
-    + apply Nat.eqb_eq in H0. subst. apply nle_succ_diag_l in H3. contradiction.
-    + apply IHe2. assumption.
+    apply Nat.eqb_eq in H0. destruct (get_fresh_var e2); lia.
+    apply IHe2. destruct (get_fresh_var e2); lia.
 Qed.
 
 Lemma fresh_var_not_in_all_vars_left :
   forall e e', all_vars e (max (get_fresh_var e) (get_fresh_var e')) = false.
 Proof.
-  intros.
-  apply fresh_var_not_in_all_vars.
-  apply le_max_l.
+  intros. apply fresh_var_not_in_all_vars. lia.
 Qed.
 
 Lemma fresh_var_not_in_all_vars_right :
   forall e e', all_vars e' (max (get_fresh_var e) (get_fresh_var e')) = false.
 Proof.
-  intros.
-  apply fresh_var_not_in_all_vars.
-  apply le_max_r.
+  intros. apply fresh_var_not_in_all_vars. lia.
 Qed.
 
 Lemma variables_below_fresh : forall e v,
@@ -146,45 +130,39 @@ Proof.
   - unfold emptySet in H. discriminate.
   - unfold emptySet in H. discriminate.
   - unfold singletonSet in H.
-    case_eq (x =? v); intros;
-    rewrite H0 in H.
-    apply Nat.eqb_eq in H0. subst. apply lt_succ_diag_r.
+    case_eq (x =? v); intros; rewrite H0 in H.
+    apply Nat.eqb_eq in H0. lia.
     discriminate.
   - unfold unionSet in H. apply orb_true_iff in H.
     apply max_lt_iff.
     destruct H.
-    left. apply IHe1. assumption.
-    right. apply IHe2. assumption.
+    left. apply IHe1. auto.
+    right. apply IHe2. auto.
   - unfold unionSet in H. apply orb_true_iff in H.
     apply max_lt_iff.
     destruct H.
-    left. apply IHe1. assumption.
-    right. apply IHe2. assumption.
+    left. apply IHe1. auto.
+    right. apply IHe2. auto.
   - unfold unionSet in H. apply orb_true_iff in H.
     apply max_lt_iff.
     destruct H.
-    left. apply IHe1. assumption.
-    right. apply IHe2. assumption.
-  - apply IHe. assumption.
+    left. apply IHe1. auto.
+    right. apply IHe2. auto.
+  - apply IHe. auto.
   - unfold unionSet in H. apply orb_true_iff in H.
     unfold updateSet in H.
     apply max_lt_iff.
     destruct H.
-    left. apply IHe1. assumption.
+    left. apply IHe1. auto.
     right.
     case_eq (x =? v); intros.
     apply Nat.eqb_eq in H0. subst.
     destruct (get_fresh_var e2).
-    apply lt_succ_diag_r.
-    rewrite succ_max_distr.
-    apply max_lt_iff. left. apply lt_succ_diag_r.
+    lia. lia.
     rewrite H0 in H.
+    apply IHe2 in H.
     destruct (get_fresh_var e2).
-    assert (IHe2 := IHe2 v H).
-    apply except. apply (nlt_0_r v). assumption.
-    rewrite succ_max_distr.
-    apply max_lt_iff. right.
-    apply IHe2. assumption.
+    lia. lia.
 Qed.
 
 Lemma complex_max : forall e e' a b c d newX,
@@ -198,63 +176,13 @@ Lemma complex_max : forall e e' a b c d newX,
   all_vars e' newX = false.
 Proof.
   intros.
+  split. apply Nat.eqb_neq. lia.
+  split. apply Nat.eqb_neq. lia.
+  split. apply Nat.eqb_neq. lia.
+  split. apply Nat.eqb_neq. lia.
   split.
-  case_eq (a =? newX); intros.
-  apply Nat.eqb_eq in H0. subst.
-  symmetry in H0.
-  apply eq_le_incl in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_l in H0.
-  apply Max.max_lub_l in H0.
-  apply nle_succ_diag_l in H0.
-  contradiction.
-  reflexivity.
-  split.
-  case_eq (b =? newX); intros.
-  apply Nat.eqb_eq in H0. subst.
-  symmetry in H0.
-  apply eq_le_incl in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_l in H0.
-  apply Max.max_lub_r in H0.
-  apply nle_succ_diag_l in H0.
-  contradiction.
-  reflexivity.
-  split.
-  case_eq (c =? newX); intros.
-  apply Nat.eqb_eq in H0. subst.
-  symmetry in H0.
-  apply eq_le_incl in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_l in H0.
-  apply nle_succ_diag_l in H0.
-  contradiction.
-  reflexivity.
-  split.
-  case_eq (d =? newX); intros.
-  apply Nat.eqb_eq in H0. subst.
-  symmetry in H0.
-  apply eq_le_incl in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_r in H0.
-  apply nle_succ_diag_l in H0.
-  contradiction.
-  reflexivity.
-  split.
-  apply fresh_var_not_in_all_vars.
-  symmetry in H.
-  apply eq_le_incl in H.
-  apply Max.max_lub_l in H.
-  apply Max.max_lub_l in H.
-  assumption.
-  apply fresh_var_not_in_all_vars.
-  symmetry in H.
-  apply eq_le_incl in H.
-  apply Max.max_lub_l in H.
-  apply Max.max_lub_r in H.
-  assumption.
+  apply fresh_var_not_in_all_vars. lia.
+  apply fresh_var_not_in_all_vars. lia.
 Qed.
 
 Lemma complex_max_2 : forall e e' e'' e''' a b c d newX,
@@ -272,92 +200,20 @@ Lemma complex_max_2 : forall e e' e'' e''' a b c d newX,
   all_vars e''' newX = false.
 Proof.
   intros.
-  split.
-  case_eq (a =? newX); intros.
-  apply Nat.eqb_eq in H0. subst.
-  symmetry in H0.
-  apply eq_le_incl in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_l in H0.
-  apply Max.max_lub_l in H0.
-  apply nle_succ_diag_l in H0.
-  contradiction.
-  reflexivity.
-  split.
-  case_eq (b =? newX); intros.
-  apply Nat.eqb_eq in H0. subst.
-  symmetry in H0.
-  apply eq_le_incl in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_l in H0.
-  apply Max.max_lub_r in H0.
-  apply nle_succ_diag_l in H0.
-  contradiction.
-  reflexivity.
-  split.
-  case_eq (c =? newX); intros.
-  apply Nat.eqb_eq in H0. subst.
-  symmetry in H0.
-  apply eq_le_incl in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_l in H0.
-  apply nle_succ_diag_l in H0.
-  contradiction.
-  reflexivity.
-  split.
-  case_eq (d =? newX); intros.
-  apply Nat.eqb_eq in H0. subst.
-  symmetry in H0.
-  apply eq_le_incl in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_r in H0.
-  apply Max.max_lub_r in H0.
-  apply nle_succ_diag_l in H0.
-  contradiction.
-  reflexivity.
-  split.
-  apply fresh_var_not_in_all_vars.
-  symmetry in H.
-  apply eq_le_incl in H.
-  apply Max.max_lub_l in H.
-  apply Max.max_lub_l in H.
-  apply Max.max_lub_l in H.
-  assumption.
-  split.
-  apply fresh_var_not_in_all_vars.
-  symmetry in H.
-  apply eq_le_incl in H.
-  apply Max.max_lub_l in H.
-  apply Max.max_lub_l in H.
-  apply Max.max_lub_r in H.
-  assumption.
-  split.
-  apply fresh_var_not_in_all_vars.
-  symmetry in H.
-  apply eq_le_incl in H.
-  apply Max.max_lub_l in H.
-  apply Max.max_lub_r in H.
-  apply Max.max_lub_l in H.
-  assumption.
-  apply fresh_var_not_in_all_vars.
-  symmetry in H.
-  apply eq_le_incl in H.
-  apply Max.max_lub_l in H.
-  apply Max.max_lub_r in H.
-  apply Max.max_lub_r in H.
-  assumption.
+  split. apply Nat.eqb_neq. lia.
+  split. apply Nat.eqb_neq. lia.
+  split. apply Nat.eqb_neq. lia.
+  split. apply Nat.eqb_neq. lia.
+  split. apply fresh_var_not_in_all_vars. lia.
+  split. apply fresh_var_not_in_all_vars. lia.
+  split. apply fresh_var_not_in_all_vars. lia.
+  apply fresh_var_not_in_all_vars. lia.
 Qed.
 
 Lemma max_zero : forall a b,
   max a b = 0 -> a = 0 /\ b = 0.
 Proof.
-  intros.
-  destruct a; destruct b.
-  - split; reflexivity.
-  - simpl in H. discriminate.
-  - simpl in H. discriminate.
-  - simpl in H. discriminate.
+  intros. lia.
 Qed.
 
 Lemma fresh_var_zero : forall e,

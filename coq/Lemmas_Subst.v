@@ -6,6 +6,7 @@ From Coq Require Import Arith.EqNat. Import Nat.
 From Coq Require Import Arith.PeanoNat.
 From Coq Require Import Strings.String.
 From Coq Require Import Logic.Eqdep_dec.
+From Coq Require Import Lia.
 From PFPL Require Import PartialMap_Set.
 From PFPL Require Import Definitions.
 From PFPL Require Import Lemmas_Vars.
@@ -27,10 +28,7 @@ Proof.
   intros.
   assert (T := fresh_rename_new_bounds e emptySet o v H0).
   apply not_in_expr_not_free.
-  apply fresh_var_not_in_all_vars.
-  apply (le_trans _ o _).
-  rewrite H. apply le_max_r.
-  assumption.
+  apply fresh_var_not_in_all_vars. lia.
 Qed.
 
 Lemma not_in_free_vars_after_subst : forall e e' x,

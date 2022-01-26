@@ -314,3 +314,86 @@ Proof.
   unfold subst2.
   apply substitutivity; assumption.
 Qed.*)
+
+Lemma subst_with_rename_alpha_equiv : forall e e' x x',
+  all_vars e x' = false ->
+  alpha_equiv_rel (subst e' x e) (subst e' x' (rename e x x')).
+Proof.
+  intros e e' x x' A. unfold subst.
+  remember (max (get_fresh_var e) (get_fresh_var e')) as o.
+  remember (max (get_fresh_var (rename e x x')) (get_fresh_var e')) as o'.
+  remember (max
+    (max (get_fresh_var e) (get_fresh_var e'))
+    (max (get_fresh_var (rename e x x')) (S x'))) as newO.
+
+  assert (T1 : alpha_equiv_rel (fresh_rename e emptySet o) (fresh_rename e emptySet newO)).
+  { apply fresh_rename_keeps_alpha_equiv_3.
+    lia. lia. reflexivity. }
+  assert (T2 : alpha_equiv_rel (fresh_rename (rename e x x') emptySet o') (fresh_rename (rename e x x') emptySet newO)).
+  { apply fresh_rename_keeps_alpha_equiv_3.
+    lia. lia. reflexivity. }
+
+  rewrite <- (fresh_rename_vs_rename_3 _ _ _ newO) in T2; [| auto | lia].
+
+  assert (T3 : alpha_equiv_rel
+    (subst' e' x (fresh_rename e emptySet newO))
+    (subst' e' x' (rename (fresh_rename e emptySet newO) x x'))
+  ). {
+    rewrite <- subst'_vs_rename. reflexivity.
+    rewrite all_vars_free_plus_bound.
+    unfold unionSet. apply orb_false_iff. split.
+    rewrite <- (alpha_equiv_same_free_vars e).
+    apply not_in_expr_not_free. auto.
+    apply fresh_rename_keeps_alpha_equiv. lia.
+    case_eq (bound_vars (fresh_rename e emptySet newO) x'); intro BV.
+    apply fresh_rename_new_bounds in BV. lia. auto.
+  }
+
+  assert (T4 : alpha_equiv_rel
+    (subst' e' x (fresh_rename e emptySet o))
+    (subst' e' x (fresh_rename e emptySet newO))
+  ). {
+    apply substitutivity_aux; auto.
+    apply (fresh_rename_removes_conflicts e e' o Heqo).
+    intros.
+    apply fresh_rename_new_bounds in H.
+    apply not_in_expr_not_free.
+    apply fresh_var_not_in_all_vars. lia. 
+    reflexivity.
+  }
+
+  assert (T5 : alpha_equiv_rel
+    (subst' e' x' (fresh_rename (rename e x x') emptySet o'))
+    (subst' e' x' (rename (fresh_rename e emptySet newO) x x'))
+  ). {
+    apply substitutivity_aux; auto.
+    apply (fresh_rename_removes_conflicts (rename e x x') e' o' Heqo').
+    intros.
+    rewrite fresh_rename_vs_rename_3 in H.
+    apply fresh_rename_new_bounds in H.
+    apply not_in_expr_not_free.
+    apply fresh_var_not_in_all_vars. lia. 
+    auto. lia. reflexivity.
+  }
+  clear T1 T2 Heqo Heqo' HeqnewO A.
+  apply (alpha_equiv_trans _ (subst' e' x (fresh_rename e emptySet newO)) _).
+  auto.
+  apply (alpha_equiv_trans _ (subst' e' x' (rename (fresh_rename e emptySet newO) x x')) _).
+  auto.
+  apply alpha_equiv_sym. auto.
+Qed.
+
+Lemma rename_vs_subst_2 : forall e1 x e2 x' e2' z,
+  all_vars e2 z = false ->
+  all_vars e2' z = false ->
+  alpha_equiv_rel (rename e2 x z) (rename e2' x' z) ->
+  alpha_equiv_rel (subst e1 x e2) (subst e1 x' e2').
+Proof.
+  intros.
+  assert (T1 := subst_with_rename_alpha_equiv e2 e1 x z H).
+  assert (T2 := subst_with_rename_alpha_equiv e2' e1 x' z H0).
+  apply (alpha_equiv_trans _ (subst e1 z (rename e2 x z)) _); auto.
+  apply (alpha_equiv_trans _ (subst e1 z (rename e2' x' z)) _).
+  apply substitutivity; auto. reflexivity.
+  symmetry. auto.
+Qed.

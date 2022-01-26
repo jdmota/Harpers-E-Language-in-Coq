@@ -61,18 +61,7 @@ Proof.
       remember (max (get_fresh_var e'2) (get_fresh_var (rename e'4 x0 z))) as newX.
       remember (max (S z) newX) as newX2.
       assert (T2 : (z =? newX2) = false).
-      {
-        assert (T2 := le_max_l (S z) newX).
-        assert (T3 := lt_n_Sn z).
-        rewrite <- HeqnewX2 in T2.
-        assert (T4 := lt_le_trans z (S z) newX2 T3 T2).
-        assert (T5 := lt_neq z newX2 T4).
-        case_eq (z =? newX2); intros.
-        rewrite Nat.eqb_eq in H7. subst. rewrite <- H7 in T5.
-        unfold not in T5. assert (T5 := T5 Logic.eq_refl).
-        contradiction.
-        reflexivity.
-      }
+      { apply Nat.eqb_neq. lia. }
       assert (T3 : alpha_equiv_rel (rename e'2 x newX2) (rename (rename e'4 x0 z) x' newX2)).
       {
         assert (T3 := max_id (S z)).

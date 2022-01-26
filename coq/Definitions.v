@@ -152,33 +152,17 @@ Function alpha_equiv (e e' : EExp) {measure depth e} : bool :=
   | _, _ => false
   end.
 Proof.
-  intros. simpl.
-  assert(H := le_max_r (depth e1) (depth e2)).
-  apply le_lt_n_Sm in H. assumption.
-  intros. simpl.
-  assert(H := le_max_l (depth e1) (depth e2)).
-  apply le_lt_n_Sm in H. assumption.
-  intros. simpl.
-  assert(H := le_max_r (depth e1) (depth e2)).
-  apply le_lt_n_Sm in H. assumption.
-  intros. simpl.
-  assert(H := le_max_l (depth e1) (depth e2)).
-  apply le_lt_n_Sm in H. assumption.
-  intros. simpl.
-  assert(H := le_max_r (depth e1) (depth e2)).
-  apply le_lt_n_Sm in H. assumption.
-  intros. simpl.
-  assert(H := le_max_l (depth e1) (depth e2)).
-  apply le_lt_n_Sm in H. assumption.
-  intros. simpl.
-  apply le_lt_n_Sm. apply le_refl.
+  intros. simpl. lia.
+  intros. simpl. lia.
+  intros. simpl. lia.
+  intros. simpl. lia.
+  intros. simpl. lia.
+  intros. simpl. lia.
+  intros. simpl. lia.
   intros. simpl.
   rewrite <- (rename_keeps_depth _ x (max (get_fresh_var e2) (get_fresh_var e2'))).
-  assert(H := le_max_r (depth e1) (depth e2)).
-  apply le_lt_n_Sm in H. assumption.
-  intros. simpl.
-  assert(H := le_max_l (depth e1) (depth e2)).
-  apply le_lt_n_Sm in H. assumption.
+  lia.
+  intros. simpl. lia.
 Qed.
 
 (** If two expressions have the same structure *)

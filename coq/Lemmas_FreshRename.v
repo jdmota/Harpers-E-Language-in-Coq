@@ -7,6 +7,7 @@ From Coq Require Import Arith.PeanoNat.
 From Coq Require Import Strings.String.
 From Coq Require Import Logic.Eqdep_dec.
 From Coq Require Import Logic.FunctionalExtensionality.
+From Coq Require Import Lia.
 From PFPL Require Import PartialMap_Set.
 From PFPL Require Import Definitions.
 From PFPL Require Import Lemmas_Vars.
@@ -139,62 +140,25 @@ Lemma fresh_rename_fresh_var : forall e bv o,
 Proof.
   induction e using expr_ind; intros; simpl.
   - destruct (bv x).
-    simpl. apply le_refl.
-    simpl. apply le_n_S. apply le_add_r.
+    simpl. lia.
+    simpl. lia.
   - assert (T1 := H e1 (same_structure_refl e1) bv o).
     assert (T2 := H0 e2 (same_structure_refl e2) bv o).
     assert (T3 := H0 e2 (same_structure_refl e2) (updateSet bv x) o).
     case_eq (get_fresh_var (fresh_rename e2 (updateSet bv x) o)); intros;
     case_eq (get_fresh_var e2); intros.
-    + rewrite <- add_max_distr_r.
-      apply max_le_compat.
-      assumption.
-      rewrite add_succ_l.
-      apply le_refl.
-    + rewrite <- add_max_distr_r.
-      apply max_le_compat.
-      assumption.
-      rewrite add_succ_l.
-      apply le_n_S.
-      rewrite <- add_max_distr_r.
-      apply le_max_l.
-    + rewrite H1 in T3.
-      rewrite H2 in T2. rewrite H2 in T3.
-      simpl in T3.
-      assert (H3 := fresh_var_zero e2 H2 (fresh_rename e2 (updateSet bv x) o)
-        (fresh_rename_keeps_structure e2 (updateSet bv x) o)
-      ).
-      rewrite H1 in H3.
-      discriminate.
-    + rewrite H1 in T3.
-      rewrite H2 in T2. rewrite H2 in T3.
-      rewrite <- add_max_distr_r.
-      apply max_le_compat.
-      assumption.
-      rewrite add_succ_l.
-      apply le_n_S.
-      rewrite <- add_max_distr_r.
-      apply max_le_compat.
-      apply le_refl.
-      rewrite add_succ_l in T3.
-      apply le_S_n. assumption.
-  - apply le_0_l.
-  - apply le_0_l.
+    lia. lia. lia. lia.
+  - lia.
+  - lia.
   - assert (T1 := H e1 (same_structure_refl e1) bv o).
     assert (T2 := H0 e2 (same_structure_refl e2) bv o).
-    rewrite <- add_max_distr_r.
-    apply max_le_compat.
-    assumption. assumption.
+    lia.
   - assert (T1 := H e1 (same_structure_refl e1) bv o).
     assert (T2 := H0 e2 (same_structure_refl e2) bv o).
-    rewrite <- add_max_distr_r.
-    apply max_le_compat.
-    assumption. assumption.
+    lia.
   - assert (T1 := H e1 (same_structure_refl e1) bv o).
     assert (T2 := H0 e2 (same_structure_refl e2) bv o).
-    rewrite <- add_max_distr_r.
-    apply max_le_compat.
-    assumption. assumption.
+    lia.
   - assert (T := H e (same_structure_refl e) bv o).
     assumption.
 Qed.
@@ -209,13 +173,11 @@ Proof.
   - unfold unionSet in B. apply orb_true_iff in B. destruct B.
     apply (H e1 (same_structure_refl e1) bv o v H1).
     unfold updateSet in H1.
-    case_eq (x + o =? v); intro XOV.
-    apply Nat.eqb_eq in XOV.
-    subst. apply le_plus_r.
-    rewrite XOV in H1.
+    case_eq (x + o =? v); intro XOV; rewrite XOV in H1.
+    apply Nat.eqb_eq in XOV. lia.
     apply (H0 e2 (same_structure_refl e2) (fun v' : nat => if x =? v' then true else bv v') o v H1).
-  - unfold emptySet in B. discriminate.
-  - unfold emptySet in B. discriminate.
+  - discriminate.
+  - discriminate.
   - unfold unionSet in B. apply orb_true_iff in B. destruct B.
     apply (H e1 (same_structure_refl e1) bv o v H1).
     apply (H0 e2 (same_structure_refl e2) bv o v H1).
@@ -226,4 +188,38 @@ Proof.
     apply (H e1 (same_structure_refl e1) bv o v H1).
     apply (H0 e2 (same_structure_refl e2) bv o v H1).
   - apply (H e (same_structure_refl e) bv o v B).
+Qed.
+
+Lemma fresh_rename_removes_vars : forall e o bv v,
+  v < o ->
+  bv v = true ->
+  all_vars (fresh_rename e bv o) v = false.
+Proof.
+  induction e; intros; simpl.
+  - reflexivity.
+  - reflexivity.
+  - case_eq (bv x); intro BVx; simpl; unfold singletonSet.
+    + case_eq (x + o =? v); intro XOV.
+      apply Nat.eqb_eq in XOV. subst. lia.
+      reflexivity.
+    + case_eq (x =? v); intro XV.
+      apply Nat.eqb_eq in XV. subst. rewrite BVx in H0.
+      discriminate. reflexivity.
+  - unfold unionSet. apply orb_false_iff. split.
+    apply IHe1; auto.
+    apply IHe2; auto.
+  - unfold unionSet. apply orb_false_iff. split.
+    apply IHe1; auto.
+    apply IHe2; auto.
+  - unfold unionSet. apply orb_false_iff. split.
+    apply IHe1; auto.
+    apply IHe2; auto.
+  - apply IHe; auto.
+  - unfold unionSet. apply orb_false_iff. split.
+    apply IHe1; auto.
+    unfold updateSet.
+    case_eq (x + o =? v); intro XOV.
+    apply Nat.eqb_eq in XOV. subst. lia.
+    apply IHe2; auto.
+    rewrite H0. destruct (x =? v); auto.
 Qed.

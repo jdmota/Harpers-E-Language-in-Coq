@@ -290,8 +290,7 @@ Lemma subst'_reduces : forall e1 x e2 e2',
   subexprs_count (subst' e1 x e2) < subexprs_count (ELet e1 x e2').
 Proof.
   intros. rewrite (subst'_reduces_aux _ _ _ e2').
-  simpl. apply le_lt_n_Sm. apply le_plus_r.
-  assumption. assumption.
+  simpl. lia. auto. auto.
 Qed.
 
 (** Fresh renamings keep the number of subexpressions *)
@@ -457,8 +456,7 @@ Proof.
     repeat split.
     assumption. apply (evalN _ e2'); assumption.
     assumption.
-    simpl. f_equal. simpl in H4'''.
-    rewrite add_comm. simpl. rewrite add_comm. assumption.
+    simpl. f_equal. simpl in H4'''. lia.
 Qed.
 
 (** Split [ETimes] evaluation (part 1) *)
@@ -489,8 +487,7 @@ Proof.
     repeat split.
     assumption. apply (evalN _ e2'); assumption.
     assumption.
-    simpl. f_equal. simpl in H4'''.
-    rewrite add_comm. simpl. rewrite add_comm. assumption.
+    simpl. f_equal. simpl in H4'''. lia.
 Qed.
 
 (** Split [ECat] evaluation (part 1) *)
@@ -521,8 +518,7 @@ Proof.
     repeat split.
     assumption. apply (evalN _ e2'); assumption.
     assumption.
-    simpl. f_equal. simpl in H4'''.
-    rewrite add_comm. simpl. rewrite add_comm. assumption.
+    simpl. f_equal. simpl in H4'''. lia.
 Qed.
 
 (** Split [ELen] evaluation (part 1) *)
@@ -887,4 +883,37 @@ Proof.
   intros. split.
   apply eval_big_correct_1.
   apply eval_big_correct_2.
+Qed.
+
+Theorem alpha_variants_same_eval_aux : forall e v,
+  EvalBig e v -> (forall e', alpha_equiv_rel e e' -> EvalBig e' v).
+Proof.
+  intros e v E. induction E; intros e' A; inversion A; subst.
+  - constructor.
+  - apply eqb_eq in H0. subst. constructor.
+  - constructor. apply IHE1. auto. apply IHE2. auto.
+  - constructor. apply IHE1. auto. apply IHE2. auto.
+  - constructor. apply IHE1. auto. apply IHE2. auto.
+  - constructor. apply IHE. auto.
+  - apply (evalBigLet e1'0 e2'0 x' e1' e2').
+    apply IHE1. auto.
+    apply IHE2.
+    remember (max (get_fresh_var e2) (get_fresh_var e2'0)) as z.
+    apply (rename_vs_subst_2 e1' x e2 x' e2'0 z).
+    apply fresh_var_not_in_all_vars. lia.
+    apply fresh_var_not_in_all_vars. lia.
+    apply H4.
+    apply fresh_var_not_in_all_vars. lia.
+    apply fresh_var_not_in_all_vars. lia.
+Qed.
+
+(** Alpha-variants evaluate in the same way *)
+Theorem alpha_variants_same_eval : forall e e' v,
+  alpha_equiv_rel e e' -> (EvalBig e v <-> EvalBig e' v).
+Proof.
+  intros. split.
+  intro.
+  apply (alpha_variants_same_eval_aux e v H0 e' H).
+  intro. symmetry in H.
+  apply (alpha_variants_same_eval_aux e' v H0 e H).
 Qed.

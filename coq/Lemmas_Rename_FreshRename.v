@@ -158,3 +158,92 @@ Proof.
     apply H. apply same_structure_refl.
     assumption. assumption. assumption. assumption.
 Qed.
+
+Lemma fresh_rename_vs_rename_2 : forall e x x' bv o,
+  all_vars e x' = false ->
+  get_fresh_var e <= o ->
+  bv x = false ->
+  bv x' = false ->
+  (forall z, bv z = true -> x =? z + o = false) ->
+  rename (fresh_rename e bv o) x x' = fresh_rename (rename e x x') bv o.
+Proof.
+  induction e; intros z z' bv o A O BVZ BVZ' BV2; simpl.
+  - reflexivity.
+  - reflexivity.
+  - simpl in O.
+    case_eq (z =? x); intro ZX; simpl.
+    + apply Nat.eqb_eq in ZX. subst.
+      rewrite BVZ. rewrite BVZ'.
+      simpl. rewrite Nat.eqb_refl. reflexivity.
+    + case_eq (bv x); intro BVX; simpl.
+      apply BV2 in BVX. rewrite BVX. reflexivity.
+      rewrite ZX. reflexivity.
+  - simpl in A. unfold unionSet in A.
+    apply orb_false_iff in A. destruct A.
+    simpl in O.
+    f_equal; [apply IHe1 | apply IHe2]; auto.
+    lia. lia.
+  - simpl in A. unfold unionSet in A.
+    apply orb_false_iff in A. destruct A.
+    simpl in O.
+    f_equal; [apply IHe1 | apply IHe2]; auto.
+    lia. lia.
+  - simpl in A. unfold unionSet in A.
+    apply orb_false_iff in A. destruct A.
+    simpl in O.
+    f_equal; [apply IHe1 | apply IHe2]; auto.
+    lia. lia.
+  - simpl in A.
+    simpl in O.
+    f_equal. apply IHe; auto.
+  - simpl in A. unfold unionSet in A.
+    apply orb_false_iff in A. destruct A.
+    unfold updateSet in H0.
+    case_eq (x =? z'); intro XZ'.
+    rewrite XZ' in H0. discriminate.
+    simpl in O.
+    case_eq (z =? x); intro ZX; simpl.
+    + apply Nat.eqb_eq in ZX. subst.
+      case_eq (x =? x + o); intro XXO.
+      apply Nat.eqb_eq in XXO.
+      destruct (get_fresh_var e2); lia.
+      f_equal.
+      apply IHe1; auto. lia.
+      rewrite <- rename_non_existant.
+      reflexivity.
+      apply fresh_rename_removes_vars.
+      destruct (get_fresh_var e2); lia.
+      unfold updateSet. rewrite Nat.eqb_refl. reflexivity.
+    + case_eq (z =? x + o); intro ZXO.
+      f_equal.
+      apply IHe1; auto. lia.
+      apply Nat.eqb_eq in ZXO. subst z.
+      rewrite <- rename_non_existant.
+      reflexivity.
+      apply fresh_var_not_in_all_vars.
+      destruct (get_fresh_var e2); lia.
+      f_equal.
+      apply IHe1; auto. lia.
+      apply IHe2.
+      rewrite XZ' in H0. auto.
+      destruct (get_fresh_var e2); lia.
+      unfold updateSet. rewrite Nat.eqb_sym.
+      rewrite ZX. auto.
+      unfold updateSet. rewrite XZ'. auto.
+      intros.
+      case_eq (x =? z0); intro XZ0.
+      apply Nat.eqb_eq in XZ0. subst z0.
+      auto. apply BV2.
+      unfold updateSet in H1.
+      rewrite XZ0 in H1. auto.
+Qed.
+
+Lemma fresh_rename_vs_rename_3 : forall e x x' o,
+  all_vars e x' = false ->
+  get_fresh_var e <= o ->
+  rename (fresh_rename e emptySet o) x x' = fresh_rename (rename e x x') emptySet o.
+Proof.
+  intros.
+  apply fresh_rename_vs_rename_2; auto.
+  intros. unfold emptySet in H1. discriminate.
+Qed.

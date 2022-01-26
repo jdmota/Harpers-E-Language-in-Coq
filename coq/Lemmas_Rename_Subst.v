@@ -16,6 +16,7 @@ From PFPL Require Import Lemmas_Rename.
 From PFPL Require Import Lemmas_FreshRename.
 From PFPL Require Import Lemmas_Rename_FreshRename.
 From PFPL Require Import Lemmas_FreshRename_AlphaEquiv.
+From PFPL Require Import Lemmas_Subst.
 
 Lemma rename_vs_subst : forall e e' x y z,
   (x =? y) = false ->
@@ -62,4 +63,41 @@ Proof.
       * simpl. rewrite X0X. f_equal.
         apply IHe1. assumption. assumption. assumption.
         apply IHe2. assumption. assumption. assumption.
+Qed.
+
+Lemma subst'_vs_rename : forall e e' x x',
+  all_vars e x' = false ->
+  (subst' e' x e) = (subst' e' x' (rename e x x')).
+Proof.
+  induction e; intros e' z z' A; simpl.
+  - reflexivity.
+  - reflexivity.
+  - destruct (z =? x); simpl.
+    rewrite Nat.eqb_refl. reflexivity.
+    simpl in A. unfold singletonSet in A.
+    rewrite Nat.eqb_sym. destruct (x =? z').
+    discriminate. reflexivity.
+  - simpl in A. unfold unionSet in A.
+    apply orb_false_iff in A. destruct A as [A A'].
+    f_equal; [apply IHe1 | apply IHe2]; auto.
+  - simpl in A. unfold unionSet in A.
+    apply orb_false_iff in A. destruct A as [A A'].
+    f_equal; [apply IHe1 | apply IHe2]; auto.
+  - simpl in A. unfold unionSet in A.
+    apply orb_false_iff in A. destruct A as [A A'].
+    f_equal; [apply IHe1 | apply IHe2]; auto.
+  - simpl in A. f_equal. apply IHe. auto.
+  - simpl in A. unfold unionSet in A.
+    apply orb_false_iff in A. destruct A as [A A'].
+    unfold updateSet in A'.
+    case_eq (x =? z'); intro XZ'; rewrite XZ' in A'.
+    discriminate.
+    case_eq (z =? x); intro ZX.
+    + apply Nat.eqb_eq in ZX. subst z.
+      simpl. rewrite Nat.eqb_sym. rewrite XZ'.
+      f_equal. auto.
+      apply subst_non_free_var.
+      apply not_in_expr_not_free. auto.
+    + simpl. rewrite Nat.eqb_sym. rewrite XZ'.
+      f_equal. auto. apply IHe2. auto.
 Qed.

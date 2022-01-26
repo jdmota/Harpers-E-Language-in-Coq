@@ -35,22 +35,11 @@ Proof.
       max (get_fresh_var e2) (max (get_fresh_var e2') (get_fresh_var e2'0))
     ) as newX.
     assert (H11 : all_vars e2 newX = false).
-    apply fresh_var_not_in_all_vars.
-    rewrite HeqnewX. apply le_max_l.
+    apply fresh_var_not_in_all_vars. lia.
     assert (H12 : all_vars e2' newX = false).
-    apply fresh_var_not_in_all_vars.
-    symmetry in HeqnewX.
-    apply eq_le_incl in HeqnewX.
-    apply Max.max_lub_r in HeqnewX.
-    apply Max.max_lub_l in HeqnewX.
-    assumption.
+    apply fresh_var_not_in_all_vars. lia.
     assert (H13 : all_vars e2'0 newX = false).
-    apply fresh_var_not_in_all_vars.
-    symmetry in HeqnewX.
-    apply eq_le_incl in HeqnewX.
-    apply Max.max_lub_r in HeqnewX.
-    apply Max.max_lub_r in HeqnewX.
-    assumption.
+    apply fresh_var_not_in_all_vars. lia.
     assert (H14 := H0
       (rename e2 x newX)
       (rename_keeps_structure e2 x newX)

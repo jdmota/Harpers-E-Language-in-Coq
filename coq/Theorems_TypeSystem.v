@@ -6,6 +6,7 @@ From Coq Require Import Arith.EqNat. Import Nat.
 From Coq Require Import Arith.PeanoNat.
 From Coq Require Import Strings.String.
 From Coq Require Import Logic.Eqdep_dec.
+From Coq Require Import Lia.
 From PFPL Require Import PartialMap_Set.
 From PFPL Require Import Definitions.
 From PFPL Require Import Lemmas_Vars.
@@ -270,7 +271,7 @@ Proof.
 Qed.
 
 (** Typing is preserved by alpha equivalence *)
-Lemma alpha_variants_have_same_type : forall e e' Gamma t,
+Lemma alpha_variants_same_type : forall e e' Gamma t,
   alpha_equiv_rel e e' -> hastype Gamma e t -> hastype Gamma e' t.
 Proof.
   intros e e' Gamma t H.
@@ -381,14 +382,10 @@ Proof.
   intros.
   unfold subst.
   remember (max (get_fresh_var e) (get_fresh_var e')) as o.
-  apply (substitution_aux Gamma _ _ _ t').
-  apply fresh_rename_removes_conflicts.
-  assumption.
-  apply (alpha_variants_have_same_type e).
-  apply fresh_rename_keeps_alpha_equiv.
-  rewrite Heqo.
-  apply le_max_l.
-  all: assumption.
+  apply (substitution_aux Gamma _ _ _ t'); auto.
+  apply fresh_rename_removes_conflicts; auto.
+  apply (alpha_variants_same_type e); auto.
+  apply fresh_rename_keeps_alpha_equiv. lia.
 Qed.
 
 (** Decomposition property assuming no capture of variables *)
@@ -462,13 +459,11 @@ Proof.
   intros.
   unfold subst in H.
   remember (max (get_fresh_var e) (get_fresh_var e')) as o.
-  apply (alpha_variants_have_same_type (fresh_rename e emptySet o)).
+  apply (alpha_variants_same_type (fresh_rename e emptySet o)).
   apply alpha_equiv_sym.
-  apply fresh_rename_keeps_alpha_equiv.
-  rewrite Heqo. apply le_max_l.
-  apply (decomposition_aux Gamma _ _ e').
-  apply fresh_rename_removes_conflicts.
-  all: assumption.
+  apply fresh_rename_keeps_alpha_equiv. lia.
+  apply (decomposition_aux Gamma _ _ e'); auto.
+  apply fresh_rename_removes_conflicts; auto.
 Qed.
 
 (** Steps of evaluation preserve typing (In Harper's book) *)

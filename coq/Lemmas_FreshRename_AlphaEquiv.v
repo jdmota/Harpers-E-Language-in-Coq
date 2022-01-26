@@ -37,7 +37,7 @@ Proof.
     simpl in H1. unfold unionSet in H1.
     apply orb_false_iff in H1. destruct H1 as [H1 H1'].
     unfold updateSet in H1'. rewrite Nat.eqb_refl in H1'.
-    discriminate. apply lt_0_succ. }
+    discriminate. lia. }
     apply alpha_equiv_rel_let.
     apply (H e1 (same_structure_refl e1) bv o).
     intros.
@@ -138,11 +138,6 @@ Proof.
     case_eq (newX =? o + v); intro newX_OV.
     apply Nat.eqb_eq in newX_OV.
     rewrite HeqnewX in newX_OV.
-    rewrite (add_comm o v) in newX_OV.
-    rewrite <- (add_assoc) in newX_OV.
-    rewrite (add_comm (x + o)) in newX_OV.
-    rewrite add_assoc in newX_OV.
-    rewrite add_cancel_r in newX_OV.
     assert (all_vars e2 v = false).
     apply fresh_var_not_in_all_vars. lia.
     rewrite H5 in H6. rewrite H6 in H8.
@@ -179,11 +174,6 @@ Proof.
     rewrite Nat.eqb_refl. reflexivity.
     (* - *)
     apply fresh_var_not_in_all_vars.
-    rewrite <- add_assoc in HeqnewX.
-    rewrite <- add_assoc in HeqnewX.
-    rewrite add_comm in HeqnewX.
-    rewrite (add_comm (S z)) in HeqnewX.
-    rewrite add_assoc in HeqnewX.
     apply (le_trans _ (get_fresh_var e2 + o) _).
     apply (fresh_rename_fresh_var e2 (updateSet bv x) o).
     lia.
@@ -262,9 +252,7 @@ Proof.
   intros.
   apply fresh_rename_keeps_alpha_equiv_aux.
   intros.
-  apply fresh_var_not_in_all_vars.
-  apply (le_trans _ x _).
-  assumption. apply le_add_r.
+  apply fresh_var_not_in_all_vars. lia.
   intros. reflexivity.
 Qed.
 
@@ -281,6 +269,20 @@ Proof.
   intros. reflexivity.
   assert (T1 := fresh_rename_keeps_alpha_equiv_aux e emptySet o H H2).
   assert (T2 := fresh_rename_keeps_alpha_equiv_aux e' emptySet o' H0 H3).
+  apply alpha_equiv_sym in T1.
+  assert (T3 := alpha_equiv_trans (fresh_rename e emptySet o) e e' T1 H1).
+  apply (alpha_equiv_trans (fresh_rename e emptySet o) e' (fresh_rename e' emptySet o') T3 T2).
+Qed.
+
+Lemma fresh_rename_keeps_alpha_equiv_3 : forall e e' o o',
+  get_fresh_var e <= o ->
+  get_fresh_var e' <= o' ->
+  alpha_equiv_rel e e' ->
+  alpha_equiv_rel (fresh_rename e emptySet o) (fresh_rename e' emptySet o').
+Proof.
+  intros.
+  assert (T1 := fresh_rename_keeps_alpha_equiv e o H).
+  assert (T2 := fresh_rename_keeps_alpha_equiv e' o' H0).
   apply alpha_equiv_sym in T1.
   assert (T3 := alpha_equiv_trans (fresh_rename e emptySet o) e e' T1 H1).
   apply (alpha_equiv_trans (fresh_rename e emptySet o) e' (fresh_rename e' emptySet o') T3 T2).
