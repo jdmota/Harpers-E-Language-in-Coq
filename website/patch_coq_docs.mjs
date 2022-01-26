@@ -9,27 +9,19 @@ const rules = [
       `<span class="kwd">Inductive</span> <span id="Eval" class="id">Eval</span>`
     ],
     [
-      /<span class="id">Function<\/span>\s*<span class="id">alpha_equiv<\/span>/,
-      `<span class="id">Function</span> <span id="alpha_equiv" class="id">alpha_equiv</span>`
+      /<span class="kwd">Function<\/span>\s*<span class="id">alpha_equiv<\/span>/,
+      `<span class="kwd">Function</span> <span id="alpha_equiv" class="id"><a href="PFPL.Definitions.html#alpha_equiv">alpha_equiv</a></span>`
     ],
     [
-      /<span class="kwd">Fixpoint<\/span>\s*<span class="tactic">rename<\/span>/,
-      `<span class="kwd">Fixpoint</span> <span id="rename" class="id">rename</span>`
-    ],
-    [
-      /<span class="kwd">Fixpoint<\/span>\s*<span class="tactic">subst<\/span>'/,
+      /<span class="kwd">Fixpoint<\/span>\s*<span class="id">subst<\/span>'/,
       `<span class="kwd">Fixpoint</span> <span id="subst'" class="id">subst'</span>`
     ],
-    [
-      /<span class="kwd">Definition<\/span> <span class="tactic">subst<\/span>/,
-      `<span class="kwd">Definition</span> <span id="subst" class="id">subst</span>`
-    ]
   ],
   [
     "PFPL.Theorems_Eval.html",
     [
-      /<span class="id">Function<\/span>\s*<span class="id">eval_big<\/span>/,
-      `<span class="id">Function</span> <span id="eval_big" class="id">eval_big</span>`
+      /<span class="kwd">Function<\/span>\s*<span class="id">eval_big<\/span>/,
+      `<span class="kwd">Function</span> <span id="eval_big" class="id"><a href="PFPL.Theorems_Eval.html#eval_big">eval_big</a></span>`
     ]
   ],
   [
