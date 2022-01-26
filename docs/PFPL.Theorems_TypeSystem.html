@@ -39,7 +39,7 @@
 <span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Theorems_Eval.html">Theorems_Eval</a></span>.<br/>
 <br/>
 <div class="doc">At most one type for each expression (In Harper's book) </div>
-<span class="kwd">Lemma</span> <span class="id"><a name="unicity">unicity</a></span>: <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">t</span>',<br/>
+<span class="kwd">Lemma</span> <span class="id"><a name="unicity_of_typing">unicity_of_typing</a></span>: <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> <span class="id">t</span>',<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; <span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>' -&gt; <span class="id">t</span> = <span class="id">t</span>'.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof148')">Proof.</div>
 <div class="proofscript" id="proof148">
@@ -51,7 +51,7 @@
 Qed.</div>
 <br/>
 <div class="doc">Typing rules are syntax-directed (In Harper's book) </div>
-<span class="kwd">Lemma</span> <span class="tactic">inversion</span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>,<br/>
+<span class="kwd">Lemma</span> <span class="id"><a name="inversion_for_typing">inversion_for_typing</a></span> : <span class="kwd">forall</span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#hastype">hastype</a></span> <span class="id">Gamma</span> <span class="id">e</span> <span class="id">t</span> -&gt; (<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> (<span class="id">x</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>), <span class="id">e</span> = <span class="id"><a href="PFPL.Definitions.html#EId">EId</a></span> <span class="id">x</span> -&gt; <span class="id">Gamma</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span>(<span class="id">t</span>)) /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> (<span class="id">s</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>), <span class="id">e</span> = <span class="id"><a href="PFPL.Definitions.html#EStr">EStr</a></span> <span class="id">s</span> -&gt; <span class="id">t</span> = <span class="id"><a href="PFPL.Definitions.html#TStr">TStr</a></span>) /\<br/>
@@ -425,7 +425,7 @@ Qed.</div>
 &nbsp;&nbsp;- <span class="id">case_eq</span> (<span class="id">x</span> =? <span class="id">x0</span>); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">rewrite</span> <span class="id">H2</span> <span class="kwd">in</span> <span class="id">H0</span>. <span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#T_Var">T_Var</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#update">update</a></span>. <span class="tactic">rewrite</span> <span class="id">H2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Theorems_TypeSystem.html#unicity">unicity</a></span> <span class="id">Gamma</span> <span class="id">e</span>' <span class="id">t0</span> <span class="id">t</span>' <span class="id">H0</span>) <span class="kwd">in</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Theorems_TypeSystem.html#unicity_of_typing">unicity_of_typing</a></span> <span class="id">Gamma</span> <span class="id">e</span>' <span class="id">t0</span> <span class="id">t</span>' <span class="id">H0</span>) <span class="kwd">in</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>. <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">rewrite</span> <span class="id">H2</span> <span class="kwd">in</span> <span class="id">H0</span>. <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#T_Var">T_Var</a></span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#update">update</a></span>.<br/>

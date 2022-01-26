@@ -1,7 +1,7 @@
 {
   "harpersBook": [
-    "unicity",
-    "inversion",
+    "unicity_of_typing",
+    "inversion_for_typing",
     "weakening",
     "substitution",
     "decomposition",

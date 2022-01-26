@@ -24,7 +24,7 @@ From PFPL Require Import Theorems_AlphaEquiv.
 From PFPL Require Import Theorems_Eval.
 
 (** At most one type for each expression (In Harper's book) *)
-Lemma unicity: forall Gamma e t t',
+Lemma unicity_of_typing: forall Gamma e t t',
   hastype Gamma e t -> hastype Gamma e t' -> t = t'.
 Proof.
   intros Gamma e t t' H1. generalize dependent t'.
@@ -35,7 +35,7 @@ Proof.
 Qed.
 
 (** Typing rules are syntax-directed (In Harper's book) *)
-Lemma inversion : forall Gamma e t,
+Lemma inversion_for_typing : forall Gamma e t,
   hastype Gamma e t -> (
     (forall (x: nat), e = EId x -> Gamma x = Some(t)) /\
     (forall (s: string), e = EStr s -> t = TStr) /\
@@ -400,7 +400,7 @@ Proof.
   - case_eq (x =? x0); intros.
     * rewrite H2 in H0. apply T_Var.
       unfold update. rewrite H2.
-      apply (unicity Gamma e' t0 t' H0) in H1.
+      apply (unicity_of_typing Gamma e' t0 t' H0) in H1.
       subst. reflexivity.
     * rewrite H2 in H0. inversion H0. subst.
       apply T_Var. unfold update.
