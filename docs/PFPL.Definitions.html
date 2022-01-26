@@ -169,33 +169,17 @@ Qed.</div>
 &nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2')">Proof.</div>
 <div class="proofscript" id="proof2">
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span>(<span class="id">H</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_r">le_max_r</a></span> (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e2</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span>(<span class="id">H</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_l">le_max_l</a></span> (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e2</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span>(<span class="id">H</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_r">le_max_r</a></span> (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e2</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span>(<span class="id">H</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_l">le_max_l</a></span> (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e2</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span>(<span class="id">H</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_r">le_max_r</a></span> (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e2</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span>(<span class="id">H</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_l">le_max_l</a></span> (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e2</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span>. <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_refl">le_refl</a></span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>. <span class="id">lia</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- (<span class="id"><a href="PFPL.Definitions.html#rename_keeps_depth">rename_keeps_depth</a></span> <span class="id">_</span> <span class="id">x</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e2</span>) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e2</span>'))).<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span>(<span class="id">H</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_r">le_max_r</a></span> (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e2</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span>(<span class="id">H</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.le_max_l">le_max_l</a></span> (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#depth">depth</a></span> <span class="id">e2</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Lt.html#le_lt_n_Sm">le_lt_n_Sm</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;<span class="id">lia</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">simpl</span>. <span class="id">lia</span>.<br/>
 Qed.</div>
 <br/>
 <div class="doc">If two expressions have the same structure </div>

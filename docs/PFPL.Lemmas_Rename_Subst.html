@@ -31,14 +31,15 @@
 <span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_FreshRename.html">Lemmas_FreshRename</a></span>.<br/>
 <span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Rename_FreshRename.html">Lemmas_Rename_FreshRename</a></span>.<br/>
 <span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_FreshRename_AlphaEquiv.html">Lemmas_FreshRename_AlphaEquiv</a></span>.<br/>
+<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Subst.html">Lemmas_Subst</a></span>.<br/>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="rename_vs_subst">rename_vs_subst</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">y</span> <span class="id">z</span>,<br/>
 &nbsp;&nbsp;(<span class="id">x</span> =? <span class="id">y</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;(<span class="id">x</span> =? <span class="id">z</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#free_vars">free_vars</a></span> <span class="id">e</span>' <span class="id">y</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;<span class="tactic">rename</span> (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) <span class="id">y</span> <span class="id">z</span> = <span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">y</span> <span class="id">z</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof44')">Proof.</div>
-<div class="proofscript" id="proof44">
+<div class="toggleproof" onclick="toggleDisplay('proof48')">Proof.</div>
+<div class="proofscript" id="proof48">
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
@@ -78,6 +79,44 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id">X0X</span>. <span class="tactic">f_equal</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">IHe2</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+Qed.</div>
+<br/>
+<span class="kwd">Lemma</span> <span class="tactic">subst</span>'<span class="id">_vs_rename</span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">x</span>',<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span> <span class="id">x</span>' = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;(<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) = (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span>' (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>')).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof49')">Proof.</div>
+<div class="proofscript" id="proof49">
+&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> <span class="id">e</span>' <span class="id">z</span> <span class="id">z</span>' <span class="id">A</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id">z</span> =? <span class="id">x</span>); <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_refl">Nat.eqb_refl</a></span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#singletonSet">singletonSet</a></span> <span class="kwd">in</span> <span class="id">A</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_sym">Nat.eqb_sym</a></span>. <span class="tactic">destruct</span> (<span class="id">x</span> =? <span class="id">z</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">discriminate</span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#unionSet">unionSet</a></span> <span class="kwd">in</span> <span class="id">A</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#orb_false_iff">orb_false_iff</a></span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">destruct</span> <span class="id">A</span> <span class="kwd">as</span> [<span class="id">A</span> <span class="id">A</span>'].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; [<span class="tactic">apply</span> <span class="id">IHe1</span> | <span class="tactic">apply</span> <span class="id">IHe2</span>]; <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#unionSet">unionSet</a></span> <span class="kwd">in</span> <span class="id">A</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#orb_false_iff">orb_false_iff</a></span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">destruct</span> <span class="id">A</span> <span class="kwd">as</span> [<span class="id">A</span> <span class="id">A</span>'].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; [<span class="tactic">apply</span> <span class="id">IHe1</span> | <span class="tactic">apply</span> <span class="id">IHe2</span>]; <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#unionSet">unionSet</a></span> <span class="kwd">in</span> <span class="id">A</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#orb_false_iff">orb_false_iff</a></span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">destruct</span> <span class="id">A</span> <span class="kwd">as</span> [<span class="id">A</span> <span class="id">A</span>'].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; [<span class="tactic">apply</span> <span class="id">IHe1</span> | <span class="tactic">apply</span> <span class="id">IHe2</span>]; <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">f_equal</span>. <span class="tactic">apply</span> <span class="id">IHe</span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#unionSet">unionSet</a></span> <span class="kwd">in</span> <span class="id">A</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#orb_false_iff">orb_false_iff</a></span> <span class="kwd">in</span> <span class="id">A</span>. <span class="tactic">destruct</span> <span class="id">A</span> <span class="kwd">as</span> [<span class="id">A</span> <span class="id">A</span>'].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#updateSet">updateSet</a></span> <span class="kwd">in</span> <span class="id">A</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">x</span> =? <span class="id">z</span>'); <span class="tactic">intro</span> <span class="id">XZ</span>'; <span class="tactic">rewrite</span> <span class="id">XZ</span>' <span class="kwd">in</span> <span class="id">A</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">discriminate</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">z</span> =? <span class="id">x</span>); <span class="tactic">intro</span> <span class="id">ZX</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_eq">Nat.eqb_eq</a></span> <span class="kwd">in</span> <span class="id">ZX</span>. <span class="tactic">subst</span> <span class="id">z</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_sym">Nat.eqb_sym</a></span>. <span class="tactic">rewrite</span> <span class="id">XZ</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Subst.html#subst_non_free_var">subst_non_free_var</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_expr_not_free">not_in_expr_not_free</a></span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_sym">Nat.eqb_sym</a></span>. <span class="tactic">rewrite</span> <span class="id">XZ</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>. <span class="tactic">auto</span>. <span class="tactic">apply</span> <span class="id">IHe2</span>. <span class="tactic">auto</span>.<br/>
 Qed.</div>
 
 </div>

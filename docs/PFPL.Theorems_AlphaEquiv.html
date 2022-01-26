@@ -41,8 +41,8 @@
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="alpha_equiv_func_equiv_rel_1">alpha_equiv_func_equiv_rel_1</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; (<span class="id"><a href="PFPL.Definitions.html#alpha_equiv">alpha_equiv</a></span> <span class="id">e</span> <span class="id">e</span>') = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof92')">Proof.</div>
-<div class="proofscript" id="proof92">
+<div class="toggleproof" onclick="toggleDisplay('proof97')">Proof.</div>
+<div class="proofscript" id="proof97">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H</span>; <span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_equation">alpha_equiv_equation</a></span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.eqb_refl">Nat.eqb_refl</a></span>.<br/>
@@ -61,8 +61,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="alpha_equiv_func_equiv_rel_2">alpha_equiv_func_equiv_rel_2</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#alpha_equiv">alpha_equiv</a></span> <span class="id">e</span> <span class="id">e</span>' = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span> <span class="id">e</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof93')">Proof.</div>
-<div class="proofscript" id="proof93">
+<div class="toggleproof" onclick="toggleDisplay('proof98')">Proof.</div>
+<div class="proofscript" id="proof98">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>'.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>, <span class="id">e</span>' <span class="kwd">using</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_pair_ind">expr_pair_ind</a></span>; <span class="tactic">intro</span> <span class="id">AE</span>;<br/>
 &nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_equation">alpha_equiv_equation</a></span> <span class="kwd">in</span> <span class="id">AE</span>.<br/>
@@ -106,8 +106,8 @@ Qed.</div>
 <div class="doc">Proof of correcteness of the alpha equivalence testing function </div>
 <span class="kwd">Theorem</span> <span class="id"><a name="alpha_equiv_func_equiv_rel">alpha_equiv_func_equiv_rel</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span> <span class="id">e</span>' &lt;-&gt; (<span class="id"><a href="PFPL.Definitions.html#alpha_equiv">alpha_equiv</a></span> <span class="id">e</span> <span class="id">e</span>') = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof94')">Proof.</div>
-<div class="proofscript" id="proof94">
+<div class="toggleproof" onclick="toggleDisplay('proof99')">Proof.</div>
+<div class="proofscript" id="proof99">
 &nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#alpha_equiv_func_equiv_rel_1">alpha_equiv_func_equiv_rel_1</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#alpha_equiv_func_equiv_rel_2">alpha_equiv_func_equiv_rel_2</a></span>.<br/>
@@ -115,8 +115,8 @@ Qed.</div>
 <br/>
 <div class="doc">Alpha equivalence is a equivalence relation </div>
 <span class="kwd">Instance</span> <span class="id"><a name="alpha_equiv_Equiv">alpha_equiv_Equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof95')">Proof.</div>
-<div class="proofscript" id="proof95">
+<div class="toggleproof" onclick="toggleDisplay('proof100')">Proof.</div>
+<div class="proofscript" id="proof100">
 &nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span>. <span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_AlphaEquiv.html#alpha_equiv_refl">alpha_equiv_refl</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Symmetric">Symmetric</a></span>. <span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_AlphaEquiv.html#alpha_equiv_sym">alpha_equiv_sym</a></span>.<br/>
@@ -126,8 +126,8 @@ Qed.</div>
 <div class="doc">Alpha equivalence is preserved by the <span class="bracket"><span class="id">EPlus</span></span> operator </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="alpha_equiv_preserved_by_plus">alpha_equiv_preserved_by_plus</a></span> :<br/>
 &nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span>) (<span class="id"><a href="PFPL.Definitions.html#EPlus">EPlus</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof96')">Proof.</div>
-<div class="proofscript" id="proof96">
+<div class="toggleproof" onclick="toggleDisplay('proof101')">Proof.</div>
+<div class="proofscript" id="proof101">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H1</span> <span class="id">e</span>'' <span class="id">e</span>''' <span class="id">H2</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel_plus">alpha_equiv_rel_plus</a></span>. <span class="id">all</span>: <span class="tactic">assumption</span>.<br/>
 Qed.</div>
@@ -135,8 +135,8 @@ Qed.</div>
 <div class="doc">Alpha equivalence is preserved by the <span class="bracket"><span class="id">ETimes</span></span> operator </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="alpha_equiv_preserved_by_times">alpha_equiv_preserved_by_times</a></span> :<br/>
 &nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span>) (<span class="id"><a href="PFPL.Definitions.html#ETimes">ETimes</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof97')">Proof.</div>
-<div class="proofscript" id="proof97">
+<div class="toggleproof" onclick="toggleDisplay('proof102')">Proof.</div>
+<div class="proofscript" id="proof102">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H1</span> <span class="id">e</span>'' <span class="id">e</span>''' <span class="id">H2</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel_times">alpha_equiv_rel_times</a></span>. <span class="id">all</span>: <span class="tactic">assumption</span>.<br/>
 Qed.</div>
@@ -144,8 +144,8 @@ Qed.</div>
 <div class="doc">Alpha equivalence is preserved by the <span class="bracket"><span class="id">ECat</span></span> operator </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="alpha_equiv_preserved_by_cat">alpha_equiv_preserved_by_cat</a></span> :<br/>
 &nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span>) (<span class="id"><a href="PFPL.Definitions.html#ECat">ECat</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof98')">Proof.</div>
-<div class="proofscript" id="proof98">
+<div class="toggleproof" onclick="toggleDisplay('proof103')">Proof.</div>
+<div class="proofscript" id="proof103">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H1</span> <span class="id">e</span>'' <span class="id">e</span>''' <span class="id">H2</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel_cat">alpha_equiv_rel_cat</a></span>. <span class="id">all</span>: <span class="tactic">assumption</span>.<br/>
 Qed.</div>
@@ -153,8 +153,8 @@ Qed.</div>
 <div class="doc">Alpha equivalence is preserved by the <span class="bracket"><span class="id">ELen</span></span> operator </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="alpha_equiv_preserved_by_len">alpha_equiv_preserved_by_len</a></span> :<br/>
 &nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span>) (<span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof99')">Proof.</div>
-<div class="proofscript" id="proof99">
+<div class="toggleproof" onclick="toggleDisplay('proof104')">Proof.</div>
+<div class="proofscript" id="proof104">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel_len">alpha_equiv_rel_len</a></span>. <span class="id">all</span>: <span class="tactic">assumption</span>.<br/>
 Qed.</div>
@@ -164,8 +164,8 @@ Qed.</div>
 <div class="doc">Alpha equivalence is preserved by the <span class="bracket"><span class="id">ELet</span></span> operator </div>
 <span class="kwd">Lemma</span> <span class="id"><a name="alpha_equiv_preserved_by_let">alpha_equiv_preserved_by_let</a></span> (<span class="id">x</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) :<br/>
 &nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> ==&gt; <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span>) (<span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#ELet2">ELet2</a></span> <span class="id">x</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof100')">Proof.</div>
-<div class="proofscript" id="proof100">
+<div class="toggleproof" onclick="toggleDisplay('proof105')">Proof.</div>
+<div class="proofscript" id="proof105">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H1</span> <span class="id">e</span>'' <span class="id">e</span>''' <span class="id">H2</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#ELet2">ELet2</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel_let">alpha_equiv_rel_let</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
@@ -181,8 +181,8 @@ Qed.</div>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span>'' <span class="id">e</span>''' -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> (<span class="tactic">subst</span>' <span class="id">e</span>'' <span class="id">x</span> <span class="id">e</span>) (<span class="tactic">subst</span>' <span class="id">e</span>''' <span class="id">x</span> <span class="id">e</span>').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof101')">Proof.</div>
-<div class="proofscript" id="proof101">
+<div class="toggleproof" onclick="toggleDisplay('proof106')">Proof.</div>
+<div class="proofscript" id="proof106">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">H</span>.<br/>
@@ -308,8 +308,8 @@ Qed.</div>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span>'' <span class="id">e</span>''' -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> (<span class="tactic">subst</span> <span class="id">e</span>'' <span class="id">x</span> <span class="id">e</span>) (<span class="tactic">subst</span> <span class="id">e</span>''' <span class="id">x</span> <span class="id">e</span>').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof102')">Proof.</div>
-<div class="proofscript" id="proof102">
+<div class="toggleproof" onclick="toggleDisplay('proof107')">Proof.</div>
+<div class="proofscript" id="proof107">
 &nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>'')) <span class="kwd">as</span> <span class="id">o</span>.<br/>
 &nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>') (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>''')) <span class="kwd">as</span> <span class="id">o</span>'.<br/>
@@ -331,6 +331,91 @@ Qed.</div>
 &nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
 Qed.</div>
 <br/>
+<br/>
+<span class="kwd">Lemma</span> <span class="id"><a name="subst_with_rename_alpha_equiv">subst_with_rename_alpha_equiv</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">x</span>',<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e</span> <span class="id">x</span>' = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> (<span class="tactic">subst</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">e</span>) (<span class="tactic">subst</span> <span class="id">e</span>' <span class="id">x</span>' (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>')).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof108')">Proof.</div>
+<div class="proofscript" id="proof108">
+&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">x</span> <span class="id">x</span>' <span class="id">A</span>. <span class="tactic">unfold</span> <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>')) <span class="kwd">as</span> <span class="id">o</span>.<br/>
+&nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>')) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>')) <span class="kwd">as</span> <span class="id">o</span>'.<br/>
+&nbsp;&nbsp;<span class="id">remember</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>) (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> <span class="id">e</span>'))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html#Nat.max">max</a></span> (<span class="id"><a href="PFPL.Definitions.html#get_fresh_var">get_fresh_var</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>')) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> <span class="id">x</span>'))) <span class="kwd">as</span> <span class="id">newO</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T1</span> : <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span>) (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>)).<br/>
+&nbsp;&nbsp;{ <span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_FreshRename_AlphaEquiv.html#fresh_rename_keeps_alpha_equiv_3">fresh_rename_keeps_alpha_equiv_3</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">lia</span>. <span class="id">lia</span>. <span class="tactic">reflexivity</span>. }<br/>
+&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T2</span> : <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span>') (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>)).<br/>
+&nbsp;&nbsp;{ <span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_FreshRename_AlphaEquiv.html#fresh_rename_keeps_alpha_equiv_3">fresh_rename_keeps_alpha_equiv_3</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">lia</span>. <span class="id">lia</span>. <span class="tactic">reflexivity</span>. }<br/>
+<br/>
+&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- (<span class="id"><a href="PFPL.Lemmas_Rename_FreshRename.html#fresh_rename_vs_rename_3">fresh_rename_vs_rename_3</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">newO</span>) <span class="kwd">in</span> <span class="id">T2</span>; [| <span class="tactic">auto</span> | <span class="id">lia</span>].<br/>
+<br/>
+&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T3</span> : <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span>' (<span class="tactic">rename</span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>) <span class="id">x</span> <span class="id">x</span>'))<br/>
+&nbsp;&nbsp;). {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="tactic">subst</span>'<span class="id">_vs_rename</span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#all_vars_free_plus_bound">all_vars_free_plus_bound</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.PartialMap_Set.html#unionSet">unionSet</a></span>. <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#orb_false_iff">orb_false_iff</a></span>. <span class="tactic">split</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- (<span class="id"><a href="PFPL.Lemmas_AlphaEquiv.html#alpha_equiv_same_free_vars">alpha_equiv_same_free_vars</a></span> <span class="id">e</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_expr_not_free">not_in_expr_not_free</a></span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_FreshRename_AlphaEquiv.html#fresh_rename_keeps_alpha_equiv">fresh_rename_keeps_alpha_equiv</a></span>. <span class="id">lia</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="PFPL.Definitions.html#bound_vars">bound_vars</a></span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>) <span class="id">x</span>'); <span class="tactic">intro</span> <span class="id">BV</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_FreshRename.html#fresh_rename_new_bounds">fresh_rename_new_bounds</a></span> <span class="kwd">in</span> <span class="id">BV</span>. <span class="id">lia</span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T4</span> : <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>))<br/>
+&nbsp;&nbsp;). {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#substitutivity_aux">substitutivity_aux</a></span>; <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Subst.html#fresh_rename_removes_conflicts">fresh_rename_removes_conflicts</a></span> <span class="id">e</span> <span class="id">e</span>' <span class="id">o</span> <span class="id">Heqo</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_FreshRename.html#fresh_rename_new_bounds">fresh_rename_new_bounds</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_expr_not_free">not_in_expr_not_free</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars">fresh_var_not_in_all_vars</a></span>. <span class="id">lia</span>. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T5</span> : <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span>' (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">o</span>'))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span>' (<span class="tactic">rename</span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>) <span class="id">x</span> <span class="id">x</span>'))<br/>
+&nbsp;&nbsp;). {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#substitutivity_aux">substitutivity_aux</a></span>; <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Subst.html#fresh_rename_removes_conflicts">fresh_rename_removes_conflicts</a></span> (<span class="tactic">rename</span> <span class="id">e</span> <span class="id">x</span> <span class="id">x</span>') <span class="id">e</span>' <span class="id">o</span>' <span class="id">Heqo</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="PFPL.Lemmas_Rename_FreshRename.html#fresh_rename_vs_rename_3">fresh_rename_vs_rename_3</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_FreshRename.html#fresh_rename_new_bounds">fresh_rename_new_bounds</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#not_in_expr_not_free">not_in_expr_not_free</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars">fresh_var_not_in_all_vars</a></span>. <span class="id">lia</span>. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>. <span class="id">lia</span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<span class="tactic">clear</span> <span class="id">T1</span> <span class="id">T2</span> <span class="id">Heqo</span> <span class="id">Heqo</span>' <span class="id">HeqnewO</span> <span class="id">A</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_AlphaEquiv_2.html#alpha_equiv_trans">alpha_equiv_trans</a></span> <span class="id">_</span> (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>)) <span class="id">_</span>).<br/>
+&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_AlphaEquiv_2.html#alpha_equiv_trans">alpha_equiv_trans</a></span> <span class="id">_</span> (<span class="tactic">subst</span>' <span class="id">e</span>' <span class="id">x</span>' (<span class="tactic">rename</span> (<span class="id"><a href="PFPL.Definitions.html#fresh_rename">fresh_rename</a></span> <span class="id">e</span> <span class="id"><a href="PFPL.PartialMap_Set.html#emptySet">emptySet</a></span> <span class="id">newO</span>) <span class="id">x</span> <span class="id">x</span>')) <span class="id">_</span>).<br/>
+&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_AlphaEquiv.html#alpha_equiv_sym">alpha_equiv_sym</a></span>. <span class="tactic">auto</span>.<br/>
+Qed.</div>
+<br/>
+<span class="kwd">Lemma</span> <span class="id"><a name="rename_vs_subst_2">rename_vs_subst_2</a></span> : <span class="kwd">forall</span> <span class="id">e1</span> <span class="id">x</span> <span class="id">e2</span> <span class="id">x</span>' <span class="id">e2</span>' <span class="id">z</span>,<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e2</span> <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#all_vars">all_vars</a></span> <span class="id">e2</span>' <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> (<span class="tactic">rename</span> <span class="id">e2</span> <span class="id">x</span> <span class="id">z</span>) (<span class="tactic">rename</span> <span class="id">e2</span>' <span class="id">x</span>' <span class="id">z</span>) -&gt;<br/>
+&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> (<span class="tactic">subst</span> <span class="id">e1</span> <span class="id">x</span> <span class="id">e2</span>) (<span class="tactic">subst</span> <span class="id">e1</span> <span class="id">x</span>' <span class="id">e2</span>').<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof109')">Proof.</div>
+<div class="proofscript" id="proof109">
+&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T1</span> := <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#subst_with_rename_alpha_equiv">subst_with_rename_alpha_equiv</a></span> <span class="id">e2</span> <span class="id">e1</span> <span class="id">x</span> <span class="id">z</span> <span class="id">H</span>).<br/>
+&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">T2</span> := <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#subst_with_rename_alpha_equiv">subst_with_rename_alpha_equiv</a></span> <span class="id">e2</span>' <span class="id">e1</span> <span class="id">x</span>' <span class="id">z</span> <span class="id">H0</span>).<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_AlphaEquiv_2.html#alpha_equiv_trans">alpha_equiv_trans</a></span> <span class="id">_</span> (<span class="tactic">subst</span> <span class="id">e1</span> <span class="id">z</span> (<span class="tactic">rename</span> <span class="id">e2</span> <span class="id">x</span> <span class="id">z</span>)) <span class="id">_</span>); <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_AlphaEquiv_2.html#alpha_equiv_trans">alpha_equiv_trans</a></span> <span class="id">_</span> (<span class="tactic">subst</span> <span class="id">e1</span> <span class="id">z</span> (<span class="tactic">rename</span> <span class="id">e2</span>' <span class="id">x</span>' <span class="id">z</span>)) <span class="id">_</span>).<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Theorems_AlphaEquiv.html#substitutivity">substitutivity</a></span>; <span class="tactic">auto</span>. <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">symmetry</span>. <span class="tactic">auto</span>.<br/>
+Qed.</div>
 
 </div>
 <div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>

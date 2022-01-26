@@ -26,23 +26,23 @@
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="same_structure_refl">same_structure_refl</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span>, <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof45')">Proof.</div>
-<div class="proofscript" id="proof45">
+<div class="toggleproof" onclick="toggleDisplay('proof50')">Proof.</div>
+<div class="proofscript" id="proof50">
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="same_structure_sym">same_structure_sym</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span>' <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof46')">Proof.</div>
-<div class="proofscript" id="proof46">
+<div class="toggleproof" onclick="toggleDisplay('proof51')">Proof.</div>
+<div class="proofscript" id="proof51">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H</span>. <span class="tactic">induction</span> <span class="id">H</span>; <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="same_structure_trans">same_structure_trans</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">e</span>'',<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span>' <span class="id">e</span>'' -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>''.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof47')">Proof.</div>
-<div class="proofscript" id="proof47">
+<div class="toggleproof" onclick="toggleDisplay('proof52')">Proof.</div>
+<div class="proofscript" id="proof52">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">e</span>'' <span class="id">H</span>. <span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">e</span>''.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>.<br/>
@@ -57,8 +57,8 @@ Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="same_structure_equal_constructor">same_structure_equal_constructor</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; ~ <span class="id"><a href="PFPL.Definitions.html#diff_constructor">diff_constructor</a></span> <span class="id">e</span> <span class="id">e</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof48')">Proof.</div>
-<div class="proofscript" id="proof48">
+<div class="toggleproof" onclick="toggleDisplay('proof53')">Proof.</div>
+<div class="proofscript" id="proof53">
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="tactic">intro</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="id">contradiction</span>.<br/>
 Qed.</div>

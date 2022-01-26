@@ -13,7 +13,7 @@ const statementsExtractRegexp = statementsKeywords.map(
 );
 const proofRegexp = /^Proof.([^]+?)(?:Qed|Admitted)\./;
 const proofSplitRegexp = /(\.|;|-|\+|\*|{|})/;
-const tacticsRegexp = /^(all:\s+)?(try\s+)?(intro|intros|induction|constructor|assert|apply|subst|inversion|assumption|destruct|auto|lia|exists|remember|cut|split|generalize dependent|generalize)/;
+const tacticsRegexp = /^(all:\s+)?(try\s+)?(intro|intros|induction|constructor|assert|apply|subst|inversion|assumption|destruct|auto|lia|exists|remember|cut|split|generalize dependent|generalize|rewrite)/;
 
 class TopologicalOrder extends BaseTopologicalOrder {
   constructor(database) {
@@ -117,6 +117,10 @@ class References {
 
       if (proof) {
         const proofParts = proof
+          // Remove occurrences of <- and -> first
+          // Because proofSplitRegexp splits the -
+          .replace(/rewrite\s*<-/g, "rewrite ") 
+          .replace(/rewrite\s*->/g, "rewrite ")
           .split(proofSplitRegexp)
           .map(l => l.trim().replace(tacticsRegexp, "").trim())
           .filter(l => l.length > 1);
