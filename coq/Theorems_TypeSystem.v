@@ -270,8 +270,7 @@ Proof.
   }
 Qed.
 
-(** Typing is preserved by alpha equivalence *)
-Lemma alpha_variants_same_type : forall e e' Gamma t,
+Lemma alpha_variants_same_type_aux : forall e e' Gamma t,
   alpha_equiv_rel e e' -> hastype Gamma e t -> hastype Gamma e' t.
 Proof.
   intros e e' Gamma t H.
@@ -304,6 +303,15 @@ Proof.
     apply IHalpha_equiv_rel2; assumption.
   - inversion H0. subst. apply T_Len.
     apply IHalpha_equiv_rel; assumption.
+Qed.
+
+(** Alpha-variants have the same type *)
+Theorem alpha_variants_same_type : forall e e' Gamma t,
+  alpha_equiv_rel e e' -> (hastype Gamma e t <-> hastype Gamma e' t).
+Proof.
+  intros. split.
+  apply alpha_variants_same_type_aux. auto.
+  apply alpha_variants_same_type_aux. symmetry. auto.
 Qed.
 
 (** Substitution property assuming no capture of variables *)

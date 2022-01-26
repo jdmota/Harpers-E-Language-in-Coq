@@ -885,7 +885,7 @@ Proof.
   apply eval_big_correct_2.
 Qed.
 
-Theorem alpha_variants_same_eval_aux : forall e v,
+Lemma alpha_variants_same_eval_aux : forall e v,
   EvalBig e v -> (forall e', alpha_equiv_rel e e' -> EvalBig e' v).
 Proof.
   intros e v E. induction E; intros e' A; inversion A; subst.
@@ -907,7 +907,7 @@ Proof.
     apply fresh_var_not_in_all_vars. lia.
 Qed.
 
-(** Alpha-variants evaluate in the same way *)
+(** Alpha-variants evaluate to the same value *)
 Theorem alpha_variants_same_eval : forall e e' v,
   alpha_equiv_rel e e' -> (EvalBig e v <-> EvalBig e' v).
 Proof.

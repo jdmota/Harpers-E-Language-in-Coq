@@ -936,7 +936,7 @@ Qed.</div>
 &nbsp;&nbsp;<span class="id">apply</span> <span class="id"><a href="PFPL.Theorems_Eval.html#eval_big_correct_2">eval_big_correct_2</a></span>.<br/>
 Qed.</div>
 <br/>
-<span class="kwd">Theorem</span> <span class="id"><a name="alpha_variants_same_eval_aux">alpha_variants_same_eval_aux</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">v</span>,<br/>
+<span class="kwd">Lemma</span> <span class="id"><a name="alpha_variants_same_eval_aux">alpha_variants_same_eval_aux</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">v</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#EvalBig">EvalBig</a></span> <span class="id">e</span> <span class="id">v</span> -&gt; (<span class="kwd">forall</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#EvalBig">EvalBig</a></span> <span class="id">e</span>' <span class="id">v</span>).<br/>
 <div><span class="toggleproof" onclick="toggleDisplay('proof37')">Proof.</span></div>
 <div class="proofscript" id="proof37">
@@ -959,7 +959,7 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id"><a href="PFPL.Lemmas_Vars.html#fresh_var_not_in_all_vars">fresh_var_not_in_all_vars</a></span>. <span class="id">lia</span>.<br/>
 Qed.</div>
 <br/>
-<div class="doc">Alpha-variants evaluate in the same way </div>
+<div class="doc">Alpha-variants evaluate to the same value </div>
 <span class="kwd">Theorem</span> <span class="id"><a name="alpha_variants_same_eval">alpha_variants_same_eval</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">v</span>,<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#alpha_equiv_rel">alpha_equiv_rel</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; (<span class="id"><a href="PFPL.Definitions.html#EvalBig">EvalBig</a></span> <span class="id">e</span> <span class="id">v</span> &lt;-&gt; <span class="id"><a href="PFPL.Definitions.html#EvalBig">EvalBig</a></span> <span class="id">e</span>' <span class="id">v</span>).<br/>
 <div><span class="toggleproof" onclick="toggleDisplay('proof38')">Proof.</span></div>
