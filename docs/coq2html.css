@@ -4,13 +4,12 @@
      div.coq      encloses all generated body
      div.doc      contents of (** *) comments
      div.footer   footer
-     div.togglescript   "Proof." line
+     span.togglescript   "Proof." line
      div.proofscript  contents of proof script
      span.docright contents of (**r *) comments
      span.bracket contents of [ ] within comments
      span.comment contents of (* *) comments
      span.kwd     Coq keyword
-     span.tactic  Coq tactic
      span.id      any other identifier
 */
 
@@ -52,12 +51,12 @@ div.doc {
   font-family: serif;
 }
 
-div.toggleproof {
+span.toggleproof {
   font-size: 0.8em;
   text-decoration: underline;
 }
 
-div.toggleproof:hover {
+span.toggleproof:hover {
   cursor: pointer;
 }
 

@@ -14,53 +14,53 @@
 <h1 class="title">Module PFPL.Lemmas_Same_Structure</h1>
 <div class="coq">
 <span class="kwd">Set</span> <span class="id">Warnings</span> "-<span class="id">notation</span>-<span class="id">overridden</span>,-<span class="id">parsing</span>,-<span class="id">deprecated</span>-<span class="id">hint</span>-<span class="id">without</span>-<span class="id">locality</span>".<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool.Bool</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith.Arith</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.EqNat.html">Arith.EqNat</a></span>. <span class="kwd">Import</span> <span class="id">Nat</span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html">Arith.PeanoNat</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html">Logic.Eqdep_dec</a></span>.<br/>
-<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.PartialMap_Set.html">PartialMap_Set</a></span>.<br/>
-<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Definitions.html">Definitions</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Bool.Bool.html">Bool.Bool</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Arith.Arith.html">Arith.Arith</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Arith.EqNat.html">Arith.EqNat</a></span>. <span class="kwd">Import</span> <span class="id">Nat</span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Arith.PeanoNat.html">Arith.PeanoNat</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html">Logic.Eqdep_dec</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.PartialMap_Set.html">PartialMap_Set</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Definitions.html">Definitions</a></span>.<br/>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="same_structure_refl">same_structure_refl</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span>, <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof50')">Proof.</div>
-<div class="proofscript" id="proof50">
-&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof1')">Proof.</span></div>
+<div class="proofscript" id="proof1">
+&nbsp;&nbsp;<span class="id">induction</span> <span class="id">e</span>; <span class="id">constructor</span>; <span class="id">auto</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="same_structure_sym">same_structure_sym</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span>' <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof51')">Proof.</div>
-<div class="proofscript" id="proof51">
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H</span>. <span class="tactic">induction</span> <span class="id">H</span>; <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof2')">Proof.</span></div>
+<div class="proofscript" id="proof2">
+&nbsp;&nbsp;<span class="id">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">H</span>. <span class="id">induction</span> <span class="id">H</span>; <span class="id">constructor</span>; <span class="id">auto</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="same_structure_trans">same_structure_trans</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">e</span>'',<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span>' <span class="id">e</span>'' -&gt;<br/>
 &nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>''.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof52')">Proof.</div>
-<div class="proofscript" id="proof52">
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">e</span>'' <span class="id">H</span>. <span class="tactic">generalize</span> <span class="tactic">dependent</span> <span class="id">e</span>''.<br/>
-&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H</span>; <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">subst</span>. <span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof3')">Proof.</span></div>
+<div class="proofscript" id="proof3">
+&nbsp;&nbsp;<span class="id">intros</span> <span class="id">e</span> <span class="id">e</span>' <span class="id">e</span>'' <span class="id">H</span>. <span class="id">generalize</span> <span class="id">dependent</span> <span class="id">e</span>''.<br/>
+&nbsp;&nbsp;<span class="id">induction</span> <span class="id">H</span>; <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H</span>. <span class="id">subst</span>. <span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H1</span>. <span class="id">subst</span>. <span class="id">constructor</span>; <span class="id">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H</span>. <span class="id">subst</span>. <span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H</span>. <span class="id">subst</span>. <span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H1</span>. <span class="id">subst</span>. <span class="id">constructor</span>; <span class="id">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H1</span>. <span class="id">subst</span>. <span class="id">constructor</span>; <span class="id">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H1</span>. <span class="id">subst</span>. <span class="id">constructor</span>; <span class="id">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H0</span>. <span class="id">subst</span>. <span class="id">constructor</span>; <span class="id">auto</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="same_structure_equal_constructor">same_structure_equal_constructor</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; ~ <span class="id"><a href="PFPL.Definitions.html#diff_constructor">diff_constructor</a></span> <span class="id">e</span> <span class="id">e</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof53')">Proof.</div>
-<div class="proofscript" id="proof53">
-&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="tactic">intro</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="id">contradiction</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof4')">Proof.</span></div>
+<div class="proofscript" id="proof4">
+&nbsp;&nbsp;<span class="id">intros</span>.<br/>
+&nbsp;&nbsp;<span class="id">induction</span> <span class="id">H</span>; <span class="id">subst</span>; <span class="id">intro</span>; <span class="id">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="id">contradiction</span>.<br/>
 Qed.</div>
 
 </div>

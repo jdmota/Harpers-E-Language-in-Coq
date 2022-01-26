@@ -14,16 +14,16 @@
 <h1 class="title">Module PFPL.Induction_Expr</h1>
 <div class="coq">
 <span class="kwd">Set</span> <span class="id">Warnings</span> "-<span class="id">notation</span>-<span class="id">overridden</span>,-<span class="id">parsing</span>,-<span class="id">deprecated</span>-<span class="id">hint</span>-<span class="id">without</span>-<span class="id">locality</span>".<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool.Bool</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith.Arith</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.EqNat.html">Arith.EqNat</a></span>. <span class="kwd">Import</span> <span class="id">Nat</span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.PeanoNat.html">Arith.PeanoNat</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
-<span class="id">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html">Logic.Eqdep_dec</a></span>.<br/>
-<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.PartialMap_Set.html">PartialMap_Set</a></span>.<br/>
-<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Definitions.html">Definitions</a></span>.<br/>
-<span class="id">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html">Lemmas_Same_Structure</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Bool.Bool.html">Bool.Bool</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Arith.Arith.html">Arith.Arith</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Arith.EqNat.html">Arith.EqNat</a></span>. <span class="kwd">Import</span> <span class="id">Nat</span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Arith.PeanoNat.html">Arith.PeanoNat</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Strings.String.html">Strings.String</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">Coq</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="https://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html">Logic.Eqdep_dec</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.PartialMap_Set.html">PartialMap_Set</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Definitions.html">Definitions</a></span>.<br/>
+<span class="kwd">From</span> <span class="id">PFPL</span> <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html">Lemmas_Same_Structure</a></span>.<br/>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="expr_pair_ind_simple">expr_pair_ind_simple</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">P</span> : <span class="id"><a href="PFPL.Definitions.html#EExp">EExp</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#EExp">EExp</a></span> -&gt; <span class="kwd">Prop</span>,<br/>
@@ -42,72 +42,72 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">P</span> <span class="id">e1</span> <span class="id">e1</span>' -&gt; <span class="id">P</span> (<span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">e1</span>) (<span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">e1</span>')) -&gt;<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>',<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">match</span> <span class="id">e</span>, <span class="id">e</span>' <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ENum">ENum</a></span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ENum">ENum</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#EStr">EStr</a></span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#EStr">EStr</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#EId">EId</a></span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#EId">EId</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#EPlus">EPlus</a></span> <span class="id">_</span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#EPlus">EPlus</a></span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ETimes">ETimes</a></span> <span class="id">_</span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ETimes">ETimes</a></span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ECat">ECat</a></span> <span class="id">_</span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ECat">ECat</a></span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ELet">ELet</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ELet">ELet</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ENum">ENum</a></span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ENum">ENum</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#EStr">EStr</a></span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#EStr">EStr</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#EId">EId</a></span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#EId">EId</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#EPlus">EPlus</a></span> <span class="id">_</span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#EPlus">EPlus</a></span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ETimes">ETimes</a></span> <span class="id">_</span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ETimes">ETimes</a></span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ECat">ECat</a></span> <span class="id">_</span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ECat">ECat</a></span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="PFPL.Definitions.html#ELet">ELet</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span>, <span class="id"><a href="PFPL.Definitions.html#ELet">ELet</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="https://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) -&gt; <span class="id">P</span> <span class="id">e</span> <span class="id">e</span>') -&gt;<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id">P</span> <span class="id">e</span> <span class="id">e</span>').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4')">Proof.</div>
-<div class="proofscript" id="proof4">
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span> <span class="id">HF</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HNum</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HStr</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HId</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HPlus</span>. <span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">apply</span> <span class="id">IHe2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HTimes</span>. <span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">apply</span> <span class="id">IHe2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HCat</span>. <span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">apply</span> <span class="id">IHe2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HLen</span>. <span class="tactic">apply</span> <span class="id">IHe</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HLet</span>. <span class="tactic">apply</span> <span class="id">IHe1</span>. <span class="tactic">apply</span> <span class="id">IHe2</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof1')">Proof.</span></div>
+<div class="proofscript" id="proof1">
+&nbsp;&nbsp;<span class="id">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span> <span class="id">HF</span>.<br/>
+&nbsp;&nbsp;<span class="id">induction</span> <span class="id">e</span>.<br/>
+&nbsp;&nbsp;- <span class="id">induction</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HNum</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;- <span class="id">induction</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HStr</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;- <span class="id">induction</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HId</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;- <span class="id">induction</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HPlus</span>. <span class="id">apply</span> <span class="id">IHe1</span>. <span class="id">apply</span> <span class="id">IHe2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;- <span class="id">induction</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HTimes</span>. <span class="id">apply</span> <span class="id">IHe1</span>. <span class="id">apply</span> <span class="id">IHe2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;- <span class="id">induction</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HCat</span>. <span class="id">apply</span> <span class="id">IHe1</span>. <span class="id">apply</span> <span class="id">IHe2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;- <span class="id">induction</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HLen</span>. <span class="id">apply</span> <span class="id">IHe</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;- <span class="id">induction</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>; <span class="id">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HLet</span>. <span class="id">apply</span> <span class="id">IHe1</span>. <span class="id">apply</span> <span class="id">IHe2</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Definition</span> <span class="id"><a name="strengthen">strengthen</a></span> :=<br/>
@@ -121,11 +121,11 @@ Qed.</div>
 <span class="kwd">Lemma</span> <span class="id"><a name="expr_pair_ind_same_structure">expr_pair_ind_same_structure</a></span> :<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">P</span> : <span class="id"><a href="PFPL.Definitions.html#EExp">EExp</a></span> -&gt; <span class="id"><a href="PFPL.Definitions.html#EExp">EExp</a></span> -&gt; <span class="kwd">Prop</span>,<br/>
 &nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="id">P</span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id">P</span> <span class="id">e</span> <span class="id">e</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof5')">Proof.</div>
-<div class="proofscript" id="proof5">
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">apply</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_refl">same_structure_refl</a></span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_refl">same_structure_refl</a></span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof2')">Proof.</span></div>
+<div class="proofscript" id="proof2">
+&nbsp;&nbsp;<span class="id">intros</span>. <span class="id">apply</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_refl">same_structure_refl</a></span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_refl">same_structure_refl</a></span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Definition</span> <span class="id"><a name="strengthen_one">strengthen_one</a></span> :=<br/>
@@ -155,22 +155,22 @@ Qed.</div>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e1</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="id">P</span> <span class="id">e1</span> -&gt; <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="id">P</span> (<span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">e1</span>)) -&gt;<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e</span>, <span class="id">P</span> <span class="id">e</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof6')">Proof.</div>
-<div class="proofscript" id="proof6">
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">G</span> : (<span class="kwd">forall</span> <span class="id">e</span> : <span class="id"><a href="PFPL.Definitions.html#EExp">EExp</a></span>, <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="id">P</span> <span class="id">e</span>) -&gt; (<span class="kwd">forall</span> <span class="id">e</span> : <span class="id"><a href="PFPL.Definitions.html#EExp">EExp</a></span>, <span class="id">P</span> <span class="id">e</span>)).<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">assert</span> (<span class="id">H0</span> := <span class="id">H</span> <span class="id">e</span>). <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">H1</span> := <span class="id">H0</span> <span class="id">e</span>). <span class="tactic">apply</span> <span class="id">H1</span>. <span class="tactic">apply</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_refl">same_structure_refl</a></span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">G</span>. <span class="tactic">clear</span> <span class="id">G</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">HNum</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">HStr</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">HId</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">HPlus</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">HTimes</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">HCat</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">HLen</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">HLet</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof3')">Proof.</span></div>
+<div class="proofscript" id="proof3">
+&nbsp;&nbsp;<span class="id">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span>.<br/>
+&nbsp;&nbsp;<span class="id">assert</span> (<span class="id">G</span> : (<span class="kwd">forall</span> <span class="id">e</span> : <span class="id"><a href="PFPL.Definitions.html#EExp">EExp</a></span>, <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="id">P</span> <span class="id">e</span>) -&gt; (<span class="kwd">forall</span> <span class="id">e</span> : <span class="id"><a href="PFPL.Definitions.html#EExp">EExp</a></span>, <span class="id">P</span> <span class="id">e</span>)).<br/>
+&nbsp;&nbsp;<span class="id">intros</span>. <span class="id">assert</span> (<span class="id">H0</span> := <span class="id">H</span> <span class="id">e</span>). <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;<span class="id">assert</span> (<span class="id">H1</span> := <span class="id">H0</span> <span class="id">e</span>). <span class="id">apply</span> <span class="id">H1</span>. <span class="id">apply</span> <span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_refl">same_structure_refl</a></span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">G</span>. <span class="id">clear</span> <span class="id">G</span>.<br/>
+&nbsp;&nbsp;<span class="id">induction</span> <span class="id">e</span>.<br/>
+&nbsp;&nbsp;- <span class="id">apply</span> <span class="id">HNum</span>.<br/>
+&nbsp;&nbsp;- <span class="id">apply</span> <span class="id">HStr</span>.<br/>
+&nbsp;&nbsp;- <span class="id">apply</span> <span class="id">HId</span>.<br/>
+&nbsp;&nbsp;- <span class="id">apply</span> <span class="id">HPlus</span>. <span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">apply</span> <span class="id">HTimes</span>. <span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">apply</span> <span class="id">HCat</span>. <span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">apply</span> <span class="id">HLen</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">apply</span> <span class="id">HLet</span>. <span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="strengthen_one_same_structure">strengthen_one_same_structure</a></span> :<br/>
@@ -178,14 +178,14 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#same_structure">same_structure</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="id">P</span> <span class="id">e</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="id">P</span> <span class="id">e</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof7')">Proof.</div>
-<div class="proofscript" id="proof7">
-&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H0</span>. <span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e</span> <span class="id">e</span>' <span class="id">e</span>'0).<br/>
-&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof4')">Proof.</span></div>
+<div class="proofscript" id="proof4">
+&nbsp;&nbsp;<span class="id">intros</span>.<br/>
+&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span>.<br/>
+&nbsp;&nbsp;<span class="id">intros</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H0</span>. <span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e</span> <span class="id">e</span>' <span class="id">e</span>'0).<br/>
+&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="expr_ind">expr_ind</a></span> :<br/>
@@ -211,37 +211,37 @@ Qed.</div>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e1</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span> <span class="id">P</span> <span class="id">e1</span> -&gt; <span class="id">P</span> (<span class="id"><a href="PFPL.Definitions.html#ELen">ELen</a></span> <span class="id">e1</span>)) -&gt;<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e</span>, <span class="id">P</span> <span class="id">e</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof8')">Proof.</div>
-<div class="proofscript" id="proof8">
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_ind_aux">expr_ind_aux</a></span>.<br/>
-&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">intros</span>; <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span>; <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HId</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>; <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HLet</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e2</span> <span class="id">e2</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HNum</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HStr</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>; <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HPlus</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e2</span> <span class="id">e2</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>; <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HTimes</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e2</span> <span class="id">e2</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>; <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HCat</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e2</span> <span class="id">e2</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HLen</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof5')">Proof.</span></div>
+<div class="proofscript" id="proof5">
+&nbsp;&nbsp;<span class="id">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_ind_aux">expr_ind_aux</a></span>.<br/>
+&nbsp;&nbsp;<span class="id">all</span>: <span class="id">intros</span>; <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one">strengthen_one</a></span>; <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H</span>; <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HId</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H1</span>; <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HLet</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e2</span> <span class="id">e2</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H</span>; <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HNum</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H</span>; <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HStr</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H1</span>; <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HPlus</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e2</span> <span class="id">e2</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H1</span>; <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HTimes</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e2</span> <span class="id">e2</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H1</span>; <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HCat</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e2</span> <span class="id">e2</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">inversion</span> <span class="id">H0</span>; <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HLen</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Induction_Expr.html#strengthen_one_same_structure">strengthen_one_same_structure</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e1</span>').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="expr_pair_ind_aux">expr_pair_ind_aux</a></span> :<br/>
@@ -269,21 +269,21 @@ Qed.</div>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>',<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#diff_constructor">diff_constructor</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="id">P</span> <span class="id">e</span> <span class="id">e</span>') -&gt;<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id">P</span> <span class="id">e</span> <span class="id">e</span>').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof9')">Proof.</div>
-<div class="proofscript" id="proof9">
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span> <span class="id">HF</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">e</span> <span class="id">e</span>'.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_pair_ind_same_structure">expr_pair_ind_same_structure</a></span>.<br/>
-&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>, <span class="id">e</span>' <span class="kwd">using</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_pair_ind_simple">expr_pair_ind_simple</a></span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HId</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HLet</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HNum</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HStr</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HPlus</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HTimes</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HCat</span>. <span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HLen</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HF</span>. <span class="tactic">assumption</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof6')">Proof.</span></div>
+<div class="proofscript" id="proof6">
+&nbsp;&nbsp;<span class="id">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span> <span class="id">HF</span>.<br/>
+&nbsp;&nbsp;<span class="id">intros</span> <span class="id">e</span> <span class="id">e</span>'.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_pair_ind_same_structure">expr_pair_ind_same_structure</a></span>.<br/>
+&nbsp;&nbsp;<span class="id">induction</span> <span class="id">e</span>, <span class="id">e</span>' <span class="kwd">using</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_pair_ind_simple">expr_pair_ind_simple</a></span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HId</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HLet</span>. <span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HNum</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HStr</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HPlus</span>. <span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HTimes</span>. <span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HCat</span>. <span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HLen</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HF</span>. <span class="id">assumption</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Lemma</span> <span class="id"><a name="expr_pair_ind">expr_pair_ind</a></span> :<br/>
@@ -311,109 +311,109 @@ Qed.</div>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>',<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="PFPL.Definitions.html#diff_constructor">diff_constructor</a></span> <span class="id">e</span> <span class="id">e</span>' -&gt; <span class="id">P</span> <span class="id">e</span> <span class="id">e</span>') -&gt;<br/>
 &nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">e</span> <span class="id">e</span>', <span class="id">P</span> <span class="id">e</span> <span class="id">e</span>').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof10')">Proof.</div>
-<div class="proofscript" id="proof10">
-&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span> <span class="id">HF</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_pair_ind_aux">expr_pair_ind_aux</a></span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>. <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HId</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">inversion</span> <span class="id">H2</span>. <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HLet</span>.<br/>
+<div><span class="toggleproof" onclick="toggleDisplay('proof7')">Proof.</span></div>
+<div class="proofscript" id="proof7">
+&nbsp;&nbsp;<span class="id">intros</span> <span class="id">P</span> <span class="id">HId</span> <span class="id">HLet</span> <span class="id">HNum</span> <span class="id">HStr</span> <span class="id">HPlus</span> <span class="id">HTimes</span> <span class="id">HCat</span> <span class="id">HLen</span> <span class="id">HF</span>.<br/>
+&nbsp;&nbsp;<span class="id">apply</span> <span class="id"><a href="PFPL.Induction_Expr.html#expr_pair_ind_aux">expr_pair_ind_aux</a></span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>. <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">H</span>. <span class="id">inversion</span> <span class="id">H0</span>. <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HId</span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>. <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">H1</span>. <span class="id">inversion</span> <span class="id">H2</span>. <span class="id">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HLet</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H0</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span> <span class="id">e2</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span>' <span class="id">e2</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>. <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HNum</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>. <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">subst</span>. <span class="tactic">apply</span> <span class="id">HStr</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">inversion</span> <span class="id">H2</span>. <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HPlus</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H0</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span> <span class="id">e2</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span>' <span class="id">e2</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>. <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">H</span>. <span class="id">inversion</span> <span class="id">H0</span>. <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HNum</span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>. <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">H</span>. <span class="id">inversion</span> <span class="id">H0</span>. <span class="id">subst</span>. <span class="id">apply</span> <span class="id">HStr</span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>. <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">H1</span>. <span class="id">inversion</span> <span class="id">H2</span>. <span class="id">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HPlus</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H0</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span> <span class="id">e2</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span>' <span class="id">e2</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">inversion</span> <span class="id">H2</span>. <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HTimes</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H0</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span> <span class="id">e2</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span>' <span class="id">e2</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>. <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">H1</span>. <span class="id">inversion</span> <span class="id">H2</span>. <span class="id">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HTimes</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H0</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span> <span class="id">e2</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span>' <span class="id">e2</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">inversion</span> <span class="id">H2</span>. <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HCat</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H0</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span> <span class="id">e2</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span>' <span class="id">e2</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>. <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">H1</span>. <span class="id">inversion</span> <span class="id">H2</span>. <span class="id">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HCat</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H0</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span> <span class="id">e2</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span>' <span class="id">e2</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">HLen</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H0</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span> <span class="id">e2</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e2</span>' <span class="id">e2</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>. <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>. <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">H0</span>. <span class="id">inversion</span> <span class="id">H1</span>. <span class="id">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">HLen</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>. <span class="tactic">assumption</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">e</span>; <span class="tactic">destruct</span> <span class="id">e</span>';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="PFPL.Definitions.html#diff_constructor">diff_constructor</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">try</span> <span class="id">contradiction</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>; <span class="tactic">intros</span> <span class="id">e</span>'' <span class="id">e</span>''' <span class="id">S1</span> <span class="id">S2</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">S1</span>; <span class="tactic">subst</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">S2</span>; <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">apply</span> <span class="id">HF</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span> <span class="id">e1</span>'0 <span class="id">e</span>'').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">apply</span> (<span class="id"><a href="PFPL.Lemmas_Same_Structure.html#same_structure_trans">same_structure_trans</a></span> <span class="id">e1</span>' <span class="id">e1</span>'1 <span class="id">e</span>''').<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">assumption</span>. <span class="id">assumption</span>.<br/>
+&nbsp;&nbsp;- <span class="id">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">destruct</span> <span class="id">e</span>; <span class="id">destruct</span> <span class="id">e</span>';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">unfold</span> <span class="id"><a href="PFPL.Definitions.html#diff_constructor">diff_constructor</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="id">try</span> <span class="id">contradiction</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">clear</span> <span class="id">H</span>; <span class="id">unfold</span> <span class="id"><a href="PFPL.Induction_Expr.html#strengthen">strengthen</a></span>; <span class="id">intros</span> <span class="id">e</span>'' <span class="id">e</span>''' <span class="id">S1</span> <span class="id">S2</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">S1</span>; <span class="id">subst</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">inversion</span> <span class="id">S2</span>; <span class="id">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">apply</span> <span class="id">HF</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">all</span>: <span class="id">auto</span>.<br/>
 Qed.</div>
 
 </div>
