@@ -35,6 +35,10 @@ const rules = [
       `<span class="id"><a href="PFPL.Definitions.html#alpha_equiv">alpha_equiv</a></span>`
     ],
     [
+      /<span class="id">subst<\/span>'(?!<span class="id">)/g,
+      `<span class="id"><a href="PFPL.Definitions.html#subst'">subst'</a></span>`
+    ],
+    [
       /<span class="id">eval_big<\/span>/g,
       `<span class="id"><a href="PFPL.Theorems_Eval.html#eval_big">eval_big</a></span>`
     ]
